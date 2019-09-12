@@ -1,0 +1,258 @@
+﻿@model IEnumerable<Tbl_Prog_Ques>
+
+@{
+    ViewBag.Title = "EditQuestion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int numOfQuestions = 1;
+}
+<style></style>
+<h2 class="question">EditQuestion</h2>
+<span class="hidden" id="url-to-update-question">@Url.Action("UpdateQuestion", "Home")</span>
+<span class="hidden" id="url-to-all-tests">@Url.Action("ProgrammingQuiz_list", "Home")</span>
+<div class="container-fluid text-center">
+
+
+    <div class="inner-question-wrapper">
+        <div class="row">
+            <div class="testInfoDesc container-fluid">
+                <h4 class="questionLabel col-sm-4">Test Name</h4>
+                <h4 class="questionLabel col-sm-4">Test Duration</h4>
+                <h4 class="questionLabel col-sm-4">No Of Questions</h4>
+            </div>
+            <div class="row" style="padding:1rem;">
+
+                <div class="testInfo container-fluid">
+                    <div class="questionLabel col-lg-4 col-sm-4">@ViewBag.TestName</div>
+                    <div class="questionLabel col-lg-4 col-sm-4">@ViewBag.TestDuration</div>
+                    <div class="questionLabel col-lg-4 col-sm-4">@ViewBag.NoofQuestion</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="inner-question-wrapper">
+        <div class="testID hidden">@ViewBag.TestID</div>
+        <table class="table">
+
+            <tbody class="allQuestions">
+                @foreach (var item in Model)
+                {
+                    <tr id ="Q_@numOfQuestions" class="questionContainer">
+                        <td class ="QuestionNo" scope="row"><h2>@numOfQuestions.</h2></td>
+                        <td>
+                            <div class="text-wrapper">
+                                <textarea class="question col" rows="2" cols="10" style="margin: 0px 0px 10px; width: 1022px; height: 40px;"> @item.Ques_Desc  </textarea>
+                            </div>
+                            <div class="marks">
+                                <lable>Marks</lable>
+                                <input type="number" class="question-marks" disabled value="@item.Max_Marks">
+                            </div>
+
+
+                            <div class="sample-test">
+                                <div class="sample-heading">
+                                    <p>Sample test case</p>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-5">
+                                        <div class="sample-inner">
+                                            <div class="sample-inner-heading">
+                                                <p>Input</p>
+                                            </div>
+                                            <div class="textarea-wrapper">
+                                                @if (item.Tbl_Stud_ProgTest_TestCases.Where(x => x.Type == false).Count() != 0)
+                                                {
+
+                                                    int numOfSampleTestCase = 1;
+                                                    int totalSampleTestCase = item.Tbl_Stud_ProgTest_TestCases.Where(x => x.Type == false).Count();
+                                                    <div class="SampleTestCaseInput_@numOfQuestions">
+
+                                                        @foreach (var SampleCases in item.Tbl_Stud_ProgTest_TestCases.Where(x => x.Type == false))
+                                                        {
+                                                            <textarea id="SPI_@numOfSampleTestCase" class="SP_@numOfQuestions">@SampleCases.Test_Case_Input</textarea>
+                                                        }
+                                                    </div>
+
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="sample-inner">
+                                            <div class="sample-inner-heading">
+                                                <p>Output</p>
+                                            </div>
+                                            <div class="sample-inner-content">
+                                                <div>
+                                                    <div class="textarea-wrapper">
+                                                        <div class="row">
+                                                            @if (item.Tbl_Stud_ProgTest_TestCases.Where(x => x.Type == false).Count() != 0)
+                                                            {
+                                                                int totalSampleTestCase = item.Tbl_Stud_ProgTest_TestCases.Where(x => x.Type == false).Count();
+
+                                                                int numOfSampleTestCase = 1;
+                                                                <div class="SampleTestCaseInputAndButtons_@numOfQuestions">
+                                                                    @foreach (var SampleCases in item.Tbl_Stud_ProgTest_TestCases.Where(x => x.Type == false))
+                                                                    {
+                                                                        <div id="SPOB_@numOfSampleTestCase">
+                                                                            <div class="col-sm-9"><textarea class="SPO_@numOfQuestions">@SampleCases.Test_Case_Output</textarea></div>
+
+                                                                            <div class="col-sm-3">
+                                                                                @if (numOfSampleTestCase == totalSampleTestCase)
+                                                                                {
+                                                                                    <div class="addNewSampleTopic_@numOfQuestions btn btn-primary col-sm-2" style="height: 3.5rem;max-width:4rem;" onclick="addSampleTestCases(@numOfQuestions,@numOfSampleTestCase)">+</div>
+                                                                                }
+                                                                                <div class="removeNewSampleTopic_@numOfQuestions btn btn-danger col-sm-2" style="height: 3.5rem;max-width:4rem;" onclick="RemovewSampleTestcase(@numOfQuestions,@numOfSampleTestCase)">x</div>
+
+                                                                            </div>
+                                                                        </div>
+                                                                        numOfSampleTestCase = numOfSampleTestCase + 1;
+                                                                    }
+                                                                </div>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><div class="sample-test">
+                                <div class="sample-heading">
+                                    <p>Secret Test Cases</p>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-5">
+                                        <div class="sample-inner">
+                                            <div class="sample-inner-heading">
+                                                <p>Input</p>
+                                            </div>
+                                            <div class="textarea-wrapper">
+
+                                                @if (item.Tbl_Stud_ProgTest_TestCases.Where(x => x.Type == true).Count() != 0)
+                                                {
+                                                    int totalSampleTestCase = item.Tbl_Stud_ProgTest_TestCases.Where(x => x.Type == true).Count();
+                                                    int numOfSecretTestCase = 1;
+                                                    <div class="SecretTestCaseInput_@numOfQuestions">
+                                                        @foreach (var SampleCases in item.Tbl_Stud_ProgTest_TestCases.Where(x => x.Type == true))
+                                                        {
+                                                            <textarea id="STI_@numOfSecretTestCase" class="ST_@numOfQuestions">@SampleCases.Test_Case_Input</textarea>
+                                                            numOfSecretTestCase = numOfSecretTestCase + 1;
+                                                        }
+                                                    </div>
+                                                }
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="sample-inner">
+                                            <div class="sample-inner-heading">
+                                                <p>Output</p>
+                                            </div>
+                                            <div class="">
+                                                <div>
+                                                    <div class="textarea-wrapper">
+                                                        @if (item.Tbl_Stud_ProgTest_TestCases.Where(x => x.Type == true).Count() != 0)
+                                                        {
+                                                            int totalSampleTestCase = item.Tbl_Stud_ProgTest_TestCases.Where(x => x.Type == true).Count();
+                                                            int numOfSecretTestCase = 1;
+                                                            <div class="SecretTestCaseInputAndButtons_@numOfQuestions">
+                                                                @foreach (var SampleCases in item.Tbl_Stud_ProgTest_TestCases.Where(x => x.Type == true))
+                                                                {
+                                                                    <div id="STOB_@numOfSecretTestCase" class="row">
+                                                                        <div class="col-sm-9"><textarea class="STO_@numOfQuestions">@SampleCases.Test_Case_Output</textarea></div>
+
+                                                                        <div class="col-sm-3">
+                                                                            @if (numOfSecretTestCase == totalSampleTestCase)
+                                                                            {
+                                                                                <div class="addNewSecretTopic_@numOfQuestions btn btn-primary col-sm-2" style="height: 3.5rem;max-width:4rem;" onclick="addSecretTestCases(@numOfQuestions,@numOfSecretTestCase)">+</div>
+                                                                            }
+                                                                            <div class="removeNewSecretTopic_@numOfQuestions btn btn-danger col-sm-2" style="height: 3.5rem;max-width:4rem;" onclick="RemovewSecretTestcase(@numOfQuestions,@numOfSecretTestCase)">x</div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                    numOfSecretTestCase = numOfSecretTestCase + 1;
+                                                                }
+                                                            </div>
+                                                        }
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="questionButton">
+                                @if (numOfQuestions == ViewBag.NoofQuestion)
+                                {
+                                    <div class="addNew btn btn-primary col-sm-2" style="height: 3.5rem;max-width:4rem;" onclick="AddNewQuestion(@numOfQuestions)">+</div>
+                                }
+                                <div class="removeNew btn btn-danger col-sm-2" style="height: 3.5rem;max-width:4rem;" onclick="RemovewQuestion(@numOfQuestions)">x</div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    numOfQuestions = numOfQuestions + 1;
+                }
+
+
+            </tbody>
+        </table>
+        <div class="row" style="padding:1rem;">
+            <button class="btn btn-primary" onclick="UpdateQuestions()">Update</button>
+        </div>
+        <div class="row" style="padding:1rem;">
+            <a class="btn btn-primary" href="@Url.Action("ProgrammingQuiz_list","Home")">Back</a>
+        </div>
+
+    </div>
+</div>
+
+<div class="loader-container">
+
+    <div class="lds-roller "><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</div>
+<style>
+    .inner-question-wrapper {
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 7px -3px 10px rgba(0,0,0,0.05);
+    }
+
+    h2.question {
+        padding: 0px 25px;
+        display: inline-block;
+        margin-top: 13px;
+    }
+
+    .allQuestions textarea.question {
+        margin-right: 10px;
+    }
+
+    textarea.question {
+        min-height: 93px;
+    }
+
+    .questionNew .btn {
+        float: right;
+    }
+
+    .edit-quis-move {
+        float: right;
+    }
+</style>
+@section Scripts{
+    <script src="~/Scripts/custom/question-edit.js"></script>
+}
+@section Styles{
+    <link href="~/css/custom/question-edit.css" rel="stylesheet" />
+    <link href="~/css/custom/loader.css" rel="stylesheet" />
+}

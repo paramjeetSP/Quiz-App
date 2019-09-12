@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="mocktestModelStoreContainer" CdmEntityContainer="mocktestEntities1">
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="mocktestModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="mocktestModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="mocktestModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="mocktestModel.Store.sp_helpdiagramdefinition" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="mocktestModel.Store.sp_helpdiagrams" />
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="mocktestModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_selectQuesId" FunctionName="mocktestModel.Store.sp_selectQuesId" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="mocktestModel.Store.sp_upgraddiagrams" />
+    <EntitySetMapping Name="OptionDetails">
+      <EntityTypeMapping TypeName="mocktestModel.OptionDetail">
+        <MappingFragment StoreEntitySet="OptionDetails">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="OpFour" ColumnName="OpFour" />
+          <ScalarProperty Name="OpThree" ColumnName="OpThree" />
+          <ScalarProperty Name="OpTwo" ColumnName="OpTwo" />
+          <ScalarProperty Name="OpOne" ColumnName="OpOne" />
+          <ScalarProperty Name="QuesDetailId" ColumnName="QuesDetailId" />
+          <ScalarProperty Name="OptionDetailsId" ColumnName="OptionDetailsId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PerTestCaseResults">
+      <EntityTypeMapping TypeName="mocktestModel.PerTestCaseResult">
+        <MappingFragment StoreEntitySet="PerTestCaseResult">
+          <ScalarProperty Name="Stud_ID" ColumnName="Stud_ID" />
+          <ScalarProperty Name="Stud_Ans_ID" ColumnName="Stud_Ans_ID" />
+          <ScalarProperty Name="Test_Case_ID" ColumnName="Test_Case_ID" />
+          <ScalarProperty Name="Ques_ID" ColumnName="Ques_ID" />
+          <ScalarProperty Name="Test_ID" ColumnName="Test_ID" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QuesDetails">
+      <EntityTypeMapping TypeName="mocktestModel.QuesDetail">
+        <MappingFragment StoreEntitySet="QuesDetails">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="OpCorrect" ColumnName="OpCorrect" />
+          <ScalarProperty Name="Question" ColumnName="Question" />
+          <ScalarProperty Name="SubTopicId" ColumnName="SubTopicId" />
+          <ScalarProperty Name="QuesDetailId" ColumnName="QuesDetailId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="mocktestModel.Role">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ScoreDetails">
+      <EntityTypeMapping TypeName="mocktestModel.ScoreDetail">
+        <MappingFragment StoreEntitySet="ScoreDetails">
+          <ScalarProperty Name="SubID" ColumnName="SubID" />
+          <ScalarProperty Name="Duration" ColumnName="Duration" />
+          <ScalarProperty Name="QuesDetailId" ColumnName="QuesDetailId" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Score" ColumnName="Score" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="Corrected" ColumnName="Corrected" />
+          <ScalarProperty Name="Attempted" ColumnName="Attempted" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ScoreDetailsId" ColumnName="ScoreDetailsId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubTopics">
+      <EntityTypeMapping TypeName="mocktestModel.SubTopic">
+        <MappingFragment StoreEntitySet="SubTopics">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="TopicId" ColumnName="TopicId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="SubTopicId" ColumnName="SubTopicId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="mocktestModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_ExceptionLogger">
+      <EntityTypeMapping TypeName="mocktestModel.tbl_ExceptionLogger">
+        <MappingFragment StoreEntitySet="tbl_ExceptionLogger">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="LogTime" ColumnName="LogTime" />
+          <ScalarProperty Name="ExceptionStackTrace" ColumnName="ExceptionStackTrace" />
+          <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+          <ScalarProperty Name="ExceptionMessage" ColumnName="ExceptionMessage" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_Prog_Ques">
+      <EntityTypeMapping TypeName="mocktestModel.Tbl_Prog_Ques">
+        <MappingFragment StoreEntitySet="Tbl_Prog_Ques">
+          <ScalarProperty Name="Max_Marks" ColumnName="Max_Marks" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="Ques_IsActive" ColumnName="Ques_IsActive" />
+          <ScalarProperty Name="Ques_Desc" ColumnName="Ques_Desc" />
+          <ScalarProperty Name="Test_ID" ColumnName="Test_ID" />
+          <ScalarProperty Name="Ques_ID" ColumnName="Ques_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_Prog_Test">
+      <EntityTypeMapping TypeName="mocktestModel.Tbl_Prog_Test">
+        <MappingFragment StoreEntitySet="Tbl_Prog_Test">
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="Noofquestion" ColumnName="Noofquestion" />
+          <ScalarProperty Name="Test_IsActive" ColumnName="Test_IsActive" />
+          <ScalarProperty Name="Test_Lock" ColumnName="Test_Lock" />
+          <ScalarProperty Name="Test_General_Info" ColumnName="Test_General_Info" />
+          <ScalarProperty Name="Test_Duration" ColumnName="Test_Duration" />
+          <ScalarProperty Name="Test_Name" ColumnName="Test_Name" />
+          <ScalarProperty Name="Test_ID" ColumnName="Test_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_Stud_ProgTest_Ans">
+      <EntityTypeMapping TypeName="mocktestModel.Tbl_Stud_ProgTest_Ans">
+        <MappingFragment StoreEntitySet="Tbl_Stud_ProgTest_Ans">
+          <ScalarProperty Name="Prog_Langid" ColumnName="Prog_Langid" />
+          <ScalarProperty Name="Marks" ColumnName="Marks" />
+          <ScalarProperty Name="Score_id" ColumnName="Score_id" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="Stud_Ans" ColumnName="Stud_Ans" />
+          <ScalarProperty Name="Test_ID" ColumnName="Test_ID" />
+          <ScalarProperty Name="Ques_ID" ColumnName="Ques_ID" />
+          <ScalarProperty Name="Stud_ID" ColumnName="Stud_ID" />
+          <ScalarProperty Name="Stud_Ans_ID" ColumnName="Stud_Ans_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_Stud_ProgTest_Details">
+      <EntityTypeMapping TypeName="mocktestModel.Tbl_Stud_ProgTest_Details">
+        <MappingFragment StoreEntitySet="Tbl_Stud_ProgTest_Details">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="Stud_Attempt_Ques" ColumnName="Stud_Attempt_Ques" />
+          <ScalarProperty Name="Stud_TestDuration" ColumnName="Stud_TestDuration" />
+          <ScalarProperty Name="Stud_Marks" ColumnName="Stud_Marks" />
+          <ScalarProperty Name="Stud_ID" ColumnName="Stud_ID" />
+          <ScalarProperty Name="Stud_Test_ID" ColumnName="Stud_Test_ID" />
+          <ScalarProperty Name="Stud_Detail_ID" ColumnName="Stud_Detail_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_Stud_ProgTest_Result">
+      <EntityTypeMapping TypeName="mocktestModel.Tbl_Stud_ProgTest_Result">
+        <MappingFragment StoreEntitySet="Tbl_Stud_ProgTest_Result">
+          <ScalarProperty Name="Is_Marked" ColumnName="Is_Marked" />
+          <ScalarProperty Name="Test_Duration" ColumnName="Test_Duration" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="Stud_Status" ColumnName="Stud_Status" />
+          <ScalarProperty Name="Stud_Score" ColumnName="Stud_Score" />
+          <ScalarProperty Name="Stud_ID" ColumnName="Stud_ID" />
+          <ScalarProperty Name="Score_ID" ColumnName="Score_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_Stud_ProgTest_TestCases">
+      <EntityTypeMapping TypeName="mocktestModel.Tbl_Stud_ProgTest_TestCases">
+        <MappingFragment StoreEntitySet="Tbl_Stud_ProgTest_TestCases">
+          <ScalarProperty Name="Test_Case_Output" ColumnName="Test_Case_Output" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="Test_Case_Input" ColumnName="Test_Case_Input" />
+          <ScalarProperty Name="Test_ID" ColumnName="Test_ID" />
+          <ScalarProperty Name="Ques_ID" ColumnName="Ques_ID" />
+          <ScalarProperty Name="Test_Case_ID" ColumnName="Test_Case_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TestGSTs">
+      <EntityTypeMapping TypeName="mocktestModel.TestGST">
+        <MappingFragment StoreEntitySet="TestGST">
+          <ScalarProperty Name="ImageByte" ColumnName="ImageByte" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TestTables">
+      <EntityTypeMapping TypeName="mocktestModel.TestTable">
+        <MappingFragment StoreEntitySet="TestTable">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Topics">
+      <EntityTypeMapping TypeName="mocktestModel.Topic">
+        <MappingFragment StoreEntitySet="Topics">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="TopicId" ColumnName="TopicId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="mocktestModel.user">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="Branch" ColumnName="Branch" />
+          <ScalarProperty Name="RollNo" ColumnName="RollNo" />
+          <ScalarProperty Name="roleId" ColumnName="roleId" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TestTable2">
+      <EntityTypeMapping TypeName="mocktestModel.TestTable2">
+        <MappingFragment StoreEntitySet="TestTable2">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TestTable3">
+      <EntityTypeMapping TypeName="mocktestModel.TestTable3">
+        <MappingFragment StoreEntitySet="TestTable3">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TestTable4">
+      <EntityTypeMapping TypeName="mocktestModel.TestTable4">
+        <MappingFragment StoreEntitySet="TestTable4">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TestTable5">
+      <EntityTypeMapping TypeName="mocktestModel.TestTable5">
+        <MappingFragment StoreEntitySet="TestTable5">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

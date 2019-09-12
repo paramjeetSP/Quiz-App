@@ -1,0 +1,167 @@
+﻿@model QuizApps.Models.Progtest
+
+<div id="QuestionAdd" class="modal fade" role="dialog">
+    <div class="modal-dialog" style="width:450px; display:table; margin-top:30px;">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add Test</h4>
+            </div>
+            <div class="modal-body">
+                @using (Ajax.BeginForm("Test_Prog", "Home",Model, new AjaxOptions
+                        {
+
+                            HttpMethod = "GET",
+                            //InsertionMode = InsertionMode.Replace,
+                            OnSuccess = "SuccessMessageCreate",
+                            OnFailure = "FailMessage",
+                   
+                    }, new { id = "form1", enctype = "multipart/form-data" }))
+                {
+                    @*@Html.HiddenFor(m => m.Testid, new { @id = "subTestId" })*@
+                 
+                
+                <!-- Alert Label-->
+                    <div id="qAdded" class="alertMessage alert alert-success alert-dismissable" style="display:none;">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a>
+                        <strong>Success!</strong> Question is Added.
+                    </div>
+                    <div id="qWrong" class="alertMessage alert alert-danger alert-dismissable" style="display:none;">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a>
+                        <strong>Failed!</strong> Question is not Valid.
+                    </div>
+                <!-- Text input-->
+                    <div class="form-group col-md-6">
+
+                       
+                        <label class="control-label ">Test Name</label>
+                        @Html.TextBoxFor(m => m.TestName, new { @class = "form-control", id = "opOne1" })
+                        @Html.ValidationMessageFor(m => m.TestName, "", new { @style = "font-family: inherit;color:#ff6666;", })
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label class="control-label">Test Duration (In Minutes)</label>
+                        @Html.TextBoxFor(m => m.TestDuration, new { @class = "form-control test-duration", id = "opOne2" })
+                        @Html.ValidationMessageFor(m => m.TestDuration, "", new { @style = "font-family: inherit;color:#ff6666;" })
+                        <div class="hidden duration-error">Duration can not be more than 3 digits</div>
+                    </div>
+
+                                <!-- form group ends here -->
+                    @*<div class="form-group col-md-6">
+                        <label class="control-label">NoofQuestion</label>
+                        @Html.TextBoxFor(m => m.NoofQuestion, new { @class = "form-control", @id = "opTwo1" })
+                        @Html.ValidationMessageFor(m => m.NoofQuestion, "", new { @style = "font-family: inherit;color:#ff6666;" })
+                    </div>*@
+
+                    <div class="col-md-6">
+                        <button id="SB1Form" type="submit" class="btn btn-primary" style="float: left;position: relative;left: 38%;" >Submit<i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+
+                    </div>
+                }
+            </div>
+        </div>
+
+    </div>
+</div>
+@*<script>
+  function Update(ID)
+  {
+      debugger
+      var url='@Url.Action("Edittest", "Home")'
+        $.ajax
+        ({
+            url: url,
+            datatype: 'json',
+            mtType: "Get",
+            data: { 'id': ID},
+
+            success: function (result) {
+            debugger
+            $("#opOne1").val(result.TestName);
+            $("#opOne2").val(result.TestDuration);
+            $("#opTwo1").val(result.NoofQuestion);
+            //alert("Record deleted")
+            },
+
+            error: function (data) {
+            debugger
+            alert("Record not deleted")
+            },
+            });
+
+  }
+</script>*@
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+
+    $(document).ready(function() {
+        $(".test-duration").keyup(function () {
+            if ($(this).val().length > 3) {
+                $('.duration-error').removeClass('hidden');
+                $('#SB1Form').attr('disabled', true);
+            } else {
+                $('.duration-error').addClass('hidden');
+                $('#SB1Form').attr('disabled', false);
+
+            }
+        });
+    });
+    function SuccessMessageCreate(data) {
+
+        debugger;
+        if (data.result == 1) {
+            FailMessage();
+        }
+        else {
+
+            var SubId = $("#subList").val();
+            debugger
+            $("#qAdded").show();
+            $("#qAdded").fadeTo(1500, 500).slideUp(500, function () {
+                $("#qAdded").hide();
+            });
+            $("#opOne1").val("");
+            $("#opOne2").val("");
+            $("#opTwo1").val("");
+            //$('#quizform').load('/Home/ShowProgramingTestPartialJson');
+            $('#QuestionAdd').modal('hide');
+           
+        }
+    }
+    document.getElementById("SB1Form").onclick = function () {
+        
+     
+    };
+
+
+    function PostCorrectAnswer() {
+        debugger;
+        var e = document.getElementById("opselect1");
+        var value = e.options[e.selectedIndex].value;
+        console.log(value);
+        GetCorrectOption1(value);
+    }
+    function FailMessage() {
+        debugger;
+        $("#qWrong").show();
+        $("#qWrong").fadeTo(1500, 500).slideUp(500, function () {
+            $("#qWrong").hide();
+        });
+        $("#txtQuestion").val("");
+        $("#opOne1").val("");
+        $("#opOne2").val("");
+        $("#opTwo1").val("");
+        $("#opThree1").val("");
+
+    }
+
+
+
+</script>
+
+
+
+
+

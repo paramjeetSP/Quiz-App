@@ -1,0 +1,210 @@
+﻿
+@model QuizApps.Models.Score.GetScore
+@{
+    ViewBag.Title = "UserList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style type="text/css">
+.custom-body {
+    background-color: #eeeeee;
+}
+#userList_wrapper button {
+    background: #1fa5d9;
+    color: #fff;
+    padding: 8px 9px;
+    border: none;
+}
+#userList_wrapper a.paginate_button.current {
+    background: #0299d3;
+    color: #fff !important;
+    border: none;
+}
+.panel-body {
+    background: #fff;
+    border-radius: 4px;
+}
+div#boundingbox:before {
+    content: "";
+    width: 200px;
+    height: 35px;
+    background: #23d202;
+    position: absolute;
+    border-radius: 50%;
+    top: 50px;
+    left: 50%;
+    transform: translatex(-50%);
+}
+.all-sb-filters.form-inline {
+    display: flex;
+    justify-content: space-around;
+    padding: 12px 0;
+    margin-top: 10px;
+}
+
+@@media (max-width : 767px){
+    div#userList_filter {
+    margin-bottom: 30px;
+}
+.dt-buttons .dt-button {
+    margin-bottom: 5px;
+    width: 100%;
+}
+.logo img {
+    max-width: 193px;
+}
+.navbar-toggle {
+    border: 1px solid #333;
+}
+.navbar-toggle .icon-bar {
+    background: #333;
+}
+.navbar-toggle {
+    margin-right: 0px;
+    padding: 9px 10px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.head-btm .navigation ul li {
+    float: none;
+    padding: 6px 0;
+    text-align: right;
+}
+#profilePopover {
+    width: 218px !important;
+}
+.head-btm .navigation {
+    float: none;
+}
+button.btn.dropdown-toggle.btn-info {
+    margin: 0 15px;
+}
+}
+@@media (max-width : 991px) {
+.head-btm .navigation ul li {
+    margin-left: 27px;
+}
+.logo img {
+    max-width: 163px;
+}
+div#userList_filter {
+    float: none !important;
+    text-align: left;
+    margin: 10px 0;
+}
+button.btn.dropdown-toggle.btn-info {
+    margin: 0 15px;
+}
+
+}
+
+
+</style>
+
+<div class="hidden">
+    <div class="url-Home-UserAreaQuizTest">
+        @Url.Action("UserAreaQuizTest","Home")
+    </div>
+    <div class="url-Home-UserAreaProgrammingTest">
+        @Url.Action("UserAreaProgrammingTest", "Home")
+    </div>
+    <div class="url-Home-GetAllBranchesData">
+        @Url.Action("GetAllBranchesData", "Home")
+    </div>
+    <div class="url-Home-GetScoreBoardDataByBranch">@Url.Action("GetScoreBoardDataByBranch", "Home")</div>
+    <div class="url-Home-GetAllSubTopicsData">@Url.Action("GetAllSubTopicsData", "Home")</div>
+    <div class="url-Home-GetScoreBoardDataBySubTopic">@Url.Action("GetScoreBoardDataBySubTopic", "Home")</div>
+    <div class="url-Home-GetScoreBoardDataByDate">@Url.Action("GetScoreBoardDataByDate", "Home")</div>
+    <div class="url-Home-GetAllTestsSubmitted">@Url.Action("GetAllTestsSubmitted", "Home")</div>
+</div>
+<body>
+    <section class="content-con">
+        <div class="container">
+            <div class="row">
+                <div class="all-sb-filters form-inline">
+                    <div class="sb-topic-filter-container">
+                        <select class="selectpicker select-user-score-board-picker form-control" id="select-score-board-picker" data-style="btn-default" data-live-search="true" onchange="" data-live-search-placeholder="Search" title="Select Topic">
+                            @*<option value="" selected disabled hidden>Select Test</option>*@
+                            <option value="0">All Tests</option>
+                            <option value="Quiz">Quiz Test</option>
+                            <option value="Programming">Programming Test</option>
+                        </select>
+                    </div>
+
+                    <div class="sb-sub-topic-filter-container">
+                        <select class="selectpicker select-user-score-board-picker form-control" id="select-score-board-picker-for-sub-topic" data-style="btn-default" data-live-search="true" onchange="" data-live-search-placeholder="Search" title="Select Sub Topic">
+                            @*<option value="" selected disabled hidden>Select Test</option>*@
+
+                        </select>
+                    </div>
+
+                    <div class="sb-branch-filter-container">
+                        <select class="selectpicker select-user-score-board-picker form-control" id="select-score-board-picker-for-branch" data-style="btn-default" data-live-search="true" onchange="" data-live-search-placeholder="Search" title="Select Branch">
+                            @*<option value="" selected disabled hidden>Select Test</option>*@
+
+                        </select>
+                    </div>
+                    <div class="sb-date-filter-container">
+                        <div class="error" id="sb-date-errors"></div>
+                        <div class="input-group" id="">
+                            <span class="input-group-addon">From</span>
+                            <input class="form-control" id="select-score-board-picker-for-date-from" type="date" />
+                        </div>
+                        <div class="input-group" id="">
+                            <span class="input-group-addon">To</span>
+                            <input class="form-control" id="select-score-board-picker-for-date-to" type="date" />
+                        </div>
+                    </div>
+                    <div class="sb-filter-reset-container">
+                        <button class="form-control btn-warning" onclick="ResetAllScoreBoardFilters()" id="reset-sb-filters">Reset</button>
+                    </div>
+                </div>
+                <div class="col-sm-48 col-md-30 col-xs-12">
+                    <div class="sidebar-block">
+                        <h4>User List</h4>
+                        <div class="sidebar-content create-quiz">
+
+                            <div class="panel panel-default custom-body">
+                                <div class="panel-body custom-goup">
+                                    <span id="loader" style="display:none;"> <i id="loaders" class="fa fa-spinner fa-spin fa-3x fa-fw"></i></span>
+                                    <div class="table-responsive">
+                                        <table id="userList" class=" display form-group" cellspacing="0" width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th style="text-align: -webkit-center;">S.No</th>
+                                                    <th style="text-align: -webkit-center;" data-sortable="false">Date</th>
+                                                    <th style="text-align: -webkit-center;" data-sortable="false">User Name</th>
+                                                    <th style="text-align: -webkit-center;" data-sortable="false">Roll No.</th>
+                                                    <th style="text-align: -webkit-center;" data-sortable="false">Branch</th>
+                                                    <th style="text-align: -webkit-center;" data-sortable="false">Topic</th>
+                                                    <th style="text-align: -webkit-center;" data-sortable="false">SubTopic</th>
+                                                    <th style="text-align: -webkit-center;" data-sortable="true">Score</th>
+                                                    <th style="text-align: -webkit-center;" data-sortable="false">Attempted</th>
+                                                    <th style="text-align: -webkit-center;" data-sortable="false">Duration</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="UserFieldArea"></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+@section Scripts{
+@*    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>*@
+@*<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>*@
+@*<script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>*@
+<script src="~/CustomScripts/ScoreBoard/score-board.js"></script>
+    
+}
+
+

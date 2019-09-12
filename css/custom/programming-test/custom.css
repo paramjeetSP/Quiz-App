@@ -1,0 +1,220 @@
+﻿body {
+background: #314755;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #26a0da, #314755);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #26a0da, #314755); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+code {
+    display: inline-block;
+    min-width: 500px;
+    min-height: 150px;
+    width: 100%;
+}
+
+.writeCode textarea {
+    width: 100%;
+    height: 100%;
+}
+
+button {
+    width: 100%;
+}
+
+/*textarea {
+    background: url(http://i.imgur.com/2cOaJ.png);
+    background-attachment: local;
+    background-repeat: no-repeat;
+    padding-left: 35px;
+    padding-top: 10px;
+    border-color: #ccc;
+}*/
+
+
+.tabs input[type=radio] {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+}
+
+.tabs {
+    width: 650px;
+    float: none;
+    list-style: none;
+    position: relative;
+    padding: 0;
+    /*margin: 75px auto;*/
+}
+
+    .tabs li {
+        width: 90px; /*subele los Pixeles Si el texto es mas largo*/
+    }
+
+    .tabs a {
+        display: block;
+        padding: 10px 20px;
+        border-radius: 2px 2px 0 0;
+        color: white;
+        font-size: 24px;
+        font-weight: normal;
+        font-family: helveti; /* Tipo de letra*/
+        background: rgba(255,255,255,0.2);
+        cursor: pointer;
+        position: relative;
+        top: 3px;
+        /*Animación*/
+        -webkit-transition: all 0.2s ease-in-out;
+        -moz-transition: all 0.2s ease-in-out;
+        -o-transition: all 0.2s ease-in-out;
+        transition: all 0.2s ease-in-out;
+    }
+
+        .tabs a:hover {
+            background: rgba(255,255,255,0.5);
+            top: 0;
+        }
+
+[id^=tab]:checked + a {
+    background: #08C;
+    color: white;
+    top: 0;
+}
+
+[id^=tab]:checked ~ [id^=tab-content] {
+    display: block;
+}
+
+
+.question-description{
+color:black;
+font-size:1.5em;
+}
+
+.sidebar-block {
+    background: #f5f4f4;
+}
+.sidebar-content a.control-group:hover {
+    box-shadow: -4px 6px 15px rgba(0,0,0,0.2);
+}
+.sidebar-content a.control-group {
+    padding: 9px;
+    background: #0199d3;
+    color: #fff;
+    width: 100px;
+    text-align: center;
+    margin: 0;
+}
+.control-group i {
+    margin-left: 3px;
+}
+.instruction {
+    padding: 23px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 5px 5px 20px rgba(0,0,0,0.10);
+}
+.instruction i {
+    margin-right: 10px;
+}
+section.content-con {
+    background: #f2f2f2;
+}
+div#instruct {
+    margin: 70px 0;
+    background: #fff;
+    padding: 30px 6px;
+    border-radius: 10px;
+    box-shadow: 8px -8px 18px rgba(0,0,0,0.03);
+    display: inline-block;
+}
+.tabs {
+    width: 100%;
+    border: 1px solid #ddd;
+    box-shadow: 7px 8px 16px rgba(0,0,0,0.10);
+   max-height: 512px;
+    overflow: auto;
+}
+.programming-test-header {
+    padding: 10px;
+    font-size: 22px;
+    font-weight: 600;
+    color: #0199d3;
+    float: left;
+}
+code.test-output {
+    padding: 17px;
+    color: #333;
+    font-size: 16px;
+}
+.tabs li {
+    width: auto;
+}
+.tab-content .tab-pane {
+    background-color: #0199d3;
+    color: #fff;
+    height: 196px;
+    overflow: auto;
+}
+.tab-content {
+    margin-left: 0;
+}
+.question-wrapper button#finishTest {
+    background: #fff;
+    color: #000000;
+}
+.test-name {
+    display: inline-block;
+    width: 100%;
+}
+.test-name div {
+    display: inline-block;
+}
+.test-name .form-group {
+    margin-bottom: 0px;
+}
+.test-name .form-group lable {
+    display: inline-block;
+    vertical-align: middle;
+}
+select#testLanguage {
+    width: 100px;
+    float: right;
+}
+.test-name .form-group {
+    width: 229px;
+}
+textarea.test-input {
+    width: 100%;
+}
+span#countdown {
+    padding: 9px;
+}
+span#countdown {
+    font-size: 44px;
+    font-weight: 600;
+    color: #0199d3 !important;
+}
+.input-run .runCode {
+    margin: 25px 10px 25px;
+}
+.input-run .led-box {
+    padding: 20px;
+}
+.input-run{
+        display: inline-block;
+    width: 100%;
+    margin: 0;
+}
+.questions-tabs{
+    margin-bottom:30px;
+}
+
+.blink-two {
+    animation: blinker-two 1.4s linear infinite;
+}
+
+@keyframes blinker-two {
+    100% {
+        opacity: 0;
+    }
+}

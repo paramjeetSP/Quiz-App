@@ -1,0 +1,56 @@
+﻿
+@model IEnumerable<QuizApps.Models.Score.GetScore>
+
+@*<table id="userList" class=" display form-group" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th style="text-align: -webkit-center;">S.No</th>
+            <th style="text-align: -webkit-center;" data-sortable="false">Date</th>
+            <th style="text-align: -webkit-center;" data-sortable="false">User Name</th>
+            <th style="text-align: -webkit-center;" data-sortable="false">Roll No.</th>
+            <th style="text-align: -webkit-center;" data-sortable="false">Branch</th>
+            <th style="text-align: -webkit-center;" data-sortable="false">Topic</th>
+            <th style="text-align: -webkit-center;" data-sortable="false">SubTopic</th>
+            <th style="text-align: -webkit-center;" data-sortable="true">Score</th>
+            <th style="text-align: -webkit-center;" data-sortable="false">Attempted</th>
+            <th style="text-align: -webkit-center;" data-sortable="false">Duration</th>
+        </tr>
+    </thead>*@
+    <tbody id="UserFieldArea">
+        @{ int count = 1;}
+
+        @foreach (var item in Model)
+        {
+            <tr role="row" class="odd">
+                <td style="text-align: -webkit-center;" class="sorting_1">@count</td>
+                <td style="text-align: -webkit-center;">@item.today</td>
+                <td style="text-align: -webkit-center;">@item.user</td>
+                <td style="text-align: -webkit-center;">@item.RollNo</td>
+                <td style="text-align: -webkit-center;">@item.Branch</td>
+                <td style="text-align: -webkit-center;">@item.topicname</td>
+                <td style="text-align: -webkit-center;">@item.subname</td>
+                <td style="text-align: -webkit-center;">@item.score</td>
+                <td style="text-align: -webkit-center;">@item.Attempted</td>
+                <td style="text-align: -webkit-center;">@item.totalTime</td>
+                                                </tr>
+            count = count + 1;
+        }
+    </tbody>
+@*</table>*@
+<style>
+    #userList_wrapper button {
+    background: #1fa5d9;
+    color: #fff;
+    padding: 8px 9px;
+    border: none;
+}
+    #userList_wrapper a.paginate_button.current {
+    background: #0299d3;
+    color: #fff !important;
+    border: none;
+}
+</style>
+@section Scripts{
+    <script src="~/CustomScripts/ScoreBoard/score-board.js"></script>
+}
+

@@ -1,0 +1,178 @@
+﻿@model IEnumerable<QuizApps.Models.QuesDetail>
+
+@{
+    ViewBag.Title = "AddQuestions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style></style>
+<h2 class="question">Add Question</h2>
+<div class="container-fluid text-center">
+
+
+    <div class="inner-question-wrapper">
+        <div class="row">
+            <div class="testInfoDesc container-fluid">
+                <h4 class="questionLabel col-sm-4">Test Name</h4>
+                <h4 class="questionLabel col-sm-4">Test Duration</h4>
+                <h4 class="questionLabel col-sm-4">No Of Questions</h4>
+            </div>
+            <div class="row" style="padding:1rem;">
+
+                <div class="testInfo container-fluid">
+                    <div class="questionLabel col-lg-4 col-sm-4">@ViewBag.TestName</div>
+                    <div class="questionLabel col-lg-4 col-sm-4">@ViewBag.TestDuration</div>
+                    <div class="questionLabel col-lg-4 col-sm-4">@ViewBag.NoofQuestion</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="inner-question-wrapper">
+        <div class="testID hidden">@ViewBag.TestID</div>
+        <table class="table">
+
+            <tbody class="allQuestions">
+                <tr id="Q_1" class="questionContainer">
+                    <td class="QuestionNo" scope="row"><h2>1.</h2></td>
+                    <td>
+                        <div class="text-wrapper">
+                            <textarea class="question col" rows="2" cols="10" style="margin: 0px 0px 10px; width: 1022px; height: 40px;"></textarea>
+                        </div>
+                        <div class="marks">
+                            <lable>Marks</lable>
+                            <input type="number" class="question-marks">
+                        </div>
+
+
+                        <div class="sample-test">
+                            <div class="sample-heading">
+                                <p>Sample test case</p>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    <div class="sample-inner">
+                                        <div class="sample-inner-heading">
+                                            <p>Input</p>
+                                        </div>
+                                        <div class="textarea-wrapper">
+
+                                            <div class="SampleTestCaseInput_1">
+
+                                                <textarea id="SPI_1" class="SP_1"></textarea>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="sample-inner">
+                                        <div class="sample-inner-heading">
+                                            <p>Output</p>
+                                        </div>
+                                        <div class="sample-inner-content">
+                                            <div>
+                                                <div class="textarea-wrapper">
+                                                    <div class="row">
+                                                        <div class="SampleTestCaseInputAndButtons_1">
+                                                            <div id="SPOB_1">
+                                                                <div class="col-sm-9"><textarea class="SPO_1"></textarea></div>
+
+                                                                <div class="col-sm-3">
+
+                                                                    <div class="addNewSampleTopic_1 btn btn-primary col-sm-2" style="height: 3.5rem;max-width:4rem;" onclick="addSampleTestCases(1,1)">+</div>
+
+                                                                    <div class="removeNewSampleTopic_1 btn btn-danger col-sm-2" style="height: 3.5rem;max-width:4rem;" onclick="RemovewSampleTestcase(1,1)">x</div>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="sample-test">
+                            <div class="sample-heading">
+                                <p>Secret Test Cases</p>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    <div class="sample-inner">
+                                        <div class="sample-inner-heading">
+                                            <p>Input</p>
+                                        </div>
+                                        <div class="textarea-wrapper">
+
+                                            <div class="SecretTestCaseInput_1">
+
+                                                <textarea id="STI_1" class="ST_1"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="sample-inner">
+                                        <div class="sample-inner-heading">
+                                            <p>Output</p>
+                                        </div>
+                                        <div class="">
+                                            <div>
+                                                <div class="textarea-wrapper">
+                                                    <div class="SecretTestCaseInputAndButtons_1">
+                                                        <div id="STOB_1" class="row">
+                                                            <div class="col-sm-9"><textarea class="STO_1"></textarea></div>
+
+                                                            <div class="col-sm-3">
+
+                                                                <div class="addNewSecretTopic_1 btn btn-primary col-sm-2" style="height: 3.5rem;max-width:4rem;" onclick="addSecretTestCases(1,1)">+</div>
+                                                                <div class="removeNewSecretTopic_1 btn btn-danger col-sm-2" style="height: 3.5rem;max-width:4rem;" onclick="RemovewSecretTestcase(1,1)">x</div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+
+                    <td>
+                        <div class="questionButton">
+                            <div class="addNew btn btn-primary col-sm-2" style="height: 3.5rem;max-width:4rem;" onclick="AddNewQuestion(1)">+</div>
+                            <div class="removeNew btn btn-danger col-sm-2" style="height: 3.5rem;max-width:4rem;" onclick="RemovewQuestion(1)">x</div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="row" style="padding:1rem;">
+            <button class="btn btn-primary" onclick="AddAllQuestions()">Add</button>
+        </div>
+
+    </div>
+</div>
+
+<div class="loader-container">
+
+    <div class="lds-roller "><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</div>
+
+
+@section Scripts{
+    <script src="~/Scripts/custom/questions.js"></script>
+
+}
+@section Styles{
+    <link href="~/css/custom/loader.css" rel="stylesheet" />
+    <link href="~/css/custom/programming-test/admin/programming-test-add.css" rel="stylesheet" />
+    <link href="~/css/custom/question-edit.css" rel="stylesheet" />
+}

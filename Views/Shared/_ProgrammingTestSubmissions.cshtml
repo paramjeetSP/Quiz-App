@@ -1,0 +1,63 @@
+﻿@model IList<QuizApps.Models.ProgrammingTestSubmission>
+
+@{
+    string buttonDisabled = "";
+    string marking = "";
+}
+<table id="programming-test-submissions" class="table table-striped table-bordered dt-responsive nowrap">
+    <thead class="thead-dark">
+        <tr>
+            <th class="hidden">User ID</th>
+            <th>User Name</th>
+            <th>Test Name</th>
+            <th>Total Marks</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="panel panel-default custom-body text-center">
+                <td class="hidden">@item.ScoreBoardId</td>
+                <td>@item.UserName</td>
+                <td>@item.TestName</td>
+                @if (item.IsMarked != null &&(bool)item.IsMarked)
+                {
+                    buttonDisabled = "disabled";
+                    marking = item.TotalMarks.ToString();
+                }
+                else
+                {
+                    buttonDisabled = "";
+                    marking = "No Marks Yet";
+                }
+                <td>@marking</td>
+                <td>
+                    <button onclick="GetTheSubmittionToMark(@item.UserId,@item.TestId,@item.ScoreBoardId)" class="btn btn-info" data-toggle="modal" data-target="#programming-test-submission-test">
+                        View Answersheet
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div id="programming-test-submission-test" class="modal programming-submission-marking-container fade" role="dialog">
+
+</div>
+<style>
+    textarea.question {
+    min-height: 93px;
+}
+</style>
+<script>
+    let dataTableOptions = { 
+        "order": [
+            [0, "desc"]
+        ],
+        "columnDefs": [
+              { "orderable": false, "targets":4  }// So we dont have any sort on actions
+        ]
+    };
+    $('#programming-test-submissions').DataTable(dataTableOptions);
+</script>

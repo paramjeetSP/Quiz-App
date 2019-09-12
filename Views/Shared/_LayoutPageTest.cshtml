@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+@RenderSection("styles", required: false)
+
+
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>*@
+<script src="~/ExternalLibs/JS/jquery.min-page-test.js"></script>
+@*<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>*@
+<script src="~/ExternalLibs/JS/bootstrap.min-page-test.js"></script>
+
+<html>
+<body>
+    <section class="content-con">
+        <div class="container">
+            <div class="row">
+                <div id="instruct" class="">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </section>
+    @*<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>*@
+    <script src="~/ExternalLibs/JS/run_prettify.js"></script>
+    @RenderSection("scripts", required: false)
+
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="banner">
+    <img src="/images/banner-1.jpg" alt="banner">
+    <div class="banner-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h1>
+                        Take & Create <br>
+                        <span> Online Quizzes and Share Quizzes with Friends</span>
+                    </h1>
+                    <p></p>
+                    @if(Session["EmailId"] != null)
+                    {
+                           if(Session["RoleId"] != null)
+                           {
+
+                                @*<div class="btn-block"> @Html.ActionLink("Create Quiz", "ShowQuiz", "Home", new { @class = "btn btn-primary"})*@ @*<a href="javascript:;" class="btn btn-primary" data-toggle="modal" data-target="#CreateQuiz"> Create Quiz</a>*@ @*<a href="javascript:;" class="btn white-btn" data-toggle="modal" data-target="#takeQuiz">Take Quiz</a>*@ 
+                                  @*@Html.ActionLink("Take Quiz", "TakeQuiz", "Home", new { @class = "btn white-btn" })*@
+                                 @*</div>*@
+                            }
+                            else
+                            { 
+                                <div class="btn-block"> @Html.ActionLink("Take Quiz", "TakeQuiz", "Home", new { @class = "btn white-btn" }) @*<a href="javascript:;" class="btn btn-primary" data-toggle="modal" data-target="#takeQuiz">Take Quiz</a>*@ @*<a href="javascript:;" class="btn white-btn" data-toggle="modal" @*data-target="#login">Create Survey</a>*@ </div>
+                            }
+
+                    }
+                    else
+	                {
+
+                        <div class="btn-block"> <a href="javascript:;" class="btn white-btn" data-toggle="modal" data-target="#login">Take Quiz</a> @*<a href="javascript:;" class="btn white-btn" data-toggle="modal" data-target="#login">Create Survey</a>*@ </div>
+	                }
+                </div>
+                </div>
+            </div>
+        </div>
+</section>
+<!-- banner ends here -->
+<section id="about" class="about-us">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="heading">
+                    <h3>About Softprodigy</h3>
+                    <div class="g-hr"> <span class="g-hr-h"> <i class="fa fa-heart"></i> </span> </div>
+                </div>
+                <p>Founded in 2006, SoftProdigy is an award-winning organization with expertise in the areas of Web & Mobile Technologies and Consulting services. Over the last few years, the organization has made a reputation for building quality solutions for its clients that helped them get more out of their business. SoftProdigy's customers range from start-ups to Enterprises like: ING, Aviva, Vodafone and Bajaj. The company has worked with entrepreneurs as well as established corporate houses across the globe to put their ideas into inception and take it to the market. </p>
+                <p>It employs over 150 technology and management professionals who work closely with each other. With a consistent growth track record that has surpassed the industry trends year on year since the company's inception, what sets it apart is the philosophy of pursuing, quoted as "measured success".</p>
+            </div>
+        </div>
+    </div>
+</section>
+

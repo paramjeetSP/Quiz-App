@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2c0f4cff2b7e40169303b52d76f797a2" Name="Diagram1" ZoomLevel="80">
+        <EntityTypeShape EntityType="mocktestModel.OptionDetail" Width="1.5" PointX="12.5" PointY="7.25" />
+        <EntityTypeShape EntityType="mocktestModel.PerTestCaseResult" Width="1.5" PointX="5.25" PointY="13" />
+        <EntityTypeShape EntityType="mocktestModel.QuesDetail" Width="1.5" PointX="10.25" PointY="3.25" />
+        <EntityTypeShape EntityType="mocktestModel.Role" Width="1.5" PointX="1.5" PointY="0.75" />
+        <EntityTypeShape EntityType="mocktestModel.ScoreDetail" Width="1.5" PointX="12.5" PointY="2.625" />
+        <EntityTypeShape EntityType="mocktestModel.SubTopic" Width="1.5" PointX="8" PointY="3.375" />
+        <EntityTypeShape EntityType="mocktestModel.sysdiagram" Width="1.5" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="mocktestModel.tbl_ExceptionLogger" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="mocktestModel.Tbl_Prog_Ques" Width="1.5" PointX="3" PointY="16.75" />
+        <EntityTypeShape EntityType="mocktestModel.Tbl_Prog_Test" Width="1.5" PointX="0.75" PointY="8.625" />
+        <EntityTypeShape EntityType="mocktestModel.Tbl_Stud_ProgTest_Ans" Width="1.5" PointX="5.25" PointY="16.75" />
+        <EntityTypeShape EntityType="mocktestModel.Tbl_Stud_ProgTest_Details" Width="1.5" PointX="3" PointY="8.75" />
+        <EntityTypeShape EntityType="mocktestModel.Tbl_Stud_ProgTest_Result" Width="1.5" PointX="3" PointY="21.5" />
+        <EntityTypeShape EntityType="mocktestModel.Tbl_Stud_ProgTest_TestCases" Width="1.5" PointX="8.25" PointY="12.625" />
+        <EntityTypeShape EntityType="mocktestModel.TestGST" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="mocktestModel.TestTable" Width="1.5" PointX="5.75" PointY="6.75" />
+        <EntityTypeShape EntityType="mocktestModel.Topic" Width="1.5" PointX="5.75" PointY="3.625" />
+        <EntityTypeShape EntityType="mocktestModel.user" Width="1.5" PointX="0.75" PointY="3.625" />
+        <EntityTypeShape EntityType="mocktestModel.TestTable2" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="mocktestModel.TestTable3" Width="1.5" PointX="7.75" PointY="6.75" />
+        <EntityTypeShape EntityType="mocktestModel.TestTable4" Width="1.5" PointX="9.75" PointY="0.75" />
+        <EntityTypeShape EntityType="mocktestModel.TestTable5" Width="1.5" PointX="5.75" PointY="9.75" />
+        <AssociationConnector Association="mocktestModel.FK_dbo_OptionDetails_dbo_QuesDetails_QuesDetailId" />
+        <AssociationConnector Association="mocktestModel.FK__PerTestCa__Ques___2739D489" />
+        <AssociationConnector Association="mocktestModel.FK__PerTestCa__Stud___282DF8C2" />
+        <AssociationConnector Association="mocktestModel.FK__PerTestCa__Test___2645B050" />
+        <AssociationConnector Association="mocktestModel.FK_dbo_QuesDetails_dbo_SubTopics_SubTopicId" />
+        <AssociationConnector Association="mocktestModel.fk_Qid_score" />
+        <AssociationConnector Association="mocktestModel.FK_dbo_users_dbo_Roles_roleId" />
+        <AssociationConnector Association="mocktestModel.FK_dbo_ScoreDetails_dbo_users_UserId" />
+        <AssociationConnector Association="mocktestModel.FK_dbo_SubTopics_dbo_Topics_TopicId" />
+        <AssociationConnector Association="mocktestModel.FK_192" />
+        <AssociationConnector Association="mocktestModel.FK_54" />
+        <AssociationConnector Association="mocktestModel.FK_72" />
+        <AssociationConnector Association="mocktestModel.FK_162" />
+        <AssociationConnector Association="mocktestModel.FK_65" />
+        <AssociationConnector Association="mocktestModel.FK__Tbl_Stud___Score__02FC7413" />
+        <AssociationConnector Association="mocktestModel.FK__Tbl_Stud___Score__03F0984C" />
+        <AssociationConnector Association="mocktestModel.FK__Tbl_Stud___Score__74AE54BC" />
+        <AssociationConnector Association="mocktestModel.FK__Tbl_Stud___Score__787EE5A0" />
+        <AssociationConnector Association="mocktestModel.FK__Tbl_Stud___Stud___04E4BC85" />
+        <AssociationConnector Association="mocktestModel.FK__Tbl_Stud___Stud___05D8E0BE" />
+        <AssociationConnector Association="mocktestModel.FK__Tbl_Stud___Stud___75A278F5" />
+        <AssociationConnector Association="mocktestModel.FK__Tbl_Stud___Stud___797309D9" />
+        <AssociationConnector Association="mocktestModel.FK__Tbl_Stud___Stud___6EF57B66" />
+        <AssociationConnector Association="mocktestModel.FK__Tbl_Stud___Stud___6FE99F9F" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,265 @@
+﻿@model QuizApps.Models.ProgrammingTest
+@{
+    ViewBag.Title = "ProgrammingTest";
+    Layout = "~/Views/Shared/_LayoutPageTest.cshtml";
+    int counter = 1;
+    int counterForContent = 1;
+    string activeClassForNav = "";
+    string activeClassForBody = "";
+    string firstQuestion = "";
+    string forfinishButton = "";
+    int FirstQuestionId = 0;
+    int counterOFQuestions = 0;
+}
+<style>
+    .swal2-popup {
+        font-size: 1.3rem !important;
+    }
+
+    .questions-tabs.onload-the-first-question {
+        background-color: red;
+    }
+</style>
+
+<div class="hidden">
+
+    <div class="hidden url-ProgrammingTest-TestSubmitted">@Url.Action("TestSubmitted", "ProgrammingTest")</div>
+    <div class="hidden url-ProgrammingTest-SumUpTestSubmitted">@Url.Action("SumUpTestSubmitted", "ProgrammingTest")</div>
+    <div class="hidden url-ProgrammingTest-SubmitTestDuration">@Url.Action("SubmitTestDuration", "ProgrammingTest")</div>
+    <div class="hidden url-Home-TakeQuiz">@Url.Action("TakeQuiz", "Home")</div>
+    @*<div class="hidden url-ProgrammingTest-Index">@Url.Action("Index", "ProgrammingTest")</div>*@
+</div>
+<div class="alerts">
+    <div class="alert alert-warning alert-dismissible fade in f12Disable hidden">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Warning!</strong> F12 is Disabled.
+    </div>
+    <div class="alert alert-warning alert-dismissible fade in rightClick hidden">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Warning!</strong> RightClick is Disabled.
+    </div>
+    <div class="alert alert-danger blink-two hidden">
+        <strong>Pay Attention!</strong> Please Submit All your Answers.
+    </div>
+
+</div>
+<div class="container">
+    <div class="test-name" style="display: inline-block; width: 100%; border-bottom: 1px solid #f3f2f2;text-align:center;">
+        <div class="programming-test-header" style="display: inline-block;">@Model.TestName</div>
+        <div class="programming-test-duration hidden" style="display: inline-block;">@Model.TestDuration</div>
+        <div class="col-lg-3" style="display: inline-block; padding:10px;float:right;">
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Select Language</label>
+                <select onchange="LanguageChanges(this);" class="form-control programming-test-language select-testLanguage-for-pane-@counterForContent" data-select-num="" id="testLanguage">
+                    <option value="1">C#</option>
+                    <option value="23">Node</option>
+                    <option value="37">Swift</option>
+                    <option value="4">Java</option>
+                    <option value="27">C++</option>
+                    <option value="8">Php</option>
+                </select>
+            </div>
+        </div>
+        <span id="countdown" class="" style="color: #000; margin:0.1em"></span>
+    </div>
+    <h4><span class="label label-danger">Please Submit all your answers individually in order to evaluate!</span></h4>
+    <div>
+        <div class="tabs-left row">
+            <div class="col-lg-2">
+                <ul class="nav nav-tabs tabs questions-tabs">
+                    @foreach (var question in Model.QuestionsList)
+                    {
+                        // Setting the active class for the first element else empty
+                        if (counter == 1)
+                        {
+                            activeClassForNav = "active";
+                            firstQuestion = "onload-the-first-question";
+                            FirstQuestionId = question.QuestionID;
+                        }
+                        else
+                        {
+                            activeClassForNav = "";
+                            firstQuestion = "";
+                        }
+                        <li class="@activeClassForNav programming-test-question-container">
+                            <a href="#Q-@question.QuestionID" data-toggle="tab" onclick="CurrentQuestionChanges(this,@counter,@question.QuestionID);" data-ques-id="@question.QuestionID" class="@firstQuestion programming-test-question-anchor">
+                                <span class="programming-test-question-span">Q @counter</span>
+                            </a>
+                        </li>
+                        counterOFQuestions = counter;
+                        counter = counter + 1;
+
+                    }
+                </ul>
+                <div class="totalNoOfQuestions hidden"> @counterOFQuestions </div>
+                <div class="finishTest-container">
+                    <button class="btn btn-info" id="finishTest">Finish Test</button>
+                </div>
+                <div class="indicatorLables">
+                    <span class="indicatorHeading">Question Indicators</span>
+                </div>
+                <div class="indicatorLables">
+                    <span class="label label-default">Not Attempted</span>
+                </div>
+                <div class="indicatorLables">
+                    <span class="label label-success">Submitted Successfully</span>
+                </div>
+                <div class="indicatorLables">
+                    <span class="label label-danger">Not Submitted</span>
+                </div>
+            </div>
+            <div class="col-lg-10">
+
+                <div class="question-wrapper">
+                    <div class="row">
+                        <div class="col-lg-6 tab-content">
+                            @foreach (var question in Model.QuestionsList)
+                            {
+                                // Setting the active class for the first element else empty
+                                if (counterForContent == 1) { activeClassForBody = "active"; } else { activeClassForBody = ""; }
+                                <div class="tab-pane question-description programming-test-tab-pane code-textpane-@counterForContent @activeClassForBody col-lg-12" id="Q-@question.QuestionID">
+                                    @if (counterForContent == Model.QuestionsList.Count) { forfinishButton = "col-lg-10"; } else { forfinishButton = "col-lg-12"; }
+                                    <div class="@forfinishButton row">
+                                        <div class="col-lg-12  question-desc-@question.QuestionID">
+                                            @question.QuestionDescription
+                                        </div>
+                                        <div class="col-lg-12  question-desc-@question.QuestionID">
+                                            <i>Maximum Marks: <label id="lable-desc-@question.QuestionID">@question.MaxMarks</label></i>
+                                        </div>
+                                        <div class="col-lg-12  question-desc-@question.QuestionID">
+                                            <i>Sample Test Cases</i>
+                                            <table class="SampleTC_@counterForContent">
+                                                <tbody>
+                                                    <tr>
+                                                        <th>Input</th>
+                                                        <th>Output</th>
+                                                    </tr>
+                                                    @foreach (var item in question.sampleTestCase)
+                                                    {
+                                                        <tr>
+                                                            <td>@item.TestCase_Input</td>
+                                                            <td>@item.TestCase_Output</td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                    @if (counterForContent == Model.QuestionsList.Count)
+                                    {
+                                        // Means this is the last question, hence give finish button
+                                    }
+                                </div>
+                                counterForContent = counterForContent + 1;
+                                int SeceretCounter = 1;
+                                foreach (var sceretQuestions in question.scerteTestCase)
+                                {
+                                    var SeceretID = sceretQuestions.Question_ID + "_" + SeceretCounter;
+                                    <div class="programming-test-SecretTestCaseID SCTestID_@SeceretID hidden">@sceretQuestions.Secret_TestCaseID</div>
+                                    <div class="programming-test-SecretQuestions QI_@sceretQuestions.Question_ID SCInputID_@SeceretID hidden">@sceretQuestions.TestCase_Input</div>
+                                    <div class="programming-test-SecretQuestions QO_@sceretQuestions.Question_ID  SCOutputID_@SeceretID hidden">@sceretQuestions.TestCase_Output</div>
+                                    SeceretCounter = SeceretCounter + 1;
+                                }
+                                <div class="programming-test-SecretQuestions PerQuestionMarks_@question.QuestionID hidden">@question.MaxMarks</div>
+                            }
+
+                        </div>
+                        <div class="col-lg-6 writeCode" id="textarea_@FirstQuestionId">
+                            <textarea class="textarea-code-editor" cols="100" rows="20"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row output">
+                    <div class="col-lg-12">
+                        <code class="test-output">Output</code>
+                    </div>
+                </div>
+
+                <div class="row input-run">
+                    <div class="col-lg-8">
+                        <div>Input</div>
+                        <textarea class="test-input"></textarea>
+                    </div>
+                    <div class="col-lg-2">
+                        <button class="btn btn-primary runCode">Run</button>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="led-box">
+                            <div class="led-yellow"></div>
+                        </div>
+                    </div><!-- /tab-content -->
+                    <div class="col-lg-8">
+                        <button class="btn btn-danger col-lg-2 submitButton questionPerSubmit" id="@FirstQuestionId">Submit</button>
+                    </div>
+                    <div class="col-lg-8">
+                        <p style="color:red"> * Please Submit your answer for evaluation!</p>
+                    </div>
+                </div>
+
+
+            </div>
+        </div><!-- /tabbable -->
+    </div>
+</div>
+
+<div id="allLanguageSamplePrograms" class="hidden">
+    @foreach (var language in Model.ProgrammingLanguages)
+    {
+        <div class="sampleProgramResourcesContainer hidden">
+            <div class="sample-program-for-slug-@language.Slug"></div>
+            <div class="sample-program-for-@language.Slug">@language.SampleProgram</div>
+            <div class="sample-program-for-name-@language.Slug">@language.Name</div>
+        </div>
+    }
+</div>
+
+<div class="hidden" id="otherMetaDataForProgrammingTest">
+    <div id="model-student-id">@Model.StudentID</div>
+    <div id="model-test-id">@Model.TestID</div>
+    <div id="model-test-name">@Model.TestName</div>
+    <div id="model-test-duration">@Model.TestDuration</div>
+    <div id="model-score-board-id">@Model.ScoreBoardId</div>
+</div>
+
+<div class="hidden" id="url-container">
+    <div class="url-ProgrammingTest-SubmitOrUpdateQuestionAnswer">@Url.Action("SubmitOrUpdateQuestionAnswer", "ProgrammingTest")</div>
+    <div class="url-ProgrammingTest-QuestionAnswerSubmitted">@Url.Action("QuestionAnswerSubmitted", "ProgrammingTest")</div>
+    <div class="url-ProgrammingTest-Index">@Url.Action("Index", "ProgrammingTest")</div>
+    <div class="url-ProgrammingTest-SubmitAfterEvaluation">@Url.Action("SubmitPerQuestion", "ProgrammingTest")  </div>
+    <div class="url-ProgrammingTest-CheckSubmitFinalQuestions">@Url.Action("CheckSubmitFinalQuestions", "ProgrammingTest")  </div>
+</div>
+
+<div class="loader-container" style="z-index:99999;">
+    <div class="lds-roller "><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</div>
+<div class="deleted-container" style="z-index:99999;display: none;">
+    <h1 style="position: absolute;width: 400px;height: 64px;top: 50%;left: 39%;color:white;">Deletion Successful!</h1>
+</div>
+
+
+<style>
+    span#countdown {
+        font-size: 44px;
+        font-weight: 600;
+        color: #0199d3 !important;
+    }
+
+    textarea.question {
+        min-height: 93px;
+    }
+</style>
+@section Scripts{
+    <script src="~/CustomScripts/ProgrammingTest/Test.js"></script>
+    <script src="~/CustomScripts/ProgrammingTest/non-custom.js"></script>
+    <script src="~/Scripts/codemirror/codemirror.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
+}
+@section Styles{
+    <link href="~/css/custom/loader.css" rel="stylesheet" />
+    <link href="~/css/custom/programming-test/non-custom.css" rel="stylesheet" />
+    <link href="~/css/custom/programming-test/custom.css" rel="stylesheet" />
+    <link href="~/css/codemirror/codemirror.css" rel="stylesheet" />
+    <link href="~/css/custom/loader.css" rel="stylesheet" />
+
+}

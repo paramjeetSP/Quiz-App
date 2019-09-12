@@ -1,0 +1,752 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="mocktestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="mocktestEntities1" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_selectQuesId">
+      <Parameter Name="QuesDetailId" Mode="In" Type="Int32" />
+      <Parameter Name="Question" Mode="InOut" Type="String" />
+      <Parameter Name="OpCorrect" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <EntitySet Name="OptionDetails" EntityType="mocktestModel.OptionDetail" />
+    <EntitySet Name="PerTestCaseResults" EntityType="mocktestModel.PerTestCaseResult" />
+    <EntitySet Name="QuesDetails" EntityType="mocktestModel.QuesDetail" />
+    <EntitySet Name="Roles" EntityType="mocktestModel.Role" />
+    <EntitySet Name="ScoreDetails" EntityType="mocktestModel.ScoreDetail" />
+    <EntitySet Name="SubTopics" EntityType="mocktestModel.SubTopic" />
+    <EntitySet Name="sysdiagrams" EntityType="mocktestModel.sysdiagram" />
+    <EntitySet Name="tbl_ExceptionLogger" EntityType="mocktestModel.tbl_ExceptionLogger" />
+    <EntitySet Name="Tbl_Prog_Ques" EntityType="mocktestModel.Tbl_Prog_Ques" />
+    <EntitySet Name="Tbl_Prog_Test" EntityType="mocktestModel.Tbl_Prog_Test" />
+    <EntitySet Name="Tbl_Stud_ProgTest_Ans" EntityType="mocktestModel.Tbl_Stud_ProgTest_Ans" />
+    <EntitySet Name="Tbl_Stud_ProgTest_Details" EntityType="mocktestModel.Tbl_Stud_ProgTest_Details" />
+    <EntitySet Name="Tbl_Stud_ProgTest_Result" EntityType="mocktestModel.Tbl_Stud_ProgTest_Result" />
+    <EntitySet Name="Tbl_Stud_ProgTest_TestCases" EntityType="mocktestModel.Tbl_Stud_ProgTest_TestCases" />
+    <EntitySet Name="TestGSTs" EntityType="mocktestModel.TestGST" />
+    <EntitySet Name="TestTables" EntityType="mocktestModel.TestTable" />
+    <EntitySet Name="Topics" EntityType="mocktestModel.Topic" />
+    <EntitySet Name="users" EntityType="mocktestModel.user" />
+    <EntitySet Name="TestTable2" EntityType="mocktestModel.TestTable2" />
+    <EntitySet Name="TestTable3" EntityType="mocktestModel.TestTable3" />
+    <EntitySet Name="TestTable4" EntityType="mocktestModel.TestTable4" />
+    <EntitySet Name="TestTable5" EntityType="mocktestModel.TestTable5" />
+    <AssociationSet Name="FK_dbo_OptionDetails_dbo_QuesDetails_QuesDetailId" Association="mocktestModel.FK_dbo_OptionDetails_dbo_QuesDetails_QuesDetailId">
+      <End Role="QuesDetail" EntitySet="QuesDetails" />
+      <End Role="OptionDetail" EntitySet="OptionDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PerTestCa__Ques___2739D489" Association="mocktestModel.FK__PerTestCa__Ques___2739D489">
+      <End Role="Tbl_Prog_Ques" EntitySet="Tbl_Prog_Ques" />
+      <End Role="PerTestCaseResult" EntitySet="PerTestCaseResults" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PerTestCa__Stud___282DF8C2" Association="mocktestModel.FK__PerTestCa__Stud___282DF8C2">
+      <End Role="Tbl_Stud_ProgTest_Ans" EntitySet="Tbl_Stud_ProgTest_Ans" />
+      <End Role="PerTestCaseResult" EntitySet="PerTestCaseResults" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PerTestCa__Test___2645B050" Association="mocktestModel.FK__PerTestCa__Test___2645B050">
+      <End Role="Tbl_Prog_Test" EntitySet="Tbl_Prog_Test" />
+      <End Role="PerTestCaseResult" EntitySet="PerTestCaseResults" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_QuesDetails_dbo_SubTopics_SubTopicId" Association="mocktestModel.FK_dbo_QuesDetails_dbo_SubTopics_SubTopicId">
+      <End Role="SubTopic" EntitySet="SubTopics" />
+      <End Role="QuesDetail" EntitySet="QuesDetails" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Qid_score" Association="mocktestModel.fk_Qid_score">
+      <End Role="QuesDetail" EntitySet="QuesDetails" />
+      <End Role="ScoreDetail" EntitySet="ScoreDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_users_dbo_Roles_roleId" Association="mocktestModel.FK_dbo_users_dbo_Roles_roleId">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="user" EntitySet="users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_ScoreDetails_dbo_users_UserId" Association="mocktestModel.FK_dbo_ScoreDetails_dbo_users_UserId">
+      <End Role="user" EntitySet="users" />
+      <End Role="ScoreDetail" EntitySet="ScoreDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_SubTopics_dbo_Topics_TopicId" Association="mocktestModel.FK_dbo_SubTopics_dbo_Topics_TopicId">
+      <End Role="Topic" EntitySet="Topics" />
+      <End Role="SubTopic" EntitySet="SubTopics" />
+    </AssociationSet>
+    <AssociationSet Name="FK_192" Association="mocktestModel.FK_192">
+      <End Role="Tbl_Prog_Ques" EntitySet="Tbl_Prog_Ques" />
+      <End Role="Tbl_Stud_ProgTest_TestCases" EntitySet="Tbl_Stud_ProgTest_TestCases" />
+    </AssociationSet>
+    <AssociationSet Name="FK_54" Association="mocktestModel.FK_54">
+      <End Role="Tbl_Prog_Test" EntitySet="Tbl_Prog_Test" />
+      <End Role="Tbl_Prog_Ques" EntitySet="Tbl_Prog_Ques" />
+    </AssociationSet>
+    <AssociationSet Name="FK_72" Association="mocktestModel.FK_72">
+      <End Role="Tbl_Prog_Ques" EntitySet="Tbl_Prog_Ques" />
+      <End Role="Tbl_Stud_ProgTest_Ans" EntitySet="Tbl_Stud_ProgTest_Ans" />
+    </AssociationSet>
+    <AssociationSet Name="FK_162" Association="mocktestModel.FK_162">
+      <End Role="Tbl_Prog_Test" EntitySet="Tbl_Prog_Test" />
+      <End Role="Tbl_Stud_ProgTest_TestCases" EntitySet="Tbl_Stud_ProgTest_TestCases" />
+    </AssociationSet>
+    <AssociationSet Name="FK_65" Association="mocktestModel.FK_65">
+      <End Role="Tbl_Prog_Test" EntitySet="Tbl_Prog_Test" />
+      <End Role="Tbl_Stud_ProgTest_Details" EntitySet="Tbl_Stud_ProgTest_Details" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Tbl_Stud___Score__02FC7413" Association="mocktestModel.FK__Tbl_Stud___Score__02FC7413">
+      <End Role="Tbl_Stud_ProgTest_Result" EntitySet="Tbl_Stud_ProgTest_Result" />
+      <End Role="Tbl_Stud_ProgTest_Ans" EntitySet="Tbl_Stud_ProgTest_Ans" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Tbl_Stud___Score__03F0984C" Association="mocktestModel.FK__Tbl_Stud___Score__03F0984C">
+      <End Role="Tbl_Stud_ProgTest_Result" EntitySet="Tbl_Stud_ProgTest_Result" />
+      <End Role="Tbl_Stud_ProgTest_Ans" EntitySet="Tbl_Stud_ProgTest_Ans" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Tbl_Stud___Score__74AE54BC" Association="mocktestModel.FK__Tbl_Stud___Score__74AE54BC">
+      <End Role="Tbl_Stud_ProgTest_Result" EntitySet="Tbl_Stud_ProgTest_Result" />
+      <End Role="Tbl_Stud_ProgTest_Ans" EntitySet="Tbl_Stud_ProgTest_Ans" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Tbl_Stud___Score__787EE5A0" Association="mocktestModel.FK__Tbl_Stud___Score__787EE5A0">
+      <End Role="Tbl_Stud_ProgTest_Result" EntitySet="Tbl_Stud_ProgTest_Result" />
+      <End Role="Tbl_Stud_ProgTest_Ans" EntitySet="Tbl_Stud_ProgTest_Ans" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Tbl_Stud___Stud___04E4BC85" Association="mocktestModel.FK__Tbl_Stud___Stud___04E4BC85">
+      <End Role="user" EntitySet="users" />
+      <End Role="Tbl_Stud_ProgTest_Ans" EntitySet="Tbl_Stud_ProgTest_Ans" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Tbl_Stud___Stud___05D8E0BE" Association="mocktestModel.FK__Tbl_Stud___Stud___05D8E0BE">
+      <End Role="user" EntitySet="users" />
+      <End Role="Tbl_Stud_ProgTest_Ans" EntitySet="Tbl_Stud_ProgTest_Ans" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Tbl_Stud___Stud___75A278F5" Association="mocktestModel.FK__Tbl_Stud___Stud___75A278F5">
+      <End Role="user" EntitySet="users" />
+      <End Role="Tbl_Stud_ProgTest_Ans" EntitySet="Tbl_Stud_ProgTest_Ans" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Tbl_Stud___Stud___797309D9" Association="mocktestModel.FK__Tbl_Stud___Stud___797309D9">
+      <End Role="user" EntitySet="users" />
+      <End Role="Tbl_Stud_ProgTest_Ans" EntitySet="Tbl_Stud_ProgTest_Ans" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Tbl_Stud___Stud___6EF57B66" Association="mocktestModel.FK__Tbl_Stud___Stud___6EF57B66">
+      <End Role="user" EntitySet="users" />
+      <End Role="Tbl_Stud_ProgTest_Details" EntitySet="Tbl_Stud_ProgTest_Details" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Tbl_Stud___Stud___6FE99F9F" Association="mocktestModel.FK__Tbl_Stud___Stud___6FE99F9F">
+      <End Role="user" EntitySet="users" />
+      <End Role="Tbl_Stud_ProgTest_Result" EntitySet="Tbl_Stud_ProgTest_Result" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="OptionDetail">
+    <Key>
+      <PropertyRef Name="OptionDetailsId" />
+    </Key>
+    <Property Name="OptionDetailsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="QuesDetailId" Type="Int32" Nullable="false" />
+    <Property Name="OpOne" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="OpTwo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="OpThree" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="OpFour" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="QuesDetail" Relationship="mocktestModel.FK_dbo_OptionDetails_dbo_QuesDetails_QuesDetailId" FromRole="OptionDetail" ToRole="QuesDetail" />
+  </EntityType>
+  <EntityType Name="PerTestCaseResult">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="Test_ID" Type="Int32" />
+    <Property Name="Ques_ID" Type="Int32" />
+    <Property Name="Test_Case_ID" Type="Int32" />
+    <Property Name="Stud_Ans_ID" Type="Int32" />
+    <Property Name="Stud_ID" Type="Int32" />
+    <NavigationProperty Name="Tbl_Prog_Ques" Relationship="mocktestModel.FK__PerTestCa__Ques___2739D489" FromRole="PerTestCaseResult" ToRole="Tbl_Prog_Ques" />
+    <NavigationProperty Name="Tbl_Stud_ProgTest_Ans" Relationship="mocktestModel.FK__PerTestCa__Stud___282DF8C2" FromRole="PerTestCaseResult" ToRole="Tbl_Stud_ProgTest_Ans" />
+    <NavigationProperty Name="Tbl_Prog_Test" Relationship="mocktestModel.FK__PerTestCa__Test___2645B050" FromRole="PerTestCaseResult" ToRole="Tbl_Prog_Test" />
+  </EntityType>
+  <EntityType Name="QuesDetail">
+    <Key>
+      <PropertyRef Name="QuesDetailId" />
+    </Key>
+    <Property Name="QuesDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SubTopicId" Type="Int32" Nullable="false" />
+    <Property Name="Question" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="OpCorrect" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="OptionDetails" Relationship="mocktestModel.FK_dbo_OptionDetails_dbo_QuesDetails_QuesDetailId" FromRole="QuesDetail" ToRole="OptionDetail" />
+    <NavigationProperty Name="SubTopic" Relationship="mocktestModel.FK_dbo_QuesDetails_dbo_SubTopics_SubTopicId" FromRole="QuesDetail" ToRole="SubTopic" />
+    <NavigationProperty Name="ScoreDetails" Relationship="mocktestModel.fk_Qid_score" FromRole="QuesDetail" ToRole="ScoreDetail" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="users" Relationship="mocktestModel.FK_dbo_users_dbo_Roles_roleId" FromRole="Role" ToRole="user" />
+  </EntityType>
+  <EntityType Name="ScoreDetail">
+    <Key>
+      <PropertyRef Name="ScoreDetailsId" />
+    </Key>
+    <Property Name="ScoreDetailsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="Attempted" Type="Int32" Nullable="false" />
+    <Property Name="Corrected" Type="Int32" Nullable="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Score" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="QuesDetailId" Type="Int32" Nullable="false" />
+    <Property Name="Duration" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SubID" Type="Int32" />
+    <NavigationProperty Name="QuesDetail" Relationship="mocktestModel.fk_Qid_score" FromRole="ScoreDetail" ToRole="QuesDetail" />
+    <NavigationProperty Name="user" Relationship="mocktestModel.FK_dbo_ScoreDetails_dbo_users_UserId" FromRole="ScoreDetail" ToRole="user" />
+  </EntityType>
+  <EntityType Name="SubTopic">
+    <Key>
+      <PropertyRef Name="SubTopicId" />
+    </Key>
+    <Property Name="SubTopicId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TopicId" Type="Int32" Nullable="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="QuesDetails" Relationship="mocktestModel.FK_dbo_QuesDetails_dbo_SubTopics_SubTopicId" FromRole="SubTopic" ToRole="QuesDetail" />
+    <NavigationProperty Name="Topic" Relationship="mocktestModel.FK_dbo_SubTopics_dbo_Topics_TopicId" FromRole="SubTopic" ToRole="Topic" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tbl_ExceptionLogger">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ExceptionMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ControllerName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="ExceptionStackTrace" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LogTime" Type="DateTime" Precision="3" />
+    <Property Name="UserID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Tbl_Prog_Ques">
+    <Key>
+      <PropertyRef Name="Ques_ID" />
+    </Key>
+    <Property Name="Ques_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Test_ID" Type="Int32" Nullable="false" />
+    <Property Name="Ques_Desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Ques_IsActive" Type="Boolean" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="Max_Marks" Type="Int32" />
+    <NavigationProperty Name="PerTestCaseResults" Relationship="mocktestModel.FK__PerTestCa__Ques___2739D489" FromRole="Tbl_Prog_Ques" ToRole="PerTestCaseResult" />
+    <NavigationProperty Name="Tbl_Stud_ProgTest_TestCases" Relationship="mocktestModel.FK_192" FromRole="Tbl_Prog_Ques" ToRole="Tbl_Stud_ProgTest_TestCases" />
+    <NavigationProperty Name="Tbl_Prog_Test" Relationship="mocktestModel.FK_54" FromRole="Tbl_Prog_Ques" ToRole="Tbl_Prog_Test" />
+    <NavigationProperty Name="Tbl_Stud_ProgTest_Ans" Relationship="mocktestModel.FK_72" FromRole="Tbl_Prog_Ques" ToRole="Tbl_Stud_ProgTest_Ans" />
+  </EntityType>
+  <EntityType Name="Tbl_Prog_Test">
+    <Key>
+      <PropertyRef Name="Test_ID" />
+    </Key>
+    <Property Name="Test_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Test_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Test_Duration" Type="Int32" />
+    <Property Name="Test_General_Info" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Test_Lock" Type="Boolean" />
+    <Property Name="Test_IsActive" Type="Boolean" />
+    <Property Name="Noofquestion" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="PerTestCaseResults" Relationship="mocktestModel.FK__PerTestCa__Test___2645B050" FromRole="Tbl_Prog_Test" ToRole="PerTestCaseResult" />
+    <NavigationProperty Name="Tbl_Prog_Ques" Relationship="mocktestModel.FK_54" FromRole="Tbl_Prog_Test" ToRole="Tbl_Prog_Ques" />
+    <NavigationProperty Name="Tbl_Stud_ProgTest_TestCases" Relationship="mocktestModel.FK_162" FromRole="Tbl_Prog_Test" ToRole="Tbl_Stud_ProgTest_TestCases" />
+    <NavigationProperty Name="Tbl_Stud_ProgTest_Details" Relationship="mocktestModel.FK_65" FromRole="Tbl_Prog_Test" ToRole="Tbl_Stud_ProgTest_Details" />
+  </EntityType>
+  <EntityType Name="Tbl_Stud_ProgTest_Ans">
+    <Key>
+      <PropertyRef Name="Stud_Ans_ID" />
+    </Key>
+    <Property Name="Stud_Ans_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Stud_ID" Type="Int32" Nullable="false" />
+    <Property Name="Ques_ID" Type="Int32" Nullable="false" />
+    <Property Name="Test_ID" Type="Int32" Nullable="false" />
+    <Property Name="Stud_Ans" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="Score_id" Type="Int32" />
+    <Property Name="Marks" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Prog_Langid" Type="Int32" />
+    <NavigationProperty Name="PerTestCaseResults" Relationship="mocktestModel.FK__PerTestCa__Stud___282DF8C2" FromRole="Tbl_Stud_ProgTest_Ans" ToRole="PerTestCaseResult" />
+    <NavigationProperty Name="Tbl_Prog_Ques" Relationship="mocktestModel.FK_72" FromRole="Tbl_Stud_ProgTest_Ans" ToRole="Tbl_Prog_Ques" />
+    <NavigationProperty Name="Tbl_Stud_ProgTest_Result" Relationship="mocktestModel.FK__Tbl_Stud___Score__02FC7413" FromRole="Tbl_Stud_ProgTest_Ans" ToRole="Tbl_Stud_ProgTest_Result" />
+    <NavigationProperty Name="Tbl_Stud_ProgTest_Result1" Relationship="mocktestModel.FK__Tbl_Stud___Score__03F0984C" FromRole="Tbl_Stud_ProgTest_Ans" ToRole="Tbl_Stud_ProgTest_Result" />
+    <NavigationProperty Name="Tbl_Stud_ProgTest_Result2" Relationship="mocktestModel.FK__Tbl_Stud___Score__74AE54BC" FromRole="Tbl_Stud_ProgTest_Ans" ToRole="Tbl_Stud_ProgTest_Result" />
+    <NavigationProperty Name="Tbl_Stud_ProgTest_Result3" Relationship="mocktestModel.FK__Tbl_Stud___Score__787EE5A0" FromRole="Tbl_Stud_ProgTest_Ans" ToRole="Tbl_Stud_ProgTest_Result" />
+    <NavigationProperty Name="user" Relationship="mocktestModel.FK__Tbl_Stud___Stud___04E4BC85" FromRole="Tbl_Stud_ProgTest_Ans" ToRole="user" />
+    <NavigationProperty Name="user1" Relationship="mocktestModel.FK__Tbl_Stud___Stud___05D8E0BE" FromRole="Tbl_Stud_ProgTest_Ans" ToRole="user" />
+    <NavigationProperty Name="user2" Relationship="mocktestModel.FK__Tbl_Stud___Stud___75A278F5" FromRole="Tbl_Stud_ProgTest_Ans" ToRole="user" />
+    <NavigationProperty Name="user3" Relationship="mocktestModel.FK__Tbl_Stud___Stud___797309D9" FromRole="Tbl_Stud_ProgTest_Ans" ToRole="user" />
+  </EntityType>
+  <EntityType Name="Tbl_Stud_ProgTest_Details">
+    <Key>
+      <PropertyRef Name="Stud_Detail_ID" />
+    </Key>
+    <Property Name="Stud_Detail_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Stud_Test_ID" Type="Int32" Nullable="false" />
+    <Property Name="Stud_ID" Type="Int32" Nullable="false" />
+    <Property Name="Stud_Marks" Type="Int32" />
+    <Property Name="Stud_TestDuration" Type="Int32" Nullable="false" />
+    <Property Name="Stud_Attempt_Ques" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="Tbl_Prog_Test" Relationship="mocktestModel.FK_65" FromRole="Tbl_Stud_ProgTest_Details" ToRole="Tbl_Prog_Test" />
+    <NavigationProperty Name="user" Relationship="mocktestModel.FK__Tbl_Stud___Stud___6EF57B66" FromRole="Tbl_Stud_ProgTest_Details" ToRole="user" />
+  </EntityType>
+  <EntityType Name="Tbl_Stud_ProgTest_Result">
+    <Key>
+      <PropertyRef Name="Score_ID" />
+    </Key>
+    <Property Name="Score_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Stud_ID" Type="Int32" />
+    <Property Name="Stud_Score" Type="Int32" />
+    <Property Name="Stud_Status" Type="Boolean" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="Test_Duration" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Is_Marked" Type="Boolean" />
+    <NavigationProperty Name="Tbl_Stud_ProgTest_Ans" Relationship="mocktestModel.FK__Tbl_Stud___Score__02FC7413" FromRole="Tbl_Stud_ProgTest_Result" ToRole="Tbl_Stud_ProgTest_Ans" />
+    <NavigationProperty Name="Tbl_Stud_ProgTest_Ans1" Relationship="mocktestModel.FK__Tbl_Stud___Score__03F0984C" FromRole="Tbl_Stud_ProgTest_Result" ToRole="Tbl_Stud_ProgTest_Ans" />
+    <NavigationProperty Name="Tbl_Stud_ProgTest_Ans2" Relationship="mocktestModel.FK__Tbl_Stud___Score__74AE54BC" FromRole="Tbl_Stud_ProgTest_Result" ToRole="Tbl_Stud_ProgTest_Ans" />
+    <NavigationProperty Name="Tbl_Stud_ProgTest_Ans3" Relationship="mocktestModel.FK__Tbl_Stud___Score__787EE5A0" FromRole="Tbl_Stud_ProgTest_Result" ToRole="Tbl_Stud_ProgTest_Ans" />
+    <NavigationProperty Name="user" Relationship="mocktestModel.FK__Tbl_Stud___Stud___6FE99F9F" FromRole="Tbl_Stud_ProgTest_Result" ToRole="user" />
+  </EntityType>
+  <EntityType Name="Tbl_Stud_ProgTest_TestCases">
+    <Key>
+      <PropertyRef Name="Test_Case_ID" />
+    </Key>
+    <Property Name="Test_Case_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ques_ID" Type="Int32" Nullable="false" />
+    <Property Name="Test_ID" Type="Int32" Nullable="false" />
+    <Property Name="Test_Case_Input" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="Type" Type="Boolean" />
+    <Property Name="Test_Case_Output" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Tbl_Prog_Ques" Relationship="mocktestModel.FK_192" FromRole="Tbl_Stud_ProgTest_TestCases" ToRole="Tbl_Prog_Ques" />
+    <NavigationProperty Name="Tbl_Prog_Test" Relationship="mocktestModel.FK_162" FromRole="Tbl_Stud_ProgTest_TestCases" ToRole="Tbl_Prog_Test" />
+  </EntityType>
+  <EntityType Name="TestGST">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ImageByte" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="TestTable">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Topic">
+    <Key>
+      <PropertyRef Name="TopicId" />
+    </Key>
+    <Property Name="TopicId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="SubTopics" Relationship="mocktestModel.FK_dbo_SubTopics_dbo_Topics_TopicId" FromRole="Topic" ToRole="SubTopic" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="EmailId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="roleId" Type="Int32" Nullable="false" />
+    <Property Name="RollNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Branch" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Role" Relationship="mocktestModel.FK_dbo_users_dbo_Roles_roleId" FromRole="user" ToRole="Role" />
+    <NavigationProperty Name="ScoreDetails" Relationship="mocktestModel.FK_dbo_ScoreDetails_dbo_users_UserId" FromRole="user" ToRole="ScoreDetail" />
+    <NavigationProperty Name="Tbl_Stud_ProgTest_Ans" Relationship="mocktestModel.FK__Tbl_Stud___Stud___04E4BC85" FromRole="user" ToRole="Tbl_Stud_ProgTest_Ans" />
+    <NavigationProperty Name="Tbl_Stud_ProgTest_Ans1" Relationship="mocktestModel.FK__Tbl_Stud___Stud___05D8E0BE" FromRole="user" ToRole="Tbl_Stud_ProgTest_Ans" />
+    <NavigationProperty Name="Tbl_Stud_ProgTest_Ans2" Relationship="mocktestModel.FK__Tbl_Stud___Stud___75A278F5" FromRole="user" ToRole="Tbl_Stud_ProgTest_Ans" />
+    <NavigationProperty Name="Tbl_Stud_ProgTest_Ans3" Relationship="mocktestModel.FK__Tbl_Stud___Stud___797309D9" FromRole="user" ToRole="Tbl_Stud_ProgTest_Ans" />
+    <NavigationProperty Name="Tbl_Stud_ProgTest_Details" Relationship="mocktestModel.FK__Tbl_Stud___Stud___6EF57B66" FromRole="user" ToRole="Tbl_Stud_ProgTest_Details" />
+    <NavigationProperty Name="Tbl_Stud_ProgTest_Result" Relationship="mocktestModel.FK__Tbl_Stud___Stud___6FE99F9F" FromRole="user" ToRole="Tbl_Stud_ProgTest_Result" />
+  </EntityType>
+  <EntityType Name="TestTable2">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Name" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TestTable3">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Name" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TestTable4">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Name" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TestTable5">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Name" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_dbo_OptionDetails_dbo_QuesDetails_QuesDetailId">
+    <End Type="mocktestModel.QuesDetail" Role="QuesDetail" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="mocktestModel.OptionDetail" Role="OptionDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QuesDetail">
+        <PropertyRef Name="QuesDetailId" />
+      </Principal>
+      <Dependent Role="OptionDetail">
+        <PropertyRef Name="QuesDetailId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PerTestCa__Ques___2739D489">
+    <End Type="mocktestModel.Tbl_Prog_Ques" Role="Tbl_Prog_Ques" Multiplicity="0..1" />
+    <End Type="mocktestModel.PerTestCaseResult" Role="PerTestCaseResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Prog_Ques">
+        <PropertyRef Name="Ques_ID" />
+      </Principal>
+      <Dependent Role="PerTestCaseResult">
+        <PropertyRef Name="Ques_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PerTestCa__Stud___282DF8C2">
+    <End Type="mocktestModel.Tbl_Stud_ProgTest_Ans" Role="Tbl_Stud_ProgTest_Ans" Multiplicity="0..1" />
+    <End Type="mocktestModel.PerTestCaseResult" Role="PerTestCaseResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Stud_ProgTest_Ans">
+        <PropertyRef Name="Stud_Ans_ID" />
+      </Principal>
+      <Dependent Role="PerTestCaseResult">
+        <PropertyRef Name="Stud_Ans_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PerTestCa__Test___2645B050">
+    <End Type="mocktestModel.Tbl_Prog_Test" Role="Tbl_Prog_Test" Multiplicity="0..1" />
+    <End Type="mocktestModel.PerTestCaseResult" Role="PerTestCaseResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Prog_Test">
+        <PropertyRef Name="Test_ID" />
+      </Principal>
+      <Dependent Role="PerTestCaseResult">
+        <PropertyRef Name="Test_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_QuesDetails_dbo_SubTopics_SubTopicId">
+    <End Type="mocktestModel.SubTopic" Role="SubTopic" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="mocktestModel.QuesDetail" Role="QuesDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubTopic">
+        <PropertyRef Name="SubTopicId" />
+      </Principal>
+      <Dependent Role="QuesDetail">
+        <PropertyRef Name="SubTopicId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Qid_score">
+    <End Type="mocktestModel.QuesDetail" Role="QuesDetail" Multiplicity="1" />
+    <End Type="mocktestModel.ScoreDetail" Role="ScoreDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QuesDetail">
+        <PropertyRef Name="QuesDetailId" />
+      </Principal>
+      <Dependent Role="ScoreDetail">
+        <PropertyRef Name="QuesDetailId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_users_dbo_Roles_roleId">
+    <End Type="mocktestModel.Role" Role="Role" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="mocktestModel.user" Role="user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="user">
+        <PropertyRef Name="roleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_ScoreDetails_dbo_users_UserId">
+    <End Type="mocktestModel.user" Role="user" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="mocktestModel.ScoreDetail" Role="ScoreDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="ScoreDetail">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_SubTopics_dbo_Topics_TopicId">
+    <End Type="mocktestModel.Topic" Role="Topic" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="mocktestModel.SubTopic" Role="SubTopic" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Topic">
+        <PropertyRef Name="TopicId" />
+      </Principal>
+      <Dependent Role="SubTopic">
+        <PropertyRef Name="TopicId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_192">
+    <End Type="mocktestModel.Tbl_Prog_Ques" Role="Tbl_Prog_Ques" Multiplicity="1" />
+    <End Type="mocktestModel.Tbl_Stud_ProgTest_TestCases" Role="Tbl_Stud_ProgTest_TestCases" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Prog_Ques">
+        <PropertyRef Name="Ques_ID" />
+      </Principal>
+      <Dependent Role="Tbl_Stud_ProgTest_TestCases">
+        <PropertyRef Name="Ques_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_54">
+    <End Type="mocktestModel.Tbl_Prog_Test" Role="Tbl_Prog_Test" Multiplicity="1" />
+    <End Type="mocktestModel.Tbl_Prog_Ques" Role="Tbl_Prog_Ques" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Prog_Test">
+        <PropertyRef Name="Test_ID" />
+      </Principal>
+      <Dependent Role="Tbl_Prog_Ques">
+        <PropertyRef Name="Test_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_72">
+    <End Type="mocktestModel.Tbl_Prog_Ques" Role="Tbl_Prog_Ques" Multiplicity="1" />
+    <End Type="mocktestModel.Tbl_Stud_ProgTest_Ans" Role="Tbl_Stud_ProgTest_Ans" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Prog_Ques">
+        <PropertyRef Name="Ques_ID" />
+      </Principal>
+      <Dependent Role="Tbl_Stud_ProgTest_Ans">
+        <PropertyRef Name="Ques_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_162">
+    <End Type="mocktestModel.Tbl_Prog_Test" Role="Tbl_Prog_Test" Multiplicity="1" />
+    <End Type="mocktestModel.Tbl_Stud_ProgTest_TestCases" Role="Tbl_Stud_ProgTest_TestCases" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Prog_Test">
+        <PropertyRef Name="Test_ID" />
+      </Principal>
+      <Dependent Role="Tbl_Stud_ProgTest_TestCases">
+        <PropertyRef Name="Test_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_65">
+    <End Type="mocktestModel.Tbl_Prog_Test" Role="Tbl_Prog_Test" Multiplicity="1" />
+    <End Type="mocktestModel.Tbl_Stud_ProgTest_Details" Role="Tbl_Stud_ProgTest_Details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Prog_Test">
+        <PropertyRef Name="Test_ID" />
+      </Principal>
+      <Dependent Role="Tbl_Stud_ProgTest_Details">
+        <PropertyRef Name="Stud_Test_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Tbl_Stud___Score__02FC7413">
+    <End Type="mocktestModel.Tbl_Stud_ProgTest_Result" Role="Tbl_Stud_ProgTest_Result" Multiplicity="0..1" />
+    <End Type="mocktestModel.Tbl_Stud_ProgTest_Ans" Role="Tbl_Stud_ProgTest_Ans" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Stud_ProgTest_Result">
+        <PropertyRef Name="Score_ID" />
+      </Principal>
+      <Dependent Role="Tbl_Stud_ProgTest_Ans">
+        <PropertyRef Name="Score_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Tbl_Stud___Score__03F0984C">
+    <End Type="mocktestModel.Tbl_Stud_ProgTest_Result" Role="Tbl_Stud_ProgTest_Result" Multiplicity="0..1" />
+    <End Type="mocktestModel.Tbl_Stud_ProgTest_Ans" Role="Tbl_Stud_ProgTest_Ans" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Stud_ProgTest_Result">
+        <PropertyRef Name="Score_ID" />
+      </Principal>
+      <Dependent Role="Tbl_Stud_ProgTest_Ans">
+        <PropertyRef Name="Score_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Tbl_Stud___Score__74AE54BC">
+    <End Type="mocktestModel.Tbl_Stud_ProgTest_Result" Role="Tbl_Stud_ProgTest_Result" Multiplicity="0..1" />
+    <End Type="mocktestModel.Tbl_Stud_ProgTest_Ans" Role="Tbl_Stud_ProgTest_Ans" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Stud_ProgTest_Result">
+        <PropertyRef Name="Score_ID" />
+      </Principal>
+      <Dependent Role="Tbl_Stud_ProgTest_Ans">
+        <PropertyRef Name="Score_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Tbl_Stud___Score__787EE5A0">
+    <End Type="mocktestModel.Tbl_Stud_ProgTest_Result" Role="Tbl_Stud_ProgTest_Result" Multiplicity="0..1" />
+    <End Type="mocktestModel.Tbl_Stud_ProgTest_Ans" Role="Tbl_Stud_ProgTest_Ans" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Stud_ProgTest_Result">
+        <PropertyRef Name="Score_ID" />
+      </Principal>
+      <Dependent Role="Tbl_Stud_ProgTest_Ans">
+        <PropertyRef Name="Score_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Tbl_Stud___Stud___04E4BC85">
+    <End Type="mocktestModel.user" Role="user" Multiplicity="1" />
+    <End Type="mocktestModel.Tbl_Stud_ProgTest_Ans" Role="Tbl_Stud_ProgTest_Ans" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Tbl_Stud_ProgTest_Ans">
+        <PropertyRef Name="Stud_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Tbl_Stud___Stud___05D8E0BE">
+    <End Type="mocktestModel.user" Role="user" Multiplicity="1" />
+    <End Type="mocktestModel.Tbl_Stud_ProgTest_Ans" Role="Tbl_Stud_ProgTest_Ans" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Tbl_Stud_ProgTest_Ans">
+        <PropertyRef Name="Stud_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Tbl_Stud___Stud___75A278F5">
+    <End Type="mocktestModel.user" Role="user" Multiplicity="1" />
+    <End Type="mocktestModel.Tbl_Stud_ProgTest_Ans" Role="Tbl_Stud_ProgTest_Ans" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Tbl_Stud_ProgTest_Ans">
+        <PropertyRef Name="Stud_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Tbl_Stud___Stud___797309D9">
+    <End Type="mocktestModel.user" Role="user" Multiplicity="1" />
+    <End Type="mocktestModel.Tbl_Stud_ProgTest_Ans" Role="Tbl_Stud_ProgTest_Ans" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Tbl_Stud_ProgTest_Ans">
+        <PropertyRef Name="Stud_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Tbl_Stud___Stud___6EF57B66">
+    <End Type="mocktestModel.user" Role="user" Multiplicity="1" />
+    <End Type="mocktestModel.Tbl_Stud_ProgTest_Details" Role="Tbl_Stud_ProgTest_Details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Tbl_Stud_ProgTest_Details">
+        <PropertyRef Name="Stud_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Tbl_Stud___Stud___6FE99F9F">
+    <End Type="mocktestModel.user" Role="user" Multiplicity="0..1" />
+    <End Type="mocktestModel.Tbl_Stud_ProgTest_Result" Role="Tbl_Stud_ProgTest_Result" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Tbl_Stud_ProgTest_Result">
+        <PropertyRef Name="Stud_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

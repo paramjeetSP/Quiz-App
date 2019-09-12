@@ -1,0 +1,208 @@
+﻿@model List<QuizApps.Models.ProgrammingTestSubmitMarks>
+@{
+    int counter = 1;
+    string activeClassForNav = "";
+    string firstQuestionIsSelected = "";
+    int counterForContent = 1;
+    string activeClassForBody = "";
+    int counterForQuesiontIdentification = 1;
+}
+
+<div class="hidden">
+    <div class="url-ProgrammingTest-SubmitProgrammingMarks">@Url.Action("SubmitProgrammingMarks", "ProgrammingTest")</div>
+</div>
+<div class="modal-dialog programming-submission-marking-modal-dialog">
+
+    <div class="modal-content">
+        <!-- Modal content-->
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Answer Sheet</h4>
+        </div>
+        @*<div class="modal-body">
+                <ul class="nav nav-tabs">
+                    @foreach (var submission in Model)
+                    {
+                        // Setting the active class for the first element else empty
+                        if (counter == 1)
+                        {
+                            activeClassForNav = "active";
+                        }
+                        else {
+                            activeClassForNav = "";
+                        }
+                        <li class="@activeClassForNav">
+                            @if (counter == 1)
+                            {
+                                <div class="hidden">
+                                    <div class="programming-submission-marking-first-question-id">@submission.QuestionId</div>
+                                    <div class="programming-submission-marking-first-question-user-id">@submission.UserId</div>
+                                    <div class="programming-submission-marking-first-question-test-id">@submission.TestId</div>
+                                    <div class="programming-submission-marking-first-question-score-board-id">@submission.ScoreBoardId</div>
+                                </div>
+                            }
+                            <a href="#Q-@submission.QuestionId" data-toggle="tab" onclick="QuestionForMarksChanges(@submission.UserId,@submission.QuestionId,@submission.TestId,@submission.ScoreBoardId);" data-ques-id="@submission.QuestionId" class="">
+                                <span class="">Q @counter</span>
+                            </a>
+                        </li>
+
+                        counter = counter + 1;
+                    }
+                </ul>
+
+                <div class="tab-content">
+                    @foreach (var question in Model)
+                    {
+                        // Setting the active class for the first element else empty
+                        if (counterForContent == 1) { activeClassForBody = "active"; } else { activeClassForBody = ""; }
+                        <div class="tab-pane @activeClassForBody row" id="Q-@question.QuestionId">
+                            <div class="row">
+                                <div class="col-lg-10 question-desc-@question.QuestionId">
+                                    @question.QuesDescription
+                                </div>
+                            </div>
+                            <div class="col-lg-12 writeCode">
+                                <pre>@question.Answer</pre>
+                            </div>
+                        </div>
+                        counterForContent = counterForContent + 1;
+                    }
+                    <div class="col-lg-10">
+                    </div>
+                    <div class="col-lg-2">
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="led-box">
+                            <div class="led-yellow"></div>
+                        </div>
+                    </div>
+                </div><!-- /tab-content -->
+            </div>*@
+        <div class="programming-questions-answers-submitted-contianer">
+            @{ int questionCounter = 1;}
+            <table class="table">
+
+                <tbody class="allQuestions">
+                    @foreach (var item in Model)
+                    {
+                        <tr id="Q_@questionCounter" class="questionContainer">
+                            <td class="QuestionNo" scope="row"><h2>@questionCounter.</h2></td>
+                            <td>
+                                <div class="text-wrapper">
+                                    <textarea class="question col" rows="2" cols="10" style="margin: 0px 0px 10px; width: 1022px; height: 40px;" disabled> @item.QuesDescription  </textarea>
+                                </div>
+                                <div class="marks">
+                                    <lable>Maxminum Marks</lable>
+                                    <input type="number" class="question-marks" disabled value="@item.MaxMarks">
+                                </div>
+                                <div class="marks">
+                                    <lable>Marks Obtained</lable>
+                                    <input type="number" class="question-marks" disabled value="@item.Marks">
+                                </div>
+                                <div class="text-wrapper">
+                                    <lable>Answer</lable>
+                                    <textarea class="question col" rows="2" cols="10" style="margin: 0px 0px 10px; width: 1022px; height: 369px;" disabled> @item.Answer </textarea>
+                                </div>
+                                <div class="sample-heading">
+                                    <p>Secret Test Cases</p>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-5">
+                                        <div class="sample-inner">
+                                            <div class="sample-inner-heading">
+                                                <p>Input</p>
+                                            </div>
+                                            <div class="textarea-wrapper">
+
+                                                @if (item.testcase.Count() != 0)
+                                                {
+                                                    //int totalSampleTestCase = item.Tbl_Stud_ProgTest_TestCases.Where(x => x.Type == true).Count();
+                                                    int numOfSecretTestCase = 1;
+                                                    <div class="SecretTestCaseInput_@questionCounter">
+                                                        @foreach (var SampleCases in item.testcase)
+                                                        {
+                                                            <textarea id="STI_@numOfSecretTestCase" class="ST_@questionCounter" disabled>@SampleCases.Input</textarea>
+                                                            numOfSecretTestCase = numOfSecretTestCase + 1;
+                                                        }
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="sample-inner">
+                                            <div class="sample-inner-heading">
+                                                <p>Output</p>
+                                            </div>
+                                            <div class="">
+                                                <div>
+                                                    <div class="textarea-wrapper">
+                                                        @if (item.testcase.Count() != 0)
+                                                        {
+                                                            int totalSampleTestCase = item.testcase.Count();
+                                                            int numOfSecretTestCase = 1;
+                                                            <div class="SecretTestCaseInputAndButtons_@questionCounter">
+                                                                @foreach (var SampleCases in item.testcase)
+                                                                {
+                                                                    <div id="STOB_@numOfSecretTestCase" class="row">
+                                                                        <div class="col-sm-9"><textarea class="STO_@questionCounter" disabled>@SampleCases.Output</textarea></div>
+
+
+                                                                        <div class="col-sm-3">
+                                                                            @if (SampleCases.testCaseStatus == true)
+                                                                            {
+                                                                                <span class="label label-success">Correct Test Case</span>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <span class="label label-danger">Wrong Test Case</span>
+                                                                            }
+                                                                        </div>
+                                                                    </div>
+                                                                    numOfSecretTestCase = numOfSecretTestCase + 1;
+                                                                }
+                                                            </div>
+                                                        }
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="questionButton">
+                                    @if (item.submittedAnswer == true)
+                                    {
+                                        <span class="label label-success">Submitted Answer</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="label label-warning">Not Submitted Answer</span>
+                                    }
+                                </div>
+                            </td>
+                        </tr>
+                        questionCounter = questionCounter + 1;
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+        <div class="hidden programming-test-total-number-of-questions">@Model.Count</div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" onclick="RefreshSubmissionsTable()" data-dismiss="modal">Close</button>
+          
+        </div>
+    </div>
+
+</div>
+<style>
+    .programming-answer-submitted-container div {
+        font-weight: bold;
+    }
+</style>

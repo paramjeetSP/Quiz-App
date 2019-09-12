@@ -1,0 +1,134 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="banner">
+    <img src="/images/banner-1.jpg" alt="banner">
+    <div class="banner-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h1>
+                        Get Started <br>
+                        <span> Evaluate your Technical and Aptitude skills</span>
+                    </h1>
+                    <p></p>
+                    @if(Session["EmailId"] != null)
+                    {
+                           if(Session["RoleId"] != null)
+                           {
+
+                                @*<div class="btn-block"> @Html.ActionLink("Create Quiz", "ShowQuiz", "Home", new { @class = "btn btn-primary"})*@ @*<a href="javascript:;" class="btn btn-primary" data-toggle="modal" data-target="#CreateQuiz"> Create Quiz</a>*@ @*<a href="javascript:;" class="btn white-btn" data-toggle="modal" data-target="#takeQuiz">Take Quiz</a>*@ 
+                                  @*@Html.ActionLink("Take Quiz", "TakeQuiz", "Home", new { @class = "btn white-btn" })*@
+                                 @*</div>*@
+                            }
+                            else
+                            { 
+                                <div class="btn-block"> @Html.ActionLink("Take Test", "TakeQuiz", "Home", new { @class = "btn white-btn" })
+                    </div>
+                                    @*<div class="btn-block">@Html.ActionLink("Take Programming Test","Index","ProgrammingTest",null, new { @class = "btn white-btn" })</div>*@
+                            }
+
+                    }
+                    else
+	                {
+
+                        <div class="btn-block"> <a href="javascript:;" class="btn white-btn" data-toggle="modal" data-target="#login">Take Quiz</a>
+                    
+                    
+                     @*<a href="javascript:;" class="btn white-btn" data-toggle="modal" data-target="#login">Create Survey</a>*@ </div>
+                    @*<div class="btn-block">
+                        <a href="javascript:;" data-go-to-href="@Url.Action("Index","ProgrammingTest")" class="btn white-btn" data-toggle="modal" data-target="#login">Take Programming Test</a>
+
+
+                    </div>*@
+                        @*<a href="javascript:;" class="btn white-btn" data-toggle="modal" data-target="#login">Create Survey</a>*@
+                    }
+                </div>
+                </div>
+            </div>
+        </div>
+</section>
+<!-- banner ends here -->
+<section id="about" class="about-us">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="heading">
+                    <h3>About Softprodigy</h3>
+                    <div class="g-hr"> <span class="g-hr-h"> <i class="fa fa-heart"></i> </span> </div>
+                </div>
+                <p>SoftProdigy came into existence in 2006, guided by the idea of delivering high quality web designs, mobile development solutions, as well as innovative internet-driven marketing and sales strategies. The growth curve continued to rise steeply over the years for us, thanks to our penchant for exceeding the expectations of our clients. In our relatively young history, we have been a key to the never ending success stories of many internet businesses and successfully implemented projects.</p>
+                <p>Quality and overall performance is our paramount concern. We focus on creating effectively informative architecture, aesthetically appealing visual designs, engaging content and great interactivity.More than anything else, we believe in making things happen! We’ve been instrumental in bringing to life many amazing projects. From startups to Fortune 500 companies, we’ve lent our creative expertise and made a difference in the lives of people all over the world.</p>
+            </div>
+        </div>
+    </div>
+</section>
+<div id="signed-up-success" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Sign Up Success</h4>
+            </div>
+            <div class="modal-body">
+                <div>You have signed up successfully, now you can login with the same credentials</div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="signed-up-fail" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Sign Up Fail</h4>
+            </div>
+            <div class="modal-body">
+                <div>Email-Id Already Present</div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+@section Scripts{
+    <script>
+
+    var getUrlParameter = function getUrlParameter(sParam) {
+        var sPageURL = window.location.search.substring(1),
+            sURLVariables = sPageURL.split('&'),
+            sParameterName,
+            i;
+
+        for (i = 0; i < sURLVariables.length; i++) {
+            sParameterName = sURLVariables[i].split('=');
+
+            if (sParameterName[0] === sParam) {
+                return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+            }
+        }
+    };
+
+    $(document).ready(function () {
+        var signed = getUrlParameter('signed');
+        if (signed) {
+            $('#signed-up-success').modal('toggle');
+            $('#signed-up-success').modal('show');
+            setTimeout(function () {
+                $('#signed-up-success').modal('hide');
+            }, 15000)
+        }
+
+    });
+    </script>
+}
