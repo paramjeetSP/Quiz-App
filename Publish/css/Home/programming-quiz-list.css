@@ -1,0 +1,45 @@
+﻿.content-con {
+    margin-top: 20px;
+}
+.sidebar-block .sidebar-content {
+    background: #fff;
+}
+div#programmingListQuiz_length {
+    margin-bottom: 10px;
+}
+#programmingListQuiz_filter input[type="search"] {
+    height: 33px;
+    margin-bottom: 12px;
+    border: 1px solid #0199d4;
+}
+.add-questions {
+    margin-right: 4px;
+}
+#btnhd i {
+    margin-left: 5px;
+}
+div#programmingListQuiz_info {
+    color: #0299d3;
+    font-weight: 600;
+}
+.sidebar-content .dataTables_paginate a.paginate_button.current {
+    background: #0299d3 !important;
+    color: #fff !important;
+    border: none !important;
+}
+.btn-default:hover {
+    color: #fff;
+    background-color: #0199d4;
+    border-color: #0199d4;
+}
+.modal-dialog .modal-content .modal-body .btn-primary {
+    left: 0 !important;
+}
+.modal-dialog .modal-content .modal-header .close {
+    text-align: right;
+}
+.check-test-container a.btn.btn-default {
+    background: #0199d3;
+    color: #fff;
+    border: 1px solid #0199d3;
+}

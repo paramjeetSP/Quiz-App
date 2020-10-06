@@ -1,0 +1,150 @@
+﻿@model  QuizApps.Models.ProgamingTestList
+@{
+    ViewBag.Title = "ProgrammingQuiz_list";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<h2 > Creating a Programming Test</h2>*@
+
+<style type="text/css">
+    .class-AddItem {
+        border-color: blue;
+    }
+
+    .custom-goup {
+        margin-bottom: 65px;
+    }
+
+    .custom-body {
+        background-color: #eeeeee;
+    }
+
+    .custom-select-pane {
+        height: 170px;
+    }
+
+    .tooltip > .tooltip > .tooltip-inner {
+        background-color: #73AD21;
+        color: #FFFFFF;
+        border: 1px solid green;
+        padding: 15px;
+        font-size: 20px;
+    }
+    button{
+        width:100%;
+    }
+    .check-test-container a {
+    width: 100%;
+}
+    .add-checktest-wrapper div {
+    width: 177px;
+}
+    .add-checktest-wrapper{
+        float: right;
+    display: flex;
+    }
+</style>
+<div class="hidden">
+    <div id="url-ProgrammingTest-CheckTest">@Url.Action("CheckTest", "ProgrammingTest")</div>
+</div>
+@*<body>*@
+<section class="content-con">
+    <div class="container">
+        <div class="row">
+            <div class="add-checktest-wrapper">
+                <div id="btnhd" class="col-xs-12 text-right col-lg-2">
+                    <button type="button" class="btn btn-primary" onclick="AddPrgarmming();" data-toggle="modal" data-target="#QuestionAdd">Add</button>
+                </div>
+                <div class="check-test-container text-right col-lg-2">
+                    <a href="@Url.Action("CheckTest", "ProgrammingTest")" class="btn btn-default">View Answer-Sheet</a>
+                </div>
+            </div>
+            <div class="col-sm-48 col-md-30 col-xs-12">
+                <div class="sidebar-block">
+                    <h4>Creating a Programming Test</h4>
+                    <div class="sidebar-content create-quiz" id="quizform">
+                        @Html.Partial("~/Views/Home/ShowProgramingTest.cshtml")
+                    </div>
+                    @*<div id="">
+                            <table id="programmingListQuiz">
+                                <thead>
+                                    <tr>
+                                        <th class="hidden test-id">Test ID</th>
+                                        <th>Test Name</th>
+                                        <th>Test Duration</th>
+                                        <th>No Of Questions</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>*@
+
+                </div>
+            </div>
+
+            <div id="btnhd" class="custom-goup col-xs-12 text-center">
+            </div>
+        </div>
+    </div>
+</section>
+@*<div>
+        <a class="edit-test btn btn-info">Edit Test</a>
+        <a class="delete-test btn btn-danger">Delete Test</a>
+        <a class="add-questions btn btn-info">Add Questions</a>
+        <a class="edit-questions btn btn-info">Edit Questions</a>
+    </div>*@
+@if (Model != null)
+{
+    @Html.Partial("~/Views/Home/Test_Prog.cshtml", Model.newProgTest)
+
+}
+
+@section Scripts{
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script>
+    </script>
+    <script src="~/Scripts/custom/programming-test.js"></script>
+<script src="~/CustomScripts/ProgrammingTest/admin-show-all-programming-test.js"></script>
+}
+@*</body>*@
+
+<script>
+    function GetTestName(ID) {
+        debugger
+        var url = '@Url.Action("Edittest", "Home")'
+        $.ajax
+        ({
+            url: url,
+            datatype: 'json',
+            mtType: "Get",
+            data: { 'id': ID },
+
+            success: function (result) {
+                debugger
+                $("#opOne1").val(result.TestName);
+                $("#opOne2").val(result.TestDuration);
+                $("#opTwo1").val(result.NoofQuestion);
+                //alert("Record deleted")
+            },
+
+            error: function (data) {
+                debugger
+                alert("Record not deleted")
+            },
+        });
+
+    }
+</script>
+
+<div class="loader-container" style="z-index:99999;">
+    <div class="lds-roller "><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</div>
+<div class="deleted-container" style="z-index:99999;display: none;">
+    <h1 style="position: absolute;width: 400px;height: 64px;top: 50%;left: 39%;color:white;">Deletion Successful!</h1>
+</div>
+
+@section Styles{
+    <link href="~/css/custom/loader.css" rel="stylesheet" />
+    
+<link href="~/css/Home/programming-quiz-list.css" rel="stylesheet" />
+}

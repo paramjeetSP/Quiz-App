@@ -1,0 +1,128 @@
+﻿@model IEnumerable<QuizApps.Models.QuesDetail>
+
+@{
+    ViewBag.Title = "AddQuestions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="question">Create Coding Questions</h2>
+
+@*<table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SubTopicId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Question)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OpCorrect)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Active)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubTopicId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Question)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OpCorrect)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Active)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.QuesDetailId }) |
+                @Html.ActionLink("Details", "Details", new { id=item.QuesDetailId }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.QuesDetailId })
+            </td>
+        </tr>
+    }
+
+    </table>*@
+
+<div class="container-fluid text-center">
+    <div class="inner-question-wrapper">
+        <h2>1. Test Information</h2>
+        <div class="row">
+            <div class="testInfoDesc container-fluid">
+                <h4 class="questionLabel col-sm-4">Test Name</h4>
+                <h4 class="questionLabel col-sm-4">Test Duration</h4>
+                <h4 class="questionLabel col-sm-4">No Of Questions</h4>
+            </div>
+        </div>
+        <div class="row" style="padding:1rem;">
+
+            <div class="testInfo container-fluid">
+                <div class="questionLabel col-sm-4">@ViewBag.TestName</div>
+                <div class="questionLabel col-sm-4">@ViewBag.TestDuration</div>
+                <div class="questionLabel col-sm-4">@ViewBag.NoofQuestion</div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="inner-question-wrapper">
+        <h2>2. Problem Statement </h2>
+        <div class="row" style="padding:1rem;">
+
+            <div class="panel-body allQuestions container-fluid">
+                <div class="testID hidden">@ViewBag.TestID</div>
+                <div class="questionContainer row">
+                    @* Need add-questions-all-question-for-counter not-hidden classes in order to set the quetion sequence counter *@
+                    <div class="questionLabel add-questions-all-question-for-counter not-hidden col-sm-2"></div>
+                    <textarea class="question col-lg-6 col-sm-5" rows="2" cols="50"></textarea>
+                    <input type="number" class="question-marks" />
+                    <div class="addNew btn btn-primary col-sm-2 " style="height: 3.5rem;max-width:4rem;" onclick="AddNewQuestion()">+</div>
+                    <div class="hidden removeNew btn btn-danger col-sm-2" style="height: 3.5rem;max-width:4rem;" onclick="RemovewQuestion()">x</div>
+
+                    <div class="panel-body allSampleTC0">
+                        <div class="SampleTestCaseContainer row">
+                            <div class="sampleTestCases col-sm-2">Sample Test Cases</div>
+                            <textarea class="sampleTestCase SP0 col-lg-2 col-sm-5" rows="2" cols="50"></textarea>
+                            <textarea class="sampleTestCase SPO0 col-lg-2 col-sm-5" rows="2" cols="50"></textarea>
+                            <div class="addNewSampleTopic0 btn btn-primary col-sm-2 " style="height: 3.5rem;max-width:4rem;" onclick="addSampleTestCases(0)">+</div>
+                            <div class="hidden removeNewSampleTopic0 btn btn-danger col-sm-2" style="height: 3.5rem;max-width:4rem;" onclick="RemovewSampleTestcase(0)">x</div>
+
+                        </div>
+                    </div>
+                    <div id ="TC0" class="panel-body allSecretTC0 container-fluid">
+                        <div class="SecretTestCaseContainer row">
+                            <div class="SampleTestCases col-sm-2">Secret Test Cases</div>
+                            <textarea class="secretTestCase ST0 col-lg-2 col-sm-5" rows="2" cols="50"></textarea>
+                            <textarea class="secretTestCase STO0 col-lg-2 col-sm-5" rows="2" cols="50"></textarea>
+                            <div class="addNewSecretTopic0 btn btn-primary col-sm-2 " style="height: 3.5rem;max-width:4rem;" onclick="addSecretTestCases(0)">+</div>
+                            <div class="hidden removeNewSecretTopic0 btn btn-danger col-sm-2" style="height: 3.5rem;max-width:4rem;" onclick="RemovewTestcase(0)">x</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="padding:1rem;">
+                <button class="btn btn-primary" onclick="AddAllQuestions()">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="loader-container">
+
+    <div class="lds-roller "><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</div>
+
+
+@section Scripts{
+    <script src="~/Scripts/custom/questions.js"></script>
+
+}
+@section Styles{
+    <link href="~/css/custom/loader.css" rel="stylesheet" />
+    <link href="~/css/custom/programming-test/admin/programming-test-add.css" rel="stylesheet" />
+}

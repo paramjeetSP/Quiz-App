@@ -16,10 +16,6 @@ namespace QuizApps
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            //DataAnnotationsModelValidatorProvider.RegisterAdapterFactory(typeof(CustomValidator),
-            //  (metadata, controllerContext, attribute) => new CustomAttributes.RequiredAttributeAdapter(metadata,
-            //    controllerContext, (CustomValidator)attribute)); 
-
         }
 
         protected void Application_PostAuthenticateRequest(Object sender, EventArgs e)
@@ -35,7 +31,8 @@ namespace QuizApps
                         using (mocktestEntities1 entities = new   mocktestEntities1())
                         {
                             var user = entities.users.SingleOrDefault(u => u.EmailId == userName);
-                            Roles = user.Role.RoleName;
+                            if(user != null)
+                                Roles = user.Role.RoleName;
                         }
                         HttpContext.Current.User = new System.Security.Principal.GenericPrincipal(new System.Security.Principal.GenericIdentity(userName, "Forms"), Roles.Split(';'));
                     }
@@ -43,6 +40,5 @@ namespace QuizApps
                 }
             }
         }
-
     }
 }

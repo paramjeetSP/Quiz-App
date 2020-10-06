@@ -1,0 +1,8 @@
+D:\Quiz-App Backup\bin\NLog.config
+D:\Quiz-App Backup\bin\QuizApps.dll.config
+D:\Quiz-App Backup\bin\QuizApps.dll
+D:\Quiz-App Backup\bin\QuizApps.pdb
+D:\Quiz-App Backup\obj\Release\QuizApps.csproj.CoreCompileInputs.cache
+D:\Quiz-App Backup\obj\Release\QuizApps.csproj.CopyComplete
+D:\Quiz-App Backup\obj\Release\QuizApps.dll
+D:\Quiz-App Backup\obj\Release\QuizApps.pdb

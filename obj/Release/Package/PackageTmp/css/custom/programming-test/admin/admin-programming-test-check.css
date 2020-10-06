@@ -1,0 +1,49 @@
+﻿.programming-submission-marking-container{
+    padding:0 !important;
+    margin:0;
+}
+
+.programming-submission-marking-container .programming-submission-marking-modal-dialog{
+    width:80%;
+}
+.select-test-picker {
+    padding: 20px 0;
+}
+.test-check {
+    display: inline-block;
+    padding: 42px 20px;
+    background: #fff;
+    margin-top: 30px;
+    border-radius: 8px;
+    box-shadow: 8px -6px 20px rgba(0,0,0,0.05);
+        width: 100%;
+}
+#programming-test-submissions_length {
+    margin-bottom: 20px;
+}
+#programming-test-submissions_filter input[type="search"] {
+    border: 1px solid #ddd;
+    height: 32px;
+}
+#programming-test-submissions_paginate .paginate_button.current {
+    background: #0299d4;
+    color: #fff !important;
+}
+#programming-test-submissions_paginate .paginate_button.current {
+    background: #0299d4;
+    color: #fff !important;
+    border-color: #0299d4;
+}
+.programming-questions-answers-submitted-contianer {
+    padding: 20px;
+}
+.programming-answer-submitted-container pre {
+    margin: 18px 0;
+    padding: 12px;
+    box-shadow: 9px 8px 10px rgba(0,0,0,0.1);
+}
+.programming-answer-submitted-container {
+    margin-bottom: 30px;
+    border-bottom: 1px solid #eaeaea;
+    padding-bottom: 30px;
+}

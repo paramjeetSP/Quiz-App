@@ -22,7 +22,6 @@ namespace QuizApps.Controllers
                 if (Count > 0)
                 {
                     IfEmailExist = true;
-                    // 
                 }
                 else
                 {
@@ -34,33 +33,7 @@ namespace QuizApps.Controllers
             {
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
-            //List<user> userList = new List<user>();
-            //int count = 0;
-            //userList = db.users.ToList();
-            //try
-            //{
-            //    if (userList.Count > 0)
-            //    {
-            //        foreach (var item in userList)
-            //        {
-            //            if (item.EmailId.Equals(EmailId))
-            //            {
-            //                count++;
-            //            }
-            //        }
-            //    }
-            //    if (count != 0)
-            //    {
-            //        IfEmailExist = true;
-            //    }
-            //    return Json(!IfEmailExist, JsonRequestBehavior.AllowGet);
-            //}
-            //catch (Exception)
-            //{
-            //    return Json(false, JsonRequestBehavior.AllowGet);
-            //}
         }
-
         public ActionResult CheckExistingQuestion([Bind(Prefix = "question.Question")] string Question)
         {
             mocktestEntities1 db = new mocktestEntities1();
@@ -72,11 +45,8 @@ namespace QuizApps.Controllers
             {
                 if (quesList.Count > 0)
                 {
-                           count++;
-                       
+                    count++;
                 }
-
-
                 if (count != 0)
                 {
                     IfquestionExist = true;
@@ -87,9 +57,7 @@ namespace QuizApps.Controllers
             {
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
-
         }
-
         public ActionResult CheckExistingTopic(string TopicName)
         {
             bool IfTopicExist = false;
@@ -124,7 +92,6 @@ namespace QuizApps.Controllers
                 return Json(!IfTopicExist, JsonRequestBehavior.AllowGet);
             }
         }
-
         public ActionResult CheckExistingProgramingTest(string TEstName)
         {
             bool IfTopicExist = false;

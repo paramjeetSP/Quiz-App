@@ -1,4 +1,5 @@
-﻿using Excel;
+﻿using ClosedXML.Excel;
+using Excel;
 using QuizApps.Classes;
 using QuizApps.Models;
 using QuizApps.Models.Methods;
@@ -45,15 +46,12 @@ namespace QuizApps.Controllers
             allTests.ProgrammingTests = GetAllTestsWithCheckIfUserHasGivenTest;
             return View(allTests);
         }
-
         public ActionResult Instruction(Int32 subId)
         {
             TempData["SubId"] = subId;
             TempData.Keep("SubId");
             return PartialView("~/Views/Home/Instruction.cshtml");
         }
-
-
         [HttpGet]
         public ActionResult StartQuiz()
         {
@@ -68,7 +66,6 @@ namespace QuizApps.Controllers
         {
             return View();
         }
-
         public ActionResult GetScore(Int32 correctAnswers, string totalTime, DateTime today, Int32 currentQuestion, Int32 quesId, int? subId)
         {
             Int32 uid = 0;
@@ -79,7 +76,6 @@ namespace QuizApps.Controllers
                 var alreadyGiven = db.ScoreDetails.Where(x => x.UserId == uid && x.SubID == subId).Count();
                 if (alreadyGiven == 0)
                 {
-
                     ScoreDetail newscore = new ScoreDetail();
                     newscore.QuesDetailId = quesId;
                     newscore.UserId = uid;
@@ -105,7 +101,6 @@ namespace QuizApps.Controllers
                     newscore.Attempted = currentQuestion;
                     newscore.Active = true;
                     newscore.SubID = subId;
-
                     db.ScoreDetails.Add(newscore);
                     db.SaveChanges();
                 }
@@ -116,13 +111,8 @@ namespace QuizApps.Controllers
         [CustomAdminPanelAuthorizationFilter]
         public ActionResult UserList()
         {
-
-            //int pageSize = 20;
-            //int pageNo = pageSize * (no - 1);
             return View();
-
         }
-
         [HttpGet]
         public ActionResult UserArea()
         {
@@ -150,9 +140,34 @@ namespace QuizApps.Controllers
                 }).ToList();
                 obj.scoreGrid = obj.scoreGrid;
                 obj.scoreGrid = GetProgrammingTestData(obj.scoreGrid);
-                //interval = interval + 20;
-
                 return Json(obj.scoreGrid, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [AllowAnonymous]
+        [HttpPost]
+        public FileResult ExporttoExport()
+        {
+            SqlConnection cnn;
+            DataTable table = new DataTable("ExportScoreReport");
+            string Connectionstring = ConfigurationManager.ConnectionStrings["ScoreReport"].ConnectionString; //@"Data Source=192.168.0.78;Initial Catalog=Mocktest_SP;User ID=soft;Password=@dm!n!$tr@t0r";
+            cnn = new SqlConnection(Connectionstring);
+            cnn.Open();
+            using (var cmd = new SqlCommand("[dbo].[sp_ScoreReport]", cnn))
+            using (var da = new SqlDataAdapter(cmd))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                da.Fill(table);
+            }
+            cnn.Close();
+
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                wb.Worksheets.Add(table);
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    wb.SaveAs(stream);
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "SecoreReport.xlsx");
+                }
             }
         }
         [HttpGet]
@@ -161,11 +176,8 @@ namespace QuizApps.Controllers
             scoreDetails obj = new scoreDetails();
             obj.scoreGrid = obj.scoreGrid;
             obj.scoreGrid = GetProgrammingTestData(obj.scoreGrid);
-            //interval = interval + 20;
-
             return PartialView("_UserListQuizTest", obj.scoreGrid);
         }
-
         [HttpGet]
         public ActionResult UserAreaQuizTest()
         {
@@ -193,12 +205,9 @@ namespace QuizApps.Controllers
                     TestType = 1 // This type is to filter the results on the User Score Board, it is not stored in DB
                 }).OrderByDescending(x => x.Id).ToList();
                 obj.scoreGrid = obj.scoreGrid;
-                //interval = interval + 20;
-
                 return PartialView("_UserListQuizTest", obj.scoreGrid);
             }
         }
-
         private List<GetScore> GetProgrammingTestData(List<GetScore> scoreGrid)
         {
             if (scoreGrid == null)
@@ -239,24 +248,11 @@ namespace QuizApps.Controllers
 
             return scoreGrid;
         }
-
         [ValidateInput(false)]
         [Authorize(Roles = "Admin")]
         [HttpGet]
         public ActionResult CreateQuiz()
         {
-
-
-            //createOption obj = new createOption();
-
-            //IEnumerable<Topic> topicName = new List<Topic>(); 
-            //IEnumerable<SubTopic> subName = new List<SubTopic>();
-            //topicName = getTopic();
-            //subName = getSub();
-
-            //obj.TopicList = new SelectList(topicName, "TopicId", "Name");
-
-            //return View(obj);
             return View();
         }
         [AcceptVerbs(HttpVerbs.Post)]
@@ -274,12 +270,10 @@ namespace QuizApps.Controllers
             QuesDetail newQuestion = new QuesDetail();
             OptionDetail newOption = new OptionDetail();
             int quesId = 0;
-
             topicName = db.Topics.ToList();
             subName = db.SubTopics.ToList();
             if (QuestionIsVaild(ques.question.Question, ques.SubId))
             {
-
                 Int32 Id = ques.SubId;
                 newQuestion.SubTopicId = Id;
                 string Queval = ques.question.Question.Replace("&lt", "<");
@@ -297,23 +291,14 @@ namespace QuizApps.Controllers
                 db.SaveChanges();
                 var QSTID = newQuestion.QuesDetailId;
 
-                //using (mocktestEntities1 select = new mocktestEntities1())
-                //{
-                //    var quid = select.QuesDetails.Where(a => a.Question == Queval1 & a.Active == true).FirstOrDefault();
-                //    quesId = quid.QuesDetailId;
-                //}
                 newOption.QuesDetailId = QSTID;
                 newOption.Active = Active;
                 db.OptionDetails.Add(newOption);
                 db.SaveChanges();
 
-                //return View();
                 return Json(new { result = 0, message = "Success" });
             }
-            //TempData["alertMessage"] = "Question Already Exist!";
-            //return View();
             return Json(new { result = 1, message = "Question Already Exist!" });
-
         }
         [HttpGet]
         public ActionResult AddTopic()
@@ -345,7 +330,6 @@ namespace QuizApps.Controllers
 
             return View();
         }
-
         public ActionResult DeleteTopic(Int32 TopicDelId)
         {
             Topic Active;
@@ -367,7 +351,6 @@ namespace QuizApps.Controllers
             }
             return Json(result, JsonRequestBehavior.AllowGet);
         }
-
         public ActionResult EditConfTop(Int32 TopicEditId, string TopicName)
         {
             bool result = false;
@@ -388,7 +371,6 @@ namespace QuizApps.Controllers
             }
             return Json(result, JsonRequestBehavior.AllowGet);
         }
-
         public ActionResult EditTopic(Int32 TopicEditId)
         {
             string resultName;
@@ -400,15 +382,11 @@ namespace QuizApps.Controllers
                 return Json(resultName, JsonRequestBehavior.AllowGet);
             }
         }
-
-
-
         [HttpGet]
         public ActionResult AddSub()
         {
             return View();
         }
-
         [HttpPost]
         public ActionResult AddSub(Int32 TopId, string SubTopicName)
         {
@@ -431,7 +409,6 @@ namespace QuizApps.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
-
         public ActionResult DeleteSub(Int32 SubDelId)
         {
             SubTopic Active;
@@ -439,7 +416,6 @@ namespace QuizApps.Controllers
             using (mocktestEntities1 db = new mocktestEntities1())
             {
                 Active = db.SubTopics.Where(a => a.SubTopicId == SubDelId).FirstOrDefault<SubTopic>();
-
             }
             if (Active != null)
             {
@@ -453,7 +429,6 @@ namespace QuizApps.Controllers
             }
             return Json(result, JsonRequestBehavior.AllowGet);
         }
-
         public ActionResult EditConfSub(Int32 SubEditId, string SubName)
         {
             bool result = false;
@@ -474,7 +449,6 @@ namespace QuizApps.Controllers
             }
             return Json(result, JsonRequestBehavior.AllowGet);
         }
-
         public ActionResult EditSub(Int32 SubEditId)
         {
             string resultName;
@@ -486,7 +460,6 @@ namespace QuizApps.Controllers
                 return Json(resultName, JsonRequestBehavior.AllowGet);
             }
         }
-
         public JsonResult GettopicList()
         {
             if (Session["EmailId"] == null)
@@ -518,7 +491,6 @@ namespace QuizApps.Controllers
 
             var userId = Session["UserId"].ToString();
 
-
             if (Session["RoleId"] != null)
             {
                 using (mocktestEntities1 selectStatement = new mocktestEntities1())
@@ -529,9 +501,6 @@ namespace QuizApps.Controllers
                         Value = a.SubTopicId.ToString(),
                         Text = a.Name
                     }).ToList();
-
-                    //obj.SubList = ModifySubTopicsToEnableDisable(SubName, userId);
-
                     return Json(obj.SubList, JsonRequestBehavior.AllowGet);
                 }
             }
@@ -541,18 +510,11 @@ namespace QuizApps.Controllers
                 using (mocktestEntities1 mkt = new mocktestEntities1())
                 {
                     SubName = (from t in mkt.Topics join s in mkt.SubTopics on t.TopicId equals s.TopicId join q in mkt.QuesDetails on s.SubTopicId equals q.SubTopicId where (from r in mkt.QuesDetails where r.SubTopicId == q.SubTopicId select r).Count() > 19 & t.TopicId == topiciD & s.Active == true select s).Distinct().ToList();
-                    //obj.SubList = SubName.Select(a => new SelectListItem
-                    //{
-                    //    Value = a.SubTopicId.ToString(),
-                    //    Text = a.Name
-                    //}).ToList();
-
                     obj.SubList = ModifySubTopicsToEnableDisable(SubName, userId);
                     return Json(obj.SubList, JsonRequestBehavior.AllowGet);
                 }
             }
         }
-
         private List<SelectListItem> ModifySubTopicsToEnableDisable(List<SubTopic> subName, string userId)
         {
             var newSubName = new List<SelectListItem>();
@@ -571,15 +533,15 @@ namespace QuizApps.Controllers
                             SelectListItem theItem = new SelectListItem();
                             theItem.Text = subTopic.Name;
                             theItem.Value = subTopic.SubTopicId.ToString();
-                            theItem.Disabled = true;
-                            newSubName.Add(theItem);
+                            theItem.Selected = true;
+                            //newSubName.Add(theItem);
                         }
                         else
                         {
                             SelectListItem theItem = new SelectListItem();
                             theItem.Text = subTopic.Name;
                             theItem.Value = subTopic.SubTopicId.ToString();
-                            theItem.Disabled = false;
+                            theItem.Selected = false;
                             newSubName.Add(theItem);
                         }
                     }
@@ -592,7 +554,7 @@ namespace QuizApps.Controllers
                         SelectListItem theItem = new SelectListItem();
                         theItem.Text = item.Name;
                         theItem.Value = item.SubTopicId.ToString();
-                        theItem.Disabled = false;
+                        theItem.Selected = false;
                         newSubName.Add(theItem);
                     }
                     return newSubName;
@@ -600,13 +562,10 @@ namespace QuizApps.Controllers
 
             }
         }
-
-
         public JsonResult GetQuestions(Int32 subId, int? Page)
         {
             createOption obj = new createOption();
             List<QuesDetail> QuestionName = new List<QuesDetail>();
-            //List<OptionDetail> OptionName = new List<OptionDetail>();
             Int32 subiD = subId;
             int pageSize = 8;
             bool Active = true;
@@ -641,7 +600,7 @@ namespace QuizApps.Controllers
                         subId = Convert.ToInt32(TempData["SubId"]);
                     }
                     var quesdetail = selectStatement.QuesDetails.Join(selectStatement.OptionDetails, a => a.QuesDetailId, b => b.QuesDetailId, (a, b) => new { a, b })
-       .Join(selectStatement.SubTopics, a => a.a.SubTopicId, b => b.SubTopicId, (a, b) => new { a, b }).Where(a => a.a.a.SubTopicId == subId & a.a.a.Active == Active).OrderBy(r => Guid.NewGuid()).Take(20).ToList();
+       .Join(selectStatement.SubTopics, a => a.a.SubTopicId, b => b.SubTopicId, (a, b) => new { a, b }).Where(a => a.a.a.SubTopicId == subId & a.a.a.Active == Active).OrderBy(r => Guid.NewGuid()).Take(30).ToList();
                     obj.QuestionGrid = quesdetail.Select(c => new ShowQuiz
                     {
                         Qid = c.a.a.QuesDetailId,
@@ -659,7 +618,6 @@ namespace QuizApps.Controllers
                 }
             }
         }
-
         [Authorize(Roles = "Admin")]
         [HttpGet]
         public ActionResult ShowQuiz()
@@ -719,7 +677,6 @@ namespace QuizApps.Controllers
             }
             return Json(JsonRequestBehavior.AllowGet);
         }
-
         public JsonResult Delete(int Qid)
         {
             bool result = false;
@@ -745,13 +702,11 @@ namespace QuizApps.Controllers
 
             return Json(result, JsonRequestBehavior.AllowGet);
         }
-
         public FileResult DownloadExcel()
         {
             string path = Server.MapPath("/ExcelFile/QuestionDetails.xlsx");
             return File(path, "application/vnd.ms-excel", "QuestionDetails.xlsx");
         }
-
         public IEnumerable<Topic> getTopic()
         {
             mocktestEntities1 db = new mocktestEntities1();
@@ -791,7 +746,6 @@ namespace QuizApps.Controllers
             }
 
         }
-
         public bool QuestionIsVaild(string name, Int32 SubID)
         {
 
@@ -809,8 +763,6 @@ namespace QuizApps.Controllers
                 }
             }
         }
-
-
         [HttpGet]
         [CustomAdminPanelAuthorizationFilter]
         public ActionResult ProgrammingQuiz_list()
@@ -836,7 +788,6 @@ namespace QuizApps.Controllers
                 return View(List1);
             }
         }
-
         private QuestionOperation CheckIfTestHasQuestions(int test_ID)
         {
             QuestionOperation forNew = new QuestionOperation();
@@ -857,31 +808,6 @@ namespace QuizApps.Controllers
                 }
             }
         }
-
-
-        //[HttpGet]
-        //public ActionResult ShowProgramingTestPartial()
-        //{
-        //    ProgamingTestList List1 = new ProgamingTestList();
-        //    List1.ProgList = new List<Progtest>();
-        //    List1.newProgTest = new Progtest();
-        //    using (var DB = new mocktestEntities1())
-        //    {
-        //        var choice = DB.Tbl_Prog_Test.ToList();
-        //        foreach (var item in choice)
-        //        {
-        //            List1.ProgList.Add(new Progtest()
-        //            {
-        //                Testid = item.Test_ID,
-        //                TestName = item.Test_Name,
-        //                TestDuration = (item.Test_Duration),
-        //                NoofQuestion = item.Noofquestion
-        //            });
-        //        }
-        //        return PartialView("ShowProgramingTest",List1);
-        //    }
-        //}
-
         [HttpGet]
         public ActionResult ShowProgramingTestPartialJson()
         {
@@ -904,34 +830,6 @@ namespace QuizApps.Controllers
             }
             return PartialView("~/Views/Home/ShowProgramingTest.cshtml", List1);
         }
-
-
-
-        //[HttpGet]
-        //public ActionResult ShowProgramingTest()
-        //{
-        //    //List<Progtest> List1 = new List<Progtest>();
-
-        //    ProgamingTestList List1 = new ProgamingTestList();
-        //    using (var DB = new mocktestEntities1())
-        //    {
-        //        var choice = DB.Tbl_Prog_Test.ToList();
-        //        foreach (var item in choice)
-        //        {
-
-        //            List1.ProgList.Add(new Progtest()
-        //            {
-        //                Testid = item.Test_ID,
-        //                TestName = item.Test_Name,
-        //                TestDuration = (item.Test_Duration),
-        //                NoofQuestion = item.Noofquestion
-
-        //            });
-        //        }
-
-        //        return View(List1);
-        //    }
-        //}
         [HttpGet]
         public ActionResult Test_Prog(Progtest prgt)
         {
@@ -956,7 +854,6 @@ namespace QuizApps.Controllers
             }
 
         }
-
         [HttpGet]
         public ActionResult Edittest(int id)
         {
@@ -981,7 +878,6 @@ namespace QuizApps.Controllers
                 return Json(_objpr, JsonRequestBehavior.AllowGet);
             }
         }
-
         [HttpPost]
         public ActionResult UpdateTest(int id, Progtest modal)
         {
@@ -1007,7 +903,6 @@ namespace QuizApps.Controllers
             }
             return Json(success);
         }
-
         [HttpGet]
         public ActionResult AddQuestions(int id = 29)
         {
@@ -1030,7 +925,6 @@ namespace QuizApps.Controllers
 
             return View(newQuestions);
         }
-
         [HttpPost]
         public ActionResult AddQuestions(List<Tbl_Prog_Ques> quesList)
         {
@@ -1087,7 +981,6 @@ namespace QuizApps.Controllers
             SetViewBagProps(added);
             return Json(added);
         }
-
         private void SetViewBagProps(bool added)
         {
             if (added)
@@ -1101,7 +994,6 @@ namespace QuizApps.Controllers
             ViewBag.OperationSuccess = added;
 
         }
-
         [HttpGet]
         [CustomAdminPanelAuthorizationFilter]
         public ActionResult EditQuestion(int id)
@@ -1133,63 +1025,6 @@ namespace QuizApps.Controllers
 
             return View(allQuestions);
         }
-
-        [HttpPost]
-        //public ActionResult UpdateQuestion(int id, List<Tbl_Prog_Ques> QuestionsToUpdate, List<Tbl_Prog_Ques> AddQuestions)
-        //{
-        //    if (Session["EmailId"] == null)
-        //    {
-        //        return RedirectToAction("Index", "Home");
-        //    }
-        //    ViewBag.TestID = id;
-        //    bool success = false;
-        //    try
-        //    {
-        //        if (QuestionsToUpdate != null)
-        //        {
-        //            foreach (var ques in QuestionsToUpdate)
-        //            {
-        //                if (ques.Ques_Desc == "" || ques.Ques_Desc == null)
-        //                {
-        //                    continue;
-        //                }
-        //                using (var db = new mocktestEntities1())
-        //                {
-        //                    var result = db.Tbl_Prog_Ques.SingleOrDefault(b => b.Ques_ID == ques.Ques_ID);
-        //                    if (result != null)
-        //                    {
-        //                        result.Ques_Desc = ques.Ques_Desc;
-        //                        result.Ques_IsActive = (bool)ques.Ques_IsActive;
-        //                        db.SaveChanges();
-        //                    }
-        //                }
-        //            }
-        //        }
-        //        if (AddQuestions != null)
-        //        {
-        //            foreach (var ques in AddQuestions)
-        //            {
-        //                if (ques.Ques_Desc == "" || ques.Ques_Desc == null)
-        //                {
-        //                    continue;
-        //                }
-        //                using (var db = new mocktestEntities1())
-        //                {
-        //                    var result = db.Tbl_Prog_Ques.Add(ques);
-        //                    db.SaveChanges();
-        //                }
-        //            }
-        //        }
-        //        success = true;
-        //    }
-        //    catch (Exception)
-        //    {
-        //        success = false;
-        //        throw;
-        //    }
-        //    return Json(success);
-        //}
-
         public ActionResult UpdateQuestion(int id, List<Tbl_Prog_Ques> quesList)
         {
             if (Session["EmailId"] == null)
@@ -1276,12 +1111,11 @@ namespace QuizApps.Controllers
             }
             catch (Exception ex)
             {
-               success = false;
-               throw;
+                success = false;
+                throw;
             }
             return Json(success);
         }
-
         [HttpGet]
         [CustomAdminPanelAuthorizationFilter]
         public ActionResult ShowQuestions(int id)
@@ -1337,7 +1171,6 @@ namespace QuizApps.Controllers
 
             return View(allQuestions);
         }
-
         [HttpGet]
         public ActionResult ShowProgramingTest()
         {
@@ -1366,7 +1199,6 @@ namespace QuizApps.Controllers
                 return PartialView("~/Views/Home/ShowProgramingTest.cshtml", List1);
             }
         }
-
         [HttpPost]
         public ActionResult DeleteProgrammingTest(int id)
         {
@@ -1390,7 +1222,6 @@ namespace QuizApps.Controllers
             }
             return Json(success);
         }
-
         [HttpGet]
         public ActionResult GetAllBranchesData()
         {
@@ -1404,7 +1235,6 @@ namespace QuizApps.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
-
         [HttpGet]
         public ActionResult GetScoreBoardDataByBranch(string branchName)
         {
@@ -1416,7 +1246,6 @@ namespace QuizApps.Controllers
 
             return PartialView("_UserListQuizTest", obj.scoreGrid);
         }
-
         [HttpGet]
         public ActionResult GetAllSubTopicsData()
         {
@@ -1430,7 +1259,6 @@ namespace QuizApps.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
-
         [HttpGet]
         public ActionResult GetScoreBoardDataBySubTopic(string subTopic)
         {
@@ -1447,7 +1275,6 @@ namespace QuizApps.Controllers
 
             return PartialView("_UserListQuizTest", getData);
         }
-
         [HttpGet]
         public ActionResult GetAllTestsSubmitted()
         {
@@ -1456,12 +1283,10 @@ namespace QuizApps.Controllers
 
             return PartialView("_UserListQuizTest", getData);
         }
-
         [HttpGet]
         public ActionResult QuizSubmitted()
         {
             return View();
         }
-
     }
 }

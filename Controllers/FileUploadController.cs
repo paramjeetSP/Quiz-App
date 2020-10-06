@@ -54,7 +54,6 @@ namespace QuizApps.Controllers
                 }
                 foreach (DataRow row in result.Tables[0].Rows)
                 {
-
                     DataColumn col1 = result.Tables[0].Columns[0];
                     if (row[col1.ColumnName].ToString() != "")
                     {
@@ -73,14 +72,6 @@ namespace QuizApps.Controllers
                             using (mocktestEntities1 context = new mocktestEntities1())
                             {
                                 var quid = context.QuesDetails.Where(a => a.Question == newQuestion.Question & a.Active == true & a.SubTopicId == SubId).FirstOrDefault();
-                                // quesId = quid.QuesDetailId;
-                                //foreach (var item in questList)
-                                //{
-                                //    if (item.Question.Equals(newQuestion.Question))
-                                //    {
-                                //        Qid = item.QuesDetailId;
-                                //    }
-                                //}
                                 newOPtion.QuesDetailId = quid.QuesDetailId;
                             }
                             DataColumn col3 = result.Tables[0].Columns[2];
@@ -106,8 +97,6 @@ namespace QuizApps.Controllers
                         }
                     }
                 }
-
-
             }
             if (setCount == 1)
             {

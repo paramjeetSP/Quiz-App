@@ -1,0 +1,44 @@
+﻿@model List<QuizApps.Models.AllProgrammingTestsUserViewModel>
+
+
+@* For URLS *@
+<div class="hidden">
+    <div class="url-programming-test-all-programming-test">@Url.Action("AllProgrammingTests", "ProgrammingTest")</div>
+    <div class="url-programming-test-get-test-data-test">@Url.Action("GetTestData", "ProgrammingTest")</div>
+</div>
+<div class="form-group col-md-6">
+    <div class="panel" style="border:1px solid #ddd">
+        <div id="hd_1" class="panel-heading" style="background-color:#eeeeee;">
+            <div>Programming Tests</div>
+        </div>
+        <div id="sb_1">
+            <div id="sbBody_1" class="panel-body all-tests-container">
+                @{
+                    int counter = 1;
+                }
+                @foreach (var item in Model)
+                {
+                    if (item.HasGiven)
+                    {
+                        <div class="single-test-container" style="cursor:not-allowed; color:white;">
+                            @counter <a style="" data-toggle="tooltip" title="You have already attempted" data-placement="right">@item.TheTest.TestName</a>
+                            <i class="fa fa-check" aria-hidden="true"></i>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="single-test-container" onclick="GetInstructions('@item.TheTest.Testid')" style="cursor:POINTER; color:white;">
+                            @counter <a style="">@item.TheTest.TestName</a>
+                        </div>
+                    }
+                    counter = counter + 1;
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
+</script>

@@ -1,0 +1,57 @@
+﻿.inner-question-wrapper {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 7px -3px 10px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+}
+.text-wrapper {
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: -2px 0px 24px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+.marks {
+    margin-bottom: 30px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: -2px 0px 24px rgba(0,0,0,0.1);
+}
+.sample-test {
+    font-weight: bold;
+    color: #222;
+    box-shadow: -2px 0px 24px rgba(0,0,0,0.1);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+.marks lable {
+    font-weight: bold;
+    color: #222;
+    margin-right: 10px;
+}
+.marks input.question-marks {
+    height: 38px;
+    border-radius: 4px;
+    border: 1px solid #afa9a9;
+}
+.sample-heading {
+    font-size: 20px;
+}
+.addNew, .removeNew {
+    width: 37px;
+    margin-right: 4px;
+}
+.questionButton {
+    width: 120px;
+}
+textarea {
+    width: 100%;
+    color: #777777;
+}
+
+.text-wrapper lable {
+    font-weight: bold;
+    color: #222;
+    margin-right: 10px;
+}

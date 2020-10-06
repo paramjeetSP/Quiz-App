@@ -1,0 +1,26 @@
+﻿
+@model QuizApps.Models.Score.GetScore
+<table id="userList" class=" display form-group" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th style="text-align: -webkit-center;">S.No</th>
+            <th style="text-align: -webkit-center;" data-sortable="false">Date</th>
+            <th style="text-align: -webkit-center;" data-sortable="false">User Name</th>
+            <th style="text-align: -webkit-center;" data-sortable="false">Roll No.</th>
+            <th style="text-align: -webkit-center;" data-sortable="false">Branch</th>
+            <th style="text-align: -webkit-center;" data-sortable="false">Topic</th>
+            <th style="text-align: -webkit-center;" data-sortable="false">SubTopic</th>
+            <th style="text-align: -webkit-center;" data-sortable="true">Score</th>
+            <th style="text-align: -webkit-center;" data-sortable="false">Attempted</th>
+            <th style="text-align: -webkit-center;" data-sortable="false">Duration</th>
+        </tr>
+    </thead>
+    <tbody id="UserFieldArea"></tbody>
+</table>
+
+
+@section Scripts{
+    <script src="~/CustomScripts/ScoreBoard/score-board.js"></script>
+}
+
+

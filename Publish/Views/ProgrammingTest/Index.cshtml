@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+  .programming-test-intro{
+      margin-top: 20px;
+  }
+</style>
+@* For URLS *@
+<div class="hidden">
+    <div class="url-programming-test-all-programming-test">@Url.Action("AllProgrammingTests", "ProgrammingTest")</div>
+    <div class="url-programming-test-get-test-data-test">@Url.Action("GetTestData", "ProgrammingTest")</div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div id="instruct" class="col-sm-14 col-md-36 col-xs-12 programming-test-intro">
+            <i >(Don’t want to take Programming Test now? No worries!!)</i>
+            <div style="margin-top:5px;" id="">
+                <a class="btn btn-info" href="@Url.Action("TakeQuiz","Home")">Take Quiz</a>
+                <form>
+                    <div id="SelectTopic">
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+    <script src="~/CustomScripts/ProgrammingTest/Intro.js"></script>
+}
+
+<div class="loader-container" style="z-index:99999;">
+    <div class="lds-roller "><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</div>
+<div class="deleted-container" style="z-index:99999;display: none;">
+    <h1 style="position: absolute;width: 400px;height: 64px;top: 50%;left: 39%;color:white;">Deletion Successful!</h1>
+</div>
+
+@section Styles{
+    <link href="~/css/custom/loader.css" rel="stylesheet" />
+    <link href="~/css/custom/programming-test/user/all-tests.css" rel="stylesheet" />
+}

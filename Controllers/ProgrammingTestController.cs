@@ -20,8 +20,7 @@ namespace QuizApps.Controllers
                 return RedirectToAction("Index", "Home");
             }
             Progtest tests = new Progtest();
-            ProgrammingTests allTests = new ProgrammingTests();
-            allTests = tests.GetAllTests();
+            ProgrammingTests allTests = tests.GetAllTests();
             return View(allTests);
         }
         [HttpGet]
@@ -36,16 +35,13 @@ namespace QuizApps.Controllers
             var GetAllTestsWithCheckIfUserHasGivenTest = tests.GetAllTestsWithCheckIfUserHasGivenTest(userEmail);
             return PartialView("_ProgrammingAllTest", GetAllTestsWithCheckIfUserHasGivenTest);
         }
-
         [HttpGet]
         public ActionResult GetTestData(int id)
         {
             ViewBag.TestId = id;
             Progtest test = new Progtest();
-            var model = test.GetTest(id);
             return PartialView("_ProgrammingInstruct", test.GetTest(id));
         }
-
         [HttpGet]
         public ActionResult StartProgrammingTest(int id)
         {
@@ -54,42 +50,29 @@ namespace QuizApps.Controllers
                 return RedirectToAction("Index", "Home");
             }
             string userEmail = Session["EmailId"].ToString();
-            
             ProgrammingTest theTest = new ProgrammingTest();
             if (theTest.CheckIfUserAlreadyGivenTest(userEmail, id))
             {
                 return RedirectToAction("TakeQuiz", "Home");
             }
-
             var userInfo = theTest.GetUserInfo(userEmail);
             int scoreBoardId = theTest.StartTheTest(id, userInfo);
-            //var testInfo = theTest.GetTestInfo(id);
-            //theTest.TestName = testInfo.TestName;
-            //theTest.TestID = id;
-            //theTest.TestDuration= testInfo.TestDuration;
             theTest.SetTestQuestions(id);
-
             theTest.SetBasicTestInfo(id);
             theTest.SetProgrammingLanguages();
             theTest.ScoreBoardId = scoreBoardId;
             theTest.StudentID = userInfo.UserId;
             return View(theTest);
         }
-
-
         [HttpPost]
         public ActionResult SubmitOrUpdateQuestionAnswer(int currentID, ProgrammingTest theTest)
         {
-            ProgrammingTest submitTheTest = new ProgrammingTest();
-            //theTest.ScoreBoardId = 36;// TODO: Setting The Score_ID intentionally for testing purposes
-            submitTheTest = theTest;
+            ProgrammingTest submitTheTest = theTest;
             int recordId = submitTheTest.UpdateOrAddAnswer(theTest);
             bool isFinalSubmit = submitTheTest.CheckDataInSecertTestTable(currentID, theTest.StudentID);
             var result = new { RecordId = recordId, IsFinalSubmit = isFinalSubmit };
             return Json(result, JsonRequestBehavior.AllowGet);
-            //return Json(RecordId:recordId, IsFinalSubmit: isFinalSubmit);
         }
-
         [HttpGet]
         public ActionResult QuestionAnswerSubmitted(int QuestionID, int ScoreID)
         {
@@ -97,7 +80,6 @@ namespace QuizApps.Controllers
             var theData = theQuestionToReturn.GetTheQuestionAnswerSubmitted(QuestionID, ScoreID);
             return Json(theData, JsonRequestBehavior.AllowGet);
         }
-
         [HttpGet]
         [CustomAdminPanelAuthorizationFilter]
         public ActionResult CheckTest()
@@ -106,11 +88,8 @@ namespace QuizApps.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            ProgrammingTests allTests = new ProgrammingTests();
             Progtest getAllTests = new Progtest();
-            allTests = getAllTests.GetAllTests();
-            //ProgrammingTestSubmission getAllSub = new ProgrammingTestSubmission();
-            //ViewBag.Submissions = getAllSub.GetAllSubmissions();
+            ProgrammingTests allTests = getAllTests.GetAllTests();
             return View(allTests);
         }
         [HttpGet]
@@ -126,20 +105,17 @@ namespace QuizApps.Controllers
             ProgrammingTestSubmission getAllSub = new ProgrammingTestSubmission();
             return PartialView("_ProgrammingTestSubmissions", getAllSub.GetAllSubmissions(testId));
         }
-
         [HttpPost]
         public ActionResult SubmitProgrammingMarks(List<ProgrammingTestSubmitMarks> data)
         {
             ProgrammingTestSubmitMarks submitAllMarks = new ProgrammingTestSubmitMarks();
             return Json(submitAllMarks.SubmitAllMarkings(data), JsonRequestBehavior.AllowGet);
         }
-
         [HttpGet]
         public ActionResult TestSubmitted()
         {
             return View();
         }
-
         [HttpPost]
         public ActionResult SubmitTestDuration(string duration, int scoreBoardId)
         {
@@ -147,11 +123,6 @@ namespace QuizApps.Controllers
             var res = submitDuration.SubmitTestDuration(duration, scoreBoardId);
             return Json(res);
         }
-        //[HttpPost]
-        //public ActionResult SubmitOrUpdateQuestionAnswerAll(ProgrammingTest theTest)
-        //{
-
-        //}
         [HttpPost]
         public ActionResult SubmitPerQuestion(FinalQuestionObject questionAfterEvaluation)
         {

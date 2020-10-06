@@ -1,0 +1,59 @@
+﻿h2.question {
+    padding: 0px 25px;
+    display: inline-block;
+    margin-top: 13px;
+}
+.inner-question-wrapper {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 7px -3px 10px rgba(0,0,0,0.05);
+}
+.allQuestions textarea.question {
+    margin-right: 10px;
+}
+.questionContainer  {
+    margin-bottom: 5px;
+}
+textarea.test-input {
+    width: 100%;
+}
+.questionContainer .btn {
+    float: right;
+        padding: 7px 14px;
+}
+.cross{
+    display: block !important;
+    visibility: hidden;
+}
+.add-ques-plus {
+    position: absolute;
+    right: 29px;
+}
+.add-ques-min {
+    position: absolute;
+    right: 70px;
+}
+h2.question {
+    font-size: 22px;
+    color: #333;
+    font-weight: bold;
+}
+/*body{
+    display:none
+}*/
+@media(max-width:991px){
+    .add-ques-plus {
+    right: 23px;
+}
+    .questionContainer .btn {
+    float: right;
+    padding: 7px 11px;
+}
+    .add-ques-min {
+    right: 59px;
+}
+    .SampleTestCaseContainer{
+        margin-bottom:15px;
+    }
+}

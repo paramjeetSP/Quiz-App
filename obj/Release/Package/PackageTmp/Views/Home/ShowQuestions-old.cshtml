@@ -1,0 +1,129 @@
+﻿@model IEnumerable<QuizApps.Tbl_Prog_Ques>
+
+@{
+    ViewBag.Title = "ShowQuestions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int numOfQuestions = 1;
+}
+<div class="showquestion-wrapper">
+    <div class="container">
+        <div class="container-fluid text-center inner-question-wrapper">
+
+            <div class="row">
+                <div class="testInfoDesc container-fluid">
+                    <h4 class="questionLabel col-lg-4">Test Name</h4>
+                    <h4 class="questionLabel col-lg-4">Test Duration</h4>
+                    <h4 class="questionLabel col-lg-4">No Of Questions</h4>
+                </div>
+            </div>
+            <div class="row" style="padding:1rem;">
+
+                <div class="testInfo container-fluid">
+                    <div class="questionLabel col-lg-4">@ViewBag.TestName</div>
+                    <div class="questionLabel col-lg-4">@ViewBag.TestDuration</div>
+                    <div class="questionLabel col-lg-4">@ViewBag.NoofQuestion</div>
+                </div>
+            </div>
+        </div>
+        <div class="inner-question-wrapper">
+            @*<table class="table text-center">
+                    <tr>
+                        <th class="text-center">
+                            Questions
+                        </th>
+                    </tr>
+                    @{ int questionCounter = 1;}
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="text-left">
+                                <b>Q @questionCounter</b> @Html.DisplayFor(modelItem => item.Ques_Desc)
+                            </td>
+                        </tr>
+                        <tr>
+                            @foreach (var TC in item.Tbl_Stud_ProgTest_TestCases)
+                            {
+
+                                if (TC.Type == false) {
+                                <td class="text-left">@Html.DisplayFor(SP => TC.Test_Case_Description)</td>
+                                }
+                            }
+                        </tr>
+                        questionCounter = questionCounter + 1;
+                    }
+
+                </table>*@
+            <div class="allQuestions container-fluid">
+                @foreach (var item in Model)
+            {
+                    <div class="questionContainer questionOld row">
+                        <div class="questionLabel all-question-for-counter not-hidden col-lg-2 col-sm-2">Q @numOfQuestions</div>
+
+                        <textarea disabled class="question
+                              oldQuestionDesc
+                              old-ques-id-@item.Ques_ID
+                              col-lg-6 col-sm-5"
+                                  rows="2"
+                                  cols="50"
+                                  data-toUpdate="false"
+                                  data-ques-id="@item.Ques_ID">
+                            @item.Ques_Desc
+                        </textarea>
+                        <input type="number" class="question-marks" disabled value="@item.Max_Marks" />
+                        <label class ="col-lg-6 col-sm-5">Sample Test Case</label>
+                        @if (item.Tbl_Stud_ProgTest_TestCases.Where(x => x.Type == true).Count() != 0)
+                        {
+
+                            foreach (var SampleCases in item.Tbl_Stud_ProgTest_TestCases.Where(x => x.Type == true))
+                            {
+
+                                <label class ="col-lg-2 col-sm-5">@SampleCases.Test_Case_Input</label>
+                                <label class="col-lg-2 col-sm-5">@SampleCases.Test_Case_Output</label>
+
+                            }
+                        }
+                        else
+                        {
+                            <label class ="col-lg-6 col-sm-5">No Sample Test Case Provided</label>
+                        }
+
+                        <label class ="col-lg-6 col-sm-5">Secret Test Case</label>
+                        @if (item.Tbl_Stud_ProgTest_TestCases.Where(x => x.Type == false).Count() != 0)
+                        {
+                            foreach (var SampleCases in item.Tbl_Stud_ProgTest_TestCases.Where(x => x.Type == false))
+                            {
+
+                                <label class="col-lg-2 col-sm-5">@SampleCases.Test_Case_Input</label>
+                                <label class="col-lg-2 col-sm-5">@SampleCases.Test_Case_Output</label>
+
+                            }
+                        }
+                        else
+                        {
+                            <label class ="col-lg-6 col-sm-5">No Secret Test Case Provided</label>
+                        }
+
+                    </div>
+                    numOfQuestions = numOfQuestions + 1;
+                }
+                <div class="hidden total-questions-already">@numOfQuestions</div>
+            </div>
+        </div>
+        <div class="row text-center" style="padding:1rem;">
+            <a class="btn btn-primary" href="@Url.Action("ProgrammingQuiz_list","Home")">Back</a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .inner-question-wrapper {
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 7px -3px 10px rgba(0,0,0,0.05);
+        margin: 0 auto;
+        width: 100%;
+        margin-top: 9px;
+        display: inline-block;
+    }
+</style>

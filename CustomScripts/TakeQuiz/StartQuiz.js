@@ -4,12 +4,12 @@ var questions = [{
     question: "",
     choices: ["", "", "", ""],
     correctAnswer: 0
-}]
+}];
 var qId = 0;
 var progressCount = 1;
 //$(document).ready(function () {
 function Test() {
-    debugger
+    //debugger
     var item = $("#StartSubid").val();
     var i = 0;
 
@@ -18,18 +18,18 @@ function Test() {
         url: '/Home/GetQuestions',
         type: 'get',
         data: { 'subId': 0 },
-        success: function (result) {
+            success: function (result) {
+                console.log(result);
             $.each(result, function (index, value) {
-                debugger
-                qid = value.Qid
+                //debugger
+                qid = value.Qid;
                 questions[i] = [{
                     question: [value.QuestionName],
                     choices: [value.OpOne, value.OpTwo, value.OpThree, value.OpFour],
                     correctAnswer: value.Correct
-                }]
-
+                }];
                 i++;
-            })
+            });
             displayCurrentQuestion();
         }
     });
@@ -123,29 +123,29 @@ var remaining = 0;
 $(document).ready(function () {
     //function QuizStart(){
 
-    debugger
+    //debugger
     // Display the first question
     Test();
 
-    debugger
+    //debugger
     $('#headerArea').hide();
     $(this).find(".quizMessage").hide();
 
     // On clicking next, display the next question
     $(this).find(".nextButton").on("click", function () {
-        debugger
+        //debugger
         if (!quizOver) {
 
             value = $("input[type='radio']:checked").val();
 
-            if (value == undefined) {
+            if (value === undefined) {
                 $(document).find(".quizMessage").text("Please select an answer");
                 $(document).find(".quizMessage").show();
             } else {
                 // TODO: Remove any message -> not sure if this is efficient to call this each time....
                 $(document).find(".quizMessage").hide();
 
-                if (value == questions[currentQuestion][0].correctAnswer) {
+                if (value === questions[currentQuestion][0].correctAnswer) {
                     correctAnswers++;
                 }
 
@@ -156,7 +156,7 @@ $(document).ready(function () {
                     displayCurrentQuestion();
                     progressBar();
                 }
-                else if (currentQuestion == (questions.length) - 1) {
+                else if (currentQuestion === (questions.length) - 1) {
                     displayCurrentQuestion();
                     progressBar();
                     $(document).find(".nextButton").text("Submit");
@@ -180,20 +180,24 @@ $(document).ready(function () {
 
 // This displays the current question AND the choices
 function displayCurrentQuestion() {
-    //debugger
-    console.log("In display current Question");
+    
+    
 
     var question = questions[currentQuestion][0].question;
 
     var questionClass = $(document).find(".quizContainer > .question");
-
+   
     //var quetsionC = document.getElementById("txt").tagName;
     var choiceList = $(document).find(".quizContainer > .choiceList");
+  
+     //alert(JSON.stringify(questionClass));
     var numChoices = questions[currentQuestion][0].choices.length;
 
     // Set the questionClass text to the current question
     $(questionClass).text(question);
-
+    console.log(question);
+    //document.getElementById("layer1").innerHTML = question;
+    //$('#layer1').text(question);
     auto_grow(questionClass[0]);
     //$(questionClass).text("<h1>Qno.</h1>");
     //$(questionClass).append('<h3>Qno.' + count + '</h3>');
@@ -223,7 +227,7 @@ function resetQuiz() {
 
 function displayScore() {
     var newUrl = '@Url.Action("TakeQuiz","Home")';
-    debugger
+    //debugger
     $("correctAns").val(correctAnswers);
     //$("")
     var nowt = new Date().getTime();
@@ -274,7 +278,8 @@ function hideScore() {
     $(document).find(".result").hide();
 }
 
-countdown(1199);
+//countdown(1799);  // 30min
+countdown(899);  // 15min
 
 function countdown(seconds) {
 
@@ -355,9 +360,7 @@ function progressBar() {
             y.remove("disabled");
             y.add("active");
         }
-    } else {
-
-    }
+    } 
     progressCount = progressCount + 1;
 }
 

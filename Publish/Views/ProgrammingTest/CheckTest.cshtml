@@ -1,0 +1,42 @@
+﻿@model QuizApps.Models.ProgrammingTests
+@{
+    ViewBag.Title = "CheckTest";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="test-check">
+            <div class="col-lg-3">
+
+                <select class="selectpicker select-test-picker" id="select-test-picker" data-style="btn-info" data-live-search="true" onchange="GetTheTestSubmissions(this);">
+                    <option value="0" selected>Select Test</option>
+                    @foreach (var item in Model.ProgList)
+                    {
+                        <option value="@item.Testid">@item.TestName</option>
+                    }
+                </select>
+            </div>
+            <div class="col-lg-9" id="test-check-content-container">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="hidden">
+
+    <div class="hidden url-ProgrammingTest-GetAllSubmissions">@Url.Action("GetAllSubmissions", "ProgrammingTest")</div>
+    <div class="url-ProgrammingTest-CheckTestSub">@Url.Action("CheckTestSub", "ProgrammingTest")</div>
+</div>
+
+@section Scripts{
+    <script src="~/CustomScripts/ProgrammingTest/admin-check-programming-test.js"></script>
+}
+
+@section Styles{
+
+    <link href="~/css/custom/programming-test/admin/admin-programming-test-check.css" rel="stylesheet" />
+    <link href="~/css/custom/question-edit.css" rel="stylesheet" />
+}

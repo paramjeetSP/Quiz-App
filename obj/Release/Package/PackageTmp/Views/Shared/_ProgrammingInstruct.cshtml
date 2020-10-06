@@ -1,0 +1,54 @@
+﻿@model QuizApps.Models.Progtest
+
+@*<div id="cha"class="col-sm-8 col-md-9 col-xs-12">*@
+<div id="instruction" class="sidebar-block">
+    <h4>Instructions</h4>
+    <div class="sidebar-content create-quiz hover-style" @*style="min-height:550px;max-height:550px;overflow-y: scroll;"*@>
+        <form>
+            <a class="control-group pull-right" style="cursor:POINTER" onclick="location.reload();">Back</a>
+            <div class="form-group col-md-6 ">
+
+                <br />
+                <div class="instruction">
+                    <label class="control-label">
+                        <i class="fa fa-hand-o-right fa-lg" aria-hidden="true"></i> Total number of questions : @Model.NoofQuestion
+                    </label>
+                    <br />
+                    <br />
+                    <label class="control-label">
+                        <i class="fa fa-hand-o-right fa-lg" aria-hidden="true"></i> Time alloted : @Model.TestDuration minutes.
+                    </label>
+                    <br />
+                    <br />
+                    <label class="control-label">
+                        <i class="fa fa-hand-o-right fa-lg" aria-hidden="true"></i> Its Mendatory to Submit all your Questions Individually.
+                    </label><br />
+                    <br />
+                    <label class="control-label">
+                        <i class="fa fa-hand-o-right fa-lg" aria-hidden="true"></i> DO NOT Click on 'Back' or 'Refresh' button.
+                    </label><br />
+                    <br />
+                    <label class="control-label">
+                        <i class="fa fa-hand-o-right fa-lg" aria-hidden="true"></i> All the best :-).
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group col-xs-12">
+                <br />
+
+
+                @*@Html.ActionLink("Start Quiz", "StartQuiz", "Home", new { @class = "center btn btn-primary" } )*@
+                <a class="control-group center-block btn btn-primary" href="@Url.Action("StartProgrammingTest","ProgrammingTest")/@ViewBag.TestId">Start Quiz <i class="fa fa-play" aria-hidden="true"></i></a>
+                @*<button type="button" class="control-group center-block btn btn-primary" onclick="location.href='/Home/StartQuiz'">Start Quiz <i class="fa fa-play" aria-hidden="true"></i></button>*@
+            </div>
+        </form>
+
+    </div>
+</div>
+@*</div>*@
+
+@section Styles{
+    <link href="~/css/custom/programming-test/custom.css" rel="stylesheet" />
+
+}

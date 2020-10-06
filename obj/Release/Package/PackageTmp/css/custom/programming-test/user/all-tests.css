@@ -1,0 +1,91 @@
+﻿body {
+    background: #fff;
+}
+/*#SelectTopic > .all-tests-container {
+  padding-left: 0;
+  list-style: none;
+}
+
+.single-test-container {
+  color: white;
+  background: #14ABE2;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
+  font-weight: 100;
+  margin: 0 0 1px 0;
+  border-radius: 5px 25px 25px 5px;
+  padding: 10px 15px;
+  width: auto;
+  display: table;
+
+}
+.all-tests-container > div:first-child {
+  border-radius: 25px 25px 25px 5px;
+}
+.all-tests-container > div:last-child {
+  border-radius: 5px 25px 25px 25px;
+}
+.single-test-container:hover {
+    background-color: #333;
+}*/
+
+.all-tests-container {
+  font-size: 14px;
+  list-style: none;
+  margin: 19px 16px;
+  padding: 0;
+}
+.single-test-container {
+  margin: 0;
+  margin-bottom: 7px;
+  padding-left: 0px;
+  position: relative;
+}
+
+/*--------------6/10/2018-------------------*/
+.panel-heading div {
+    color: black;
+    font-size: 13px;
+}
+.sidebar-block {
+    margin-bottom: 20px;
+}
+.single-test-container {
+    color: #333 !important;
+    font-size: 15px;
+}
+.sidebar-content a.control-group {
+    padding: 9px;
+    background: #0199d3;
+    color: #fff;
+    width: 100px;
+    text-align: center;
+    margin: 0;
+}
+.control-group i {
+    margin-left: 3px;
+}
+.instruction {
+    padding: 23px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 5px 5px 20px rgba(0,0,0,0.10);
+}
+.instruction i {
+    margin-right: 10px;
+}
+section.content-con {
+    background: #f2f2f2;
+}
+.tabs {
+    width: 92px;
+    border: 1px solid #ddd;
+    box-shadow: 7px 8px 16px rgba(0,0,0,0.10);
+}
+a {
+    color: #337ab7;
+    font-size: 14px;
+}
+a:hover, a:focus {
+    text-decoration: underline;
+}

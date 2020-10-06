@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "QuizSubmitted";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .success-submit {
+        text-align: center;
+        padding: 60px;
+        display: inline-block;
+        width: 100%;
+    }
+
+    .footer{
+        position:absolute;
+        bottom:0;
+    }
+</style>
+<div class="success-submit">
+    <h2>Your Quiz is Submitted Successfully!</h2>
+    @Html.ActionLink("Take Quiz", "TakeQuiz","Home", null,new { @class="btn btn-info" })
+</div>
+
