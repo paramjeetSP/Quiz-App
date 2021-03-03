@@ -49,6 +49,7 @@ namespace QuizApps
         public virtual DbSet<TestTable3> TestTable3 { get; set; }
         public virtual DbSet<TestTable4> TestTable4 { get; set; }
         public virtual DbSet<TestTable5> TestTable5 { get; set; }
+        public virtual DbSet<AutoSubmittedDetail> AutoSubmittedDetails { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

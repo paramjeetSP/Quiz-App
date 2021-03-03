@@ -20,7 +20,7 @@
     <script src="~/ExternalLibs/JS/less.min.js"></script>
     <script>try { Typekit.load({ async: true }); } catch (e) { }</script>
 </head>
-<body oncopy="return false" oncut="return false" onpaste="return false">
+<body oncopy="return false" oncut="return false" onpaste="return false" oncontextmenu="return false;" >
     <header class="header">
         <div id="headerArea" class="head-btm">
             <div class="container">
@@ -70,8 +70,8 @@
                                                 <li><a href="javascript:;" data-toggle="modal" data-target="#login">Login</a></li>
                                                 <li><a href="javascript:;" data-toggle="modal" data-target="#signUp">Sign Up</a></li>
                                                 @*<li><a class="page-scroll" href="#hiw">How it Works</a></li>
-                                                   <li><a class="page-scroll" href="#faq">FAQ's</a></li>
-                                                   <li><a class="page-scroll" href="#contact">Contact</a></li>*@
+                                                    <li><a class="page-scroll" href="#faq">FAQ's</a></li>
+                                                    <li><a class="page-scroll" href="#contact">Contact</a></li>*@
                                             }
 
                                         }
@@ -96,15 +96,15 @@
             <div class="row">
                 <div class="col-xs-6 col-md-6">
                     @*<p>Copyright © 2019 Altruist Technologies. <a href="https://www.altruistindia.com/" target="_blank"><i>Altruist.com</i></a>. All Rights Reserved</p>
-                      <p>Report any bugs at- <a href="mailto:quizsupport@Altruist.com"><i>quizsupport@Altruist.com</i></a> or +0172-2970008</p>*@
+                        <p>Report any bugs at- <a href="mailto:quizsupport@Altruist.com"><i>quizsupport@Altruist.com</i></a> or +0172-2970008</p>*@
                     <p>Copyright © 2020 SoftProdigy. <a href="https://www.softprodigy.com/" target="_blank"><i>SoftProdigy.com</i></a>. All Rights Reserved</p>
                     <p>Report any bugs at- <a href="mailto:quizsupport@SoftProdigy.com"><i>quizsupport@SoftProdigy.com</i></a> or +91-9646223388</p>
                 </div>
                 <div class="col-xs-6 col-md-6">
                     <ul>
                         @*<li><a href="https://www.facebook.com/altruisttechnologies/" target="_blank"><i class="fa fa-facebook"></i></a></li>
-                          <li><a href="https://twitter.com/AtplInitiatives" target="_blank"><i class="fa fa-twitter"></i></a></li>
-                          <li><a href="https://www.linkedin.com/company/altruist-technologies-pvt.-ltd./" target="_blank"><i class="fa fa-linkedin"></i></a></li>*@
+                            <li><a href="https://twitter.com/AtplInitiatives" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="https://www.linkedin.com/company/altruist-technologies-pvt.-ltd./" target="_blank"><i class="fa fa-linkedin"></i></a></li>*@
                         <li><a href="https://www.facebook.com/softprodigysolutions" target="_blank"><i class="fa fa-facebook"></i></a></li>
                         <li><a href="https://twitter.com/softprodigy" target="_blank"><i class="fa fa-twitter"></i></a></li>
                         <li><a href="https://www.linkedin.com/company/softprodigy" target="_blank"><i class="fa fa-linkedin"></i></a></li>
@@ -159,7 +159,22 @@
             $('.deleted-container').hide();
         });
     </script>
-
+    <script language="javascript" type="text/javascript">
+        //function handleVisibilityChange() {
+        //    if (document.hidden) {
+        //        console.log("Hidden");
+        //    } else {
+        //        console.log("Visible");
+        //    }
+        //}
+        //oncontextmenu="return false;"
+        $(document).keydown(function (e) {
+            if (e.which === 123) {
+                return false;
+            }
+        });
+       // document.addEventListener("visibilitychange", handleVisibilityChange, false);
+    </script>
     <div class="loader-container" style="z-index:99999;">
         <div class="lds-roller "><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
     </div>

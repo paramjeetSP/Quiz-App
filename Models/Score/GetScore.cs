@@ -27,4 +27,9 @@ namespace QuizApps.Models.Score
     {
         public List<GetScore> scoreGrid { get; set; }
     }
+
+    public class SubmitTest
+    {
+        public int TotalTestSubmitted { get; set; }
+    }
 }

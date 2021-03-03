@@ -15,10 +15,11 @@
 
 <link rel="stylesheet" type="text/css" href="~/css/customStyle.css">
 <html>
-<body @*onload="Listing.GetTopicList();"*@>
+<body oncontextmenu="return false;" @*onload="Listing.GetTopicList();"*@>
 
     <div class="hidden">
         <div class="url-Home-QuizSubmitted">@Url.Action("QuizSubmitted", "Home")</div>
+        <div class="url-Home-TakeQuiz">@Url.Action("TakeQuiz", "Home")</div>
     </div>
     <style>
         .col-md-1 {
@@ -287,7 +288,7 @@
                                             @*<div class="QuesNo" style="background-color:#eeeeee" ></div>*@
                                             @*@Html.TextAreaFor(m => m.QuestionName, new { @class="form-control question" , rows = "4", cols = "50"})*@
 
-                                            <textarea  contentEditable="true" id="txt" class="question" readonly style="display: inline-block;user-select: none; min-height: 150px;height:auto; resize:horizontal;resize: vertical;resize:none;border:none;">
+                                            <textarea contentEditable="true" id="txt" class="question" readonly style="display: inline-block;user-select: none; min-height: 150px;height:auto; resize:horizontal;resize: vertical;resize:none;border:none;">
                                             
                                             </textarea>
                                             @*<p class="question" style="overflow: hidden;  height: auto;"></p>*@
@@ -329,6 +330,22 @@
     <section></section>
     @*@Html.Partial("~/Views/Home/GetScore.cshtml")*@
     <script src="~/CustomScripts/TakeQuiz/StartQuiz.js"></script>
+    <script language="javascript" type="text/javascript">
+        function handleVisibilityChange() {
+            if (document.hidden) {
+                displayScore(true);
+            } else {
+                console.log("Visible");
+            }
+        }
+        //oncontextmenu="return false;"
+        $(document).keydown(function (e) {
+            if (e.which === 123) {
+                return false;
+            }
+        });
+        document.addEventListener("visibilitychange", handleVisibilityChange, false);
+    </script>
 </body>
 </html>
 <script>

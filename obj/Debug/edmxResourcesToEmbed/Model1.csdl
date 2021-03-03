@@ -154,6 +154,7 @@
       <End Role="user" EntitySet="users" />
       <End Role="Tbl_Stud_ProgTest_Result" EntitySet="Tbl_Stud_ProgTest_Result" />
     </AssociationSet>
+    <EntitySet Name="AutoSubmittedDetails" EntityType="mocktestModel.AutoSubmittedDetail" />
   </EntityContainer>
   <EntityType Name="OptionDetail">
     <Key>
@@ -749,4 +750,13 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="AutoSubmittedDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SubTopicId" Type="Int32" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="Reason" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
 </Schema>

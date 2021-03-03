@@ -14,25 +14,25 @@ function Test() {
     var i = 0;
 
     $.ajax
-    ({
-        url: '/Home/GetQuestions',
-        type: 'get',
-        data: { 'subId': 0 },
+        ({
+            url: '/Home/GetQuestions',
+            type: 'get',
+            data: { 'subId': 0 },
             success: function (result) {
                 console.log(result);
-            $.each(result, function (index, value) {
-                //debugger
-                qid = value.Qid;
-                questions[i] = [{
-                    question: [value.QuestionName],
-                    choices: [value.OpOne, value.OpTwo, value.OpThree, value.OpFour],
-                    correctAnswer: value.Correct
-                }];
-                i++;
-            });
-            displayCurrentQuestion();
-        }
-    });
+                $.each(result, function (index, value) {
+                    //debugger
+                    qid = value.Qid;
+                    questions[i] = [{
+                        question: [value.QuestionName],
+                        choices: [value.OpOne, value.OpTwo, value.OpThree, value.OpFour],
+                        correctAnswer: value.Correct
+                    }];
+                    i++;
+                });
+                displayCurrentQuestion();
+            }
+        });
 }
 
 //displayCurrentQuestion();
@@ -170,27 +170,27 @@ $(document).ready(function () {
 
 
                     //quizOver = true;
-                    displayScore();
+                    displayScore(false);
                 }
             }
-        } 
+        }
     });
 
 });
 
 // This displays the current question AND the choices
 function displayCurrentQuestion() {
-    
-    
+
+
 
     var question = questions[currentQuestion][0].question;
 
     var questionClass = $(document).find(".quizContainer > .question");
-   
+
     //var quetsionC = document.getElementById("txt").tagName;
     var choiceList = $(document).find(".quizContainer > .choiceList");
-  
-     //alert(JSON.stringify(questionClass));
+
+    //alert(JSON.stringify(questionClass));
     var numChoices = questions[currentQuestion][0].choices.length;
 
     // Set the questionClass text to the current question
@@ -225,7 +225,8 @@ function resetQuiz() {
     hideScore();
 }
 
-function displayScore() {
+function displayScore(isautoSubmitted) {
+    debugger;
     var newUrl = '@Url.Action("TakeQuiz","Home")';
     //debugger
     $("correctAns").val(correctAnswers);
@@ -247,11 +248,15 @@ function displayScore() {
             'today': today,
             'currentQuestion': currentQuestion,
             'quesId': qid,
-            'subId': subId
+            'subId': subId,
+            'isAutoSubmitted': isautoSubmitted
         },
         dataType: "html",
 
         success: function (result) {
+
+            var data = JSON.parse(result);
+            console.log(data);
             //debugger
             //swal({title:"Done!", 
             //    text:"Your Quiz is Submitted Successfully!",
@@ -260,8 +265,16 @@ function displayScore() {
             //function(){
             //    window.location.href = "/Home/TakeQuiz";
             //});
-            let url = $('.url-Home-QuizSubmitted').text();
-            window.location.href = url;
+            if (data.TotalTestSubmitted === 1) {
+                let url = $('.url-Home-TakeQuiz').text();
+                window.location.href = url;
+            }
+            else {
+                let url = $('.url-Home-QuizSubmitted').text();
+                window.location.href = url;
+
+            }
+
 
             //$("#instruct").html(result);
         },
@@ -303,7 +316,7 @@ function countdown(seconds) {
         else {
 
             clearInterval(int);
-            displayScore();
+            displayScore(false);
             return;
         }
 
@@ -328,7 +341,7 @@ function countdown(seconds) {
 
         // display
         document.getElementById("countdown").innerHTML
-        = format(minutes) + ":" + format(seconds);
+            = format(minutes) + ":" + format(seconds);
 
         if (remaining <= 1) {
             $(document).find(".nextButton").text("Submit").hide();
@@ -360,7 +373,7 @@ function progressBar() {
             y.remove("disabled");
             y.add("active");
         }
-    } 
+    }
     progressCount = progressCount + 1;
 }
 

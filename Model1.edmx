@@ -5,6 +5,15 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="mocktestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AutoSubmittedDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubTopicId" Type="int" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="Reason" Type="nvarchar" MaxLength="500" />
+        </EntityType>
         <EntityType Name="OptionDetails">
           <Key>
             <PropertyRef Name="OptionDetailsId" />
@@ -202,7 +211,7 @@
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'mocktest_dev.dbo.TestTable2' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Mocktest_SP.dbo.TestTable2' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="TestTable2">
           <Key>
             <PropertyRef Name="Id" />
@@ -212,7 +221,7 @@ warning 6002: The table/view 'mocktest_dev.dbo.TestTable2' does not have a prima
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'mocktest_dev.dbo.TestTable3' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Mocktest_SP.dbo.TestTable3' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="TestTable3">
           <Key>
             <PropertyRef Name="Id" />
@@ -222,7 +231,7 @@ warning 6002: The table/view 'mocktest_dev.dbo.TestTable3' does not have a prima
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'mocktest_dev.dbo.TestTable4' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Mocktest_SP.dbo.TestTable4' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="TestTable4">
           <Key>
             <PropertyRef Name="Id" />
@@ -232,7 +241,7 @@ warning 6002: The table/view 'mocktest_dev.dbo.TestTable4' does not have a prima
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'mocktest_dev.dbo.TestTable5' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Mocktest_SP.dbo.TestTable5' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="TestTable5">
           <Key>
             <PropertyRef Name="Id" />
@@ -261,7 +270,7 @@ warning 6002: The table/view 'mocktest_dev.dbo.TestTable5' does not have a prima
           <Property Name="RollNo" Type="nvarchar(max)" />
           <Property Name="Branch" Type="nvarchar(max)" />
         </EntityType>
-        <Association Name="FK__PerTestCa__Ques___2739D489">
+        <Association Name="FK__PerTestCa__Ques___09A971A2">
           <End Role="Tbl_Prog_Ques" Type="Self.Tbl_Prog_Ques" Multiplicity="0..1" />
           <End Role="PerTestCaseResult" Type="Self.PerTestCaseResult" Multiplicity="*" />
           <ReferentialConstraint>
@@ -273,7 +282,19 @@ warning 6002: The table/view 'mocktest_dev.dbo.TestTable5' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PerTestCa__Stud___282DF8C2">
+        <Association Name="FK__PerTestCa__Ques___3587F3E0">
+          <End Role="Tbl_Prog_Ques" Type="Self.Tbl_Prog_Ques" Multiplicity="0..1" />
+          <End Role="PerTestCaseResult" Type="Self.PerTestCaseResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Prog_Ques">
+              <PropertyRef Name="Ques_ID" />
+            </Principal>
+            <Dependent Role="PerTestCaseResult">
+              <PropertyRef Name="Ques_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PerTestCa__Stud___0A9D95DB">
           <End Role="Tbl_Stud_ProgTest_Ans" Type="Self.Tbl_Stud_ProgTest_Ans" Multiplicity="0..1" />
           <End Role="PerTestCaseResult" Type="Self.PerTestCaseResult" Multiplicity="*" />
           <ReferentialConstraint>
@@ -285,7 +306,19 @@ warning 6002: The table/view 'mocktest_dev.dbo.TestTable5' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PerTestCa__Test___2645B050">
+        <Association Name="FK__PerTestCa__Stud___367C1819">
+          <End Role="Tbl_Stud_ProgTest_Ans" Type="Self.Tbl_Stud_ProgTest_Ans" Multiplicity="0..1" />
+          <End Role="PerTestCaseResult" Type="Self.PerTestCaseResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Stud_ProgTest_Ans">
+              <PropertyRef Name="Stud_Ans_ID" />
+            </Principal>
+            <Dependent Role="PerTestCaseResult">
+              <PropertyRef Name="Stud_Ans_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PerTestCa__Test___0B91BA14">
           <End Role="Tbl_Prog_Test" Type="Self.Tbl_Prog_Test" Multiplicity="0..1" />
           <End Role="PerTestCaseResult" Type="Self.PerTestCaseResult" Multiplicity="*" />
           <ReferentialConstraint>
@@ -297,7 +330,19 @@ warning 6002: The table/view 'mocktest_dev.dbo.TestTable5' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Tbl_Stud___Score__02FC7413">
+        <Association Name="FK__PerTestCa__Test___37703C52">
+          <End Role="Tbl_Prog_Test" Type="Self.Tbl_Prog_Test" Multiplicity="0..1" />
+          <End Role="PerTestCaseResult" Type="Self.PerTestCaseResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Prog_Test">
+              <PropertyRef Name="Test_ID" />
+            </Principal>
+            <Dependent Role="PerTestCaseResult">
+              <PropertyRef Name="Test_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Stud___Score__114A936A">
           <End Role="Tbl_Stud_ProgTest_Result" Type="Self.Tbl_Stud_ProgTest_Result" Multiplicity="0..1" />
           <End Role="Tbl_Stud_ProgTest_Ans" Type="Self.Tbl_Stud_ProgTest_Ans" Multiplicity="*" />
           <ReferentialConstraint>
@@ -309,7 +354,7 @@ warning 6002: The table/view 'mocktest_dev.dbo.TestTable5' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Tbl_Stud___Score__03F0984C">
+        <Association Name="FK__Tbl_Stud___Score__123EB7A3">
           <End Role="Tbl_Stud_ProgTest_Result" Type="Self.Tbl_Stud_ProgTest_Result" Multiplicity="0..1" />
           <End Role="Tbl_Stud_ProgTest_Ans" Type="Self.Tbl_Stud_ProgTest_Ans" Multiplicity="*" />
           <ReferentialConstraint>
@@ -321,7 +366,7 @@ warning 6002: The table/view 'mocktest_dev.dbo.TestTable5' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Tbl_Stud___Score__74AE54BC">
+        <Association Name="FK__Tbl_Stud___Score__1332DBDC">
           <End Role="Tbl_Stud_ProgTest_Result" Type="Self.Tbl_Stud_ProgTest_Result" Multiplicity="0..1" />
           <End Role="Tbl_Stud_ProgTest_Ans" Type="Self.Tbl_Stud_ProgTest_Ans" Multiplicity="*" />
           <ReferentialConstraint>
@@ -333,7 +378,7 @@ warning 6002: The table/view 'mocktest_dev.dbo.TestTable5' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Tbl_Stud___Score__787EE5A0">
+        <Association Name="FK__Tbl_Stud___Score__14270015">
           <End Role="Tbl_Stud_ProgTest_Result" Type="Self.Tbl_Stud_ProgTest_Result" Multiplicity="0..1" />
           <End Role="Tbl_Stud_ProgTest_Ans" Type="Self.Tbl_Stud_ProgTest_Ans" Multiplicity="*" />
           <ReferentialConstraint>
@@ -345,7 +390,55 @@ warning 6002: The table/view 'mocktest_dev.dbo.TestTable5' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Tbl_Stud___Stud___04E4BC85">
+        <Association Name="FK__Tbl_Stud___Score__3D2915A8">
+          <End Role="Tbl_Stud_ProgTest_Result" Type="Self.Tbl_Stud_ProgTest_Result" Multiplicity="0..1" />
+          <End Role="Tbl_Stud_ProgTest_Ans" Type="Self.Tbl_Stud_ProgTest_Ans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Stud_ProgTest_Result">
+              <PropertyRef Name="Score_ID" />
+            </Principal>
+            <Dependent Role="Tbl_Stud_ProgTest_Ans">
+              <PropertyRef Name="Score_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Stud___Score__3E1D39E1">
+          <End Role="Tbl_Stud_ProgTest_Result" Type="Self.Tbl_Stud_ProgTest_Result" Multiplicity="0..1" />
+          <End Role="Tbl_Stud_ProgTest_Ans" Type="Self.Tbl_Stud_ProgTest_Ans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Stud_ProgTest_Result">
+              <PropertyRef Name="Score_ID" />
+            </Principal>
+            <Dependent Role="Tbl_Stud_ProgTest_Ans">
+              <PropertyRef Name="Score_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Stud___Score__3F115E1A">
+          <End Role="Tbl_Stud_ProgTest_Result" Type="Self.Tbl_Stud_ProgTest_Result" Multiplicity="0..1" />
+          <End Role="Tbl_Stud_ProgTest_Ans" Type="Self.Tbl_Stud_ProgTest_Ans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Stud_ProgTest_Result">
+              <PropertyRef Name="Score_ID" />
+            </Principal>
+            <Dependent Role="Tbl_Stud_ProgTest_Ans">
+              <PropertyRef Name="Score_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Stud___Score__40058253">
+          <End Role="Tbl_Stud_ProgTest_Result" Type="Self.Tbl_Stud_ProgTest_Result" Multiplicity="0..1" />
+          <End Role="Tbl_Stud_ProgTest_Ans" Type="Self.Tbl_Stud_ProgTest_Ans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Stud_ProgTest_Result">
+              <PropertyRef Name="Score_ID" />
+            </Principal>
+            <Dependent Role="Tbl_Stud_ProgTest_Ans">
+              <PropertyRef Name="Score_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Stud___Stud___151B244E">
           <End Role="users" Type="Self.users" Multiplicity="1" />
           <End Role="Tbl_Stud_ProgTest_Ans" Type="Self.Tbl_Stud_ProgTest_Ans" Multiplicity="*" />
           <ReferentialConstraint>
@@ -357,7 +450,7 @@ warning 6002: The table/view 'mocktest_dev.dbo.TestTable5' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Tbl_Stud___Stud___05D8E0BE">
+        <Association Name="FK__Tbl_Stud___Stud___160F4887">
           <End Role="users" Type="Self.users" Multiplicity="1" />
           <End Role="Tbl_Stud_ProgTest_Ans" Type="Self.Tbl_Stud_ProgTest_Ans" Multiplicity="*" />
           <ReferentialConstraint>
@@ -369,7 +462,31 @@ warning 6002: The table/view 'mocktest_dev.dbo.TestTable5' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Tbl_Stud___Stud___6EF57B66">
+        <Association Name="FK__Tbl_Stud___Stud___17036CC0">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="Tbl_Stud_ProgTest_Ans" Type="Self.Tbl_Stud_ProgTest_Ans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Tbl_Stud_ProgTest_Ans">
+              <PropertyRef Name="Stud_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Stud___Stud___17F790F9">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="Tbl_Stud_ProgTest_Ans" Type="Self.Tbl_Stud_ProgTest_Ans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Tbl_Stud_ProgTest_Ans">
+              <PropertyRef Name="Stud_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Stud___Stud___19DFD96B">
           <End Role="users" Type="Self.users" Multiplicity="1" />
           <End Role="Tbl_Stud_ProgTest_Details" Type="Self.Tbl_Stud_ProgTest_Details" Multiplicity="*" />
           <ReferentialConstraint>
@@ -381,7 +498,7 @@ warning 6002: The table/view 'mocktest_dev.dbo.TestTable5' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Tbl_Stud___Stud___6FE99F9F">
+        <Association Name="FK__Tbl_Stud___Stud___1BC821DD">
           <End Role="users" Type="Self.users" Multiplicity="0..1" />
           <End Role="Tbl_Stud_ProgTest_Result" Type="Self.Tbl_Stud_ProgTest_Result" Multiplicity="*" />
           <ReferentialConstraint>
@@ -393,7 +510,7 @@ warning 6002: The table/view 'mocktest_dev.dbo.TestTable5' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Tbl_Stud___Stud___75A278F5">
+        <Association Name="FK__Tbl_Stud___Stud___40F9A68C">
           <End Role="users" Type="Self.users" Multiplicity="1" />
           <End Role="Tbl_Stud_ProgTest_Ans" Type="Self.Tbl_Stud_ProgTest_Ans" Multiplicity="*" />
           <ReferentialConstraint>
@@ -405,7 +522,7 @@ warning 6002: The table/view 'mocktest_dev.dbo.TestTable5' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Tbl_Stud___Stud___797309D9">
+        <Association Name="FK__Tbl_Stud___Stud___41EDCAC5">
           <End Role="users" Type="Self.users" Multiplicity="1" />
           <End Role="Tbl_Stud_ProgTest_Ans" Type="Self.Tbl_Stud_ProgTest_Ans" Multiplicity="*" />
           <ReferentialConstraint>
@@ -413,6 +530,54 @@ warning 6002: The table/view 'mocktest_dev.dbo.TestTable5' does not have a prima
               <PropertyRef Name="UserId" />
             </Principal>
             <Dependent Role="Tbl_Stud_ProgTest_Ans">
+              <PropertyRef Name="Stud_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Stud___Stud___42E1EEFE">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="Tbl_Stud_ProgTest_Ans" Type="Self.Tbl_Stud_ProgTest_Ans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Tbl_Stud_ProgTest_Ans">
+              <PropertyRef Name="Stud_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Stud___Stud___43D61337">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="Tbl_Stud_ProgTest_Ans" Type="Self.Tbl_Stud_ProgTest_Ans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Tbl_Stud_ProgTest_Ans">
+              <PropertyRef Name="Stud_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Stud___Stud___45BE5BA9">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="Tbl_Stud_ProgTest_Details" Type="Self.Tbl_Stud_ProgTest_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Tbl_Stud_ProgTest_Details">
+              <PropertyRef Name="Stud_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Stud___Stud___47A6A41B">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="Tbl_Stud_ProgTest_Result" Type="Self.Tbl_Stud_ProgTest_Result" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Tbl_Stud_ProgTest_Result">
               <PropertyRef Name="Stud_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -596,6 +761,7 @@ warning 6002: The table/view 'mocktest_dev.dbo.TestTable5' does not have a prima
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="mocktestModelStoreContainer">
+          <EntitySet Name="AutoSubmittedDetails" EntityType="Self.AutoSubmittedDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OptionDetails" EntityType="Self.OptionDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PerTestCaseResult" EntityType="Self.PerTestCaseResult" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuesDetails" EntityType="Self.QuesDetails" Schema="dbo" store:Type="Tables" />
@@ -638,57 +804,109 @@ warning 6002: The table/view 'mocktest_dev.dbo.TestTable5' does not have a prima
     [TestTable5].[Name] AS [Name]
     FROM [dbo].[TestTable5] AS [TestTable5]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK__PerTestCa__Ques___2739D489" Association="Self.FK__PerTestCa__Ques___2739D489">
+          <AssociationSet Name="FK__PerTestCa__Ques___09A971A2" Association="Self.FK__PerTestCa__Ques___09A971A2">
             <End Role="Tbl_Prog_Ques" EntitySet="Tbl_Prog_Ques" />
             <End Role="PerTestCaseResult" EntitySet="PerTestCaseResult" />
           </AssociationSet>
-          <AssociationSet Name="FK__PerTestCa__Stud___282DF8C2" Association="Self.FK__PerTestCa__Stud___282DF8C2">
+          <AssociationSet Name="FK__PerTestCa__Ques___3587F3E0" Association="Self.FK__PerTestCa__Ques___3587F3E0">
+            <End Role="Tbl_Prog_Ques" EntitySet="Tbl_Prog_Ques" />
+            <End Role="PerTestCaseResult" EntitySet="PerTestCaseResult" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PerTestCa__Stud___0A9D95DB" Association="Self.FK__PerTestCa__Stud___0A9D95DB">
             <End Role="Tbl_Stud_ProgTest_Ans" EntitySet="Tbl_Stud_ProgTest_Ans" />
             <End Role="PerTestCaseResult" EntitySet="PerTestCaseResult" />
           </AssociationSet>
-          <AssociationSet Name="FK__PerTestCa__Test___2645B050" Association="Self.FK__PerTestCa__Test___2645B050">
+          <AssociationSet Name="FK__PerTestCa__Stud___367C1819" Association="Self.FK__PerTestCa__Stud___367C1819">
+            <End Role="Tbl_Stud_ProgTest_Ans" EntitySet="Tbl_Stud_ProgTest_Ans" />
+            <End Role="PerTestCaseResult" EntitySet="PerTestCaseResult" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PerTestCa__Test___0B91BA14" Association="Self.FK__PerTestCa__Test___0B91BA14">
             <End Role="Tbl_Prog_Test" EntitySet="Tbl_Prog_Test" />
             <End Role="PerTestCaseResult" EntitySet="PerTestCaseResult" />
           </AssociationSet>
-          <AssociationSet Name="FK__Tbl_Stud___Score__02FC7413" Association="Self.FK__Tbl_Stud___Score__02FC7413">
+          <AssociationSet Name="FK__PerTestCa__Test___37703C52" Association="Self.FK__PerTestCa__Test___37703C52">
+            <End Role="Tbl_Prog_Test" EntitySet="Tbl_Prog_Test" />
+            <End Role="PerTestCaseResult" EntitySet="PerTestCaseResult" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Stud___Score__114A936A" Association="Self.FK__Tbl_Stud___Score__114A936A">
             <End Role="Tbl_Stud_ProgTest_Result" EntitySet="Tbl_Stud_ProgTest_Result" />
             <End Role="Tbl_Stud_ProgTest_Ans" EntitySet="Tbl_Stud_ProgTest_Ans" />
           </AssociationSet>
-          <AssociationSet Name="FK__Tbl_Stud___Score__03F0984C" Association="Self.FK__Tbl_Stud___Score__03F0984C">
+          <AssociationSet Name="FK__Tbl_Stud___Score__123EB7A3" Association="Self.FK__Tbl_Stud___Score__123EB7A3">
             <End Role="Tbl_Stud_ProgTest_Result" EntitySet="Tbl_Stud_ProgTest_Result" />
             <End Role="Tbl_Stud_ProgTest_Ans" EntitySet="Tbl_Stud_ProgTest_Ans" />
           </AssociationSet>
-          <AssociationSet Name="FK__Tbl_Stud___Score__74AE54BC" Association="Self.FK__Tbl_Stud___Score__74AE54BC">
+          <AssociationSet Name="FK__Tbl_Stud___Score__1332DBDC" Association="Self.FK__Tbl_Stud___Score__1332DBDC">
             <End Role="Tbl_Stud_ProgTest_Result" EntitySet="Tbl_Stud_ProgTest_Result" />
             <End Role="Tbl_Stud_ProgTest_Ans" EntitySet="Tbl_Stud_ProgTest_Ans" />
           </AssociationSet>
-          <AssociationSet Name="FK__Tbl_Stud___Score__787EE5A0" Association="Self.FK__Tbl_Stud___Score__787EE5A0">
+          <AssociationSet Name="FK__Tbl_Stud___Score__14270015" Association="Self.FK__Tbl_Stud___Score__14270015">
             <End Role="Tbl_Stud_ProgTest_Result" EntitySet="Tbl_Stud_ProgTest_Result" />
             <End Role="Tbl_Stud_ProgTest_Ans" EntitySet="Tbl_Stud_ProgTest_Ans" />
           </AssociationSet>
-          <AssociationSet Name="FK__Tbl_Stud___Stud___04E4BC85" Association="Self.FK__Tbl_Stud___Stud___04E4BC85">
+          <AssociationSet Name="FK__Tbl_Stud___Score__3D2915A8" Association="Self.FK__Tbl_Stud___Score__3D2915A8">
+            <End Role="Tbl_Stud_ProgTest_Result" EntitySet="Tbl_Stud_ProgTest_Result" />
+            <End Role="Tbl_Stud_ProgTest_Ans" EntitySet="Tbl_Stud_ProgTest_Ans" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Stud___Score__3E1D39E1" Association="Self.FK__Tbl_Stud___Score__3E1D39E1">
+            <End Role="Tbl_Stud_ProgTest_Result" EntitySet="Tbl_Stud_ProgTest_Result" />
+            <End Role="Tbl_Stud_ProgTest_Ans" EntitySet="Tbl_Stud_ProgTest_Ans" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Stud___Score__3F115E1A" Association="Self.FK__Tbl_Stud___Score__3F115E1A">
+            <End Role="Tbl_Stud_ProgTest_Result" EntitySet="Tbl_Stud_ProgTest_Result" />
+            <End Role="Tbl_Stud_ProgTest_Ans" EntitySet="Tbl_Stud_ProgTest_Ans" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Stud___Score__40058253" Association="Self.FK__Tbl_Stud___Score__40058253">
+            <End Role="Tbl_Stud_ProgTest_Result" EntitySet="Tbl_Stud_ProgTest_Result" />
+            <End Role="Tbl_Stud_ProgTest_Ans" EntitySet="Tbl_Stud_ProgTest_Ans" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Stud___Stud___151B244E" Association="Self.FK__Tbl_Stud___Stud___151B244E">
             <End Role="users" EntitySet="users" />
             <End Role="Tbl_Stud_ProgTest_Ans" EntitySet="Tbl_Stud_ProgTest_Ans" />
           </AssociationSet>
-          <AssociationSet Name="FK__Tbl_Stud___Stud___05D8E0BE" Association="Self.FK__Tbl_Stud___Stud___05D8E0BE">
+          <AssociationSet Name="FK__Tbl_Stud___Stud___160F4887" Association="Self.FK__Tbl_Stud___Stud___160F4887">
             <End Role="users" EntitySet="users" />
             <End Role="Tbl_Stud_ProgTest_Ans" EntitySet="Tbl_Stud_ProgTest_Ans" />
           </AssociationSet>
-          <AssociationSet Name="FK__Tbl_Stud___Stud___6EF57B66" Association="Self.FK__Tbl_Stud___Stud___6EF57B66">
+          <AssociationSet Name="FK__Tbl_Stud___Stud___17036CC0" Association="Self.FK__Tbl_Stud___Stud___17036CC0">
+            <End Role="users" EntitySet="users" />
+            <End Role="Tbl_Stud_ProgTest_Ans" EntitySet="Tbl_Stud_ProgTest_Ans" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Stud___Stud___17F790F9" Association="Self.FK__Tbl_Stud___Stud___17F790F9">
+            <End Role="users" EntitySet="users" />
+            <End Role="Tbl_Stud_ProgTest_Ans" EntitySet="Tbl_Stud_ProgTest_Ans" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Stud___Stud___19DFD96B" Association="Self.FK__Tbl_Stud___Stud___19DFD96B">
             <End Role="users" EntitySet="users" />
             <End Role="Tbl_Stud_ProgTest_Details" EntitySet="Tbl_Stud_ProgTest_Details" />
           </AssociationSet>
-          <AssociationSet Name="FK__Tbl_Stud___Stud___6FE99F9F" Association="Self.FK__Tbl_Stud___Stud___6FE99F9F">
+          <AssociationSet Name="FK__Tbl_Stud___Stud___1BC821DD" Association="Self.FK__Tbl_Stud___Stud___1BC821DD">
             <End Role="users" EntitySet="users" />
             <End Role="Tbl_Stud_ProgTest_Result" EntitySet="Tbl_Stud_ProgTest_Result" />
           </AssociationSet>
-          <AssociationSet Name="FK__Tbl_Stud___Stud___75A278F5" Association="Self.FK__Tbl_Stud___Stud___75A278F5">
+          <AssociationSet Name="FK__Tbl_Stud___Stud___40F9A68C" Association="Self.FK__Tbl_Stud___Stud___40F9A68C">
             <End Role="users" EntitySet="users" />
             <End Role="Tbl_Stud_ProgTest_Ans" EntitySet="Tbl_Stud_ProgTest_Ans" />
           </AssociationSet>
-          <AssociationSet Name="FK__Tbl_Stud___Stud___797309D9" Association="Self.FK__Tbl_Stud___Stud___797309D9">
+          <AssociationSet Name="FK__Tbl_Stud___Stud___41EDCAC5" Association="Self.FK__Tbl_Stud___Stud___41EDCAC5">
             <End Role="users" EntitySet="users" />
             <End Role="Tbl_Stud_ProgTest_Ans" EntitySet="Tbl_Stud_ProgTest_Ans" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Stud___Stud___42E1EEFE" Association="Self.FK__Tbl_Stud___Stud___42E1EEFE">
+            <End Role="users" EntitySet="users" />
+            <End Role="Tbl_Stud_ProgTest_Ans" EntitySet="Tbl_Stud_ProgTest_Ans" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Stud___Stud___43D61337" Association="Self.FK__Tbl_Stud___Stud___43D61337">
+            <End Role="users" EntitySet="users" />
+            <End Role="Tbl_Stud_ProgTest_Ans" EntitySet="Tbl_Stud_ProgTest_Ans" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Stud___Stud___45BE5BA9" Association="Self.FK__Tbl_Stud___Stud___45BE5BA9">
+            <End Role="users" EntitySet="users" />
+            <End Role="Tbl_Stud_ProgTest_Details" EntitySet="Tbl_Stud_ProgTest_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Stud___Stud___47A6A41B" Association="Self.FK__Tbl_Stud___Stud___47A6A41B">
+            <End Role="users" EntitySet="users" />
+            <End Role="Tbl_Stud_ProgTest_Result" EntitySet="Tbl_Stud_ProgTest_Result" />
           </AssociationSet>
           <AssociationSet Name="FK_162" Association="Self.FK_162">
             <End Role="Tbl_Prog_Test" EntitySet="Tbl_Prog_Test" />
@@ -893,6 +1111,7 @@ warning 6002: The table/view 'mocktest_dev.dbo.TestTable5' does not have a prima
             <End Role="user" EntitySet="users" />
             <End Role="Tbl_Stud_ProgTest_Result" EntitySet="Tbl_Stud_ProgTest_Result" />
           </AssociationSet>
+          <EntitySet Name="AutoSubmittedDetails" EntityType="mocktestModel.AutoSubmittedDetail" />
           </EntityContainer>
         <EntityType Name="OptionDetail">
           <Key>
@@ -1488,6 +1707,15 @@ warning 6002: The table/view 'mocktest_dev.dbo.TestTable5' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="AutoSubmittedDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubTopicId" Type="Int32" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="Reason" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1764,6 +1992,16 @@ warning 6002: The table/view 'mocktest_dev.dbo.TestTable5' does not have a prima
             <EntityTypeMapping TypeName="mocktestModel.TestTable5">
               <MappingFragment StoreEntitySet="TestTable5">
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AutoSubmittedDetails">
+            <EntityTypeMapping TypeName="mocktestModel.AutoSubmittedDetail">
+              <MappingFragment StoreEntitySet="AutoSubmittedDetails">
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="SubTopicId" ColumnName="SubTopicId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

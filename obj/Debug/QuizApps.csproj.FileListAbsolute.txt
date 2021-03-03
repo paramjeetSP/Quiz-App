@@ -300,3 +300,15 @@ D:\Quiz-App-SP\obj\Debug\QuizApps.csproj.CoreCompileInputs.cache
 D:\Quiz-App-SP\obj\Debug\QuizApps.csproj.CopyComplete
 D:\Quiz-App-SP\obj\Debug\QuizApps.dll
 D:\Quiz-App-SP\obj\Debug\QuizApps.pdb
+D:\princi\softprodigy-office\Quiz-App\bin\NLog.config
+D:\princi\softprodigy-office\Quiz-App\bin\QuizApps.dll.config
+D:\princi\softprodigy-office\Quiz-App\bin\QuizApps.dll
+D:\princi\softprodigy-office\Quiz-App\bin\QuizApps.pdb
+D:\princi\softprodigy-office\Quiz-App\bin\System.Web.Mvc.xml
+D:\princi\softprodigy-office\Quiz-App\obj\Debug\QuizApps.csprojAssemblyReference.cache
+D:\princi\softprodigy-office\Quiz-App\obj\Debug\QuizApps.csproj.CoreCompileInputs.cache
+D:\princi\softprodigy-office\Quiz-App\obj\Debug\QuizApps.csproj.CopyComplete
+D:\princi\softprodigy-office\Quiz-App\obj\Debug\QuizApps.dll
+D:\princi\softprodigy-office\Quiz-App\obj\Debug\QuizApps.pdb
+D:\princi\softprodigy-office\Quiz-App\bin\Newtonsoft.Json.dll
+D:\princi\softprodigy-office\Quiz-App\bin\Newtonsoft.Json.xml

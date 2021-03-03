@@ -1,5 +1,6 @@
 ﻿using ClosedXML.Excel;
 using Excel;
+using Newtonsoft.Json;
 using QuizApps.Classes;
 using QuizApps.Models;
 using QuizApps.Models.Methods;
@@ -13,6 +14,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Data.OleDb;
 using System.Data.SqlClient;
+using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -66,13 +68,13 @@ namespace QuizApps.Controllers
         {
             return View();
         }
-        public ActionResult GetScore(Int32 correctAnswers, string totalTime, DateTime today, Int32 currentQuestion, Int32 quesId, int? subId)
+        public ActionResult GetScore(Int32 correctAnswers, string totalTime, DateTime today, Int32 currentQuestion, Int32 quesId, int? subId, bool isAutoSubmitted)
         {
             Int32 uid = 0;
+            mocktestEntities1 db = new mocktestEntities1();
             if (Session["UserId"] != null)
             {
                 uid = Convert.ToInt32(Session["UserId"]);
-                mocktestEntities1 db = new mocktestEntities1();
                 var alreadyGiven = db.ScoreDetails.Where(x => x.UserId == uid && x.SubID == subId).Count();
                 if (alreadyGiven == 0)
                 {
@@ -88,6 +90,7 @@ namespace QuizApps.Controllers
                     newscore.SubID = subId;
                     db.ScoreDetails.Add(newscore);
                     db.SaveChanges();
+
                 }
                 else
                 {
@@ -103,9 +106,24 @@ namespace QuizApps.Controllers
                     newscore.SubID = subId;
                     db.ScoreDetails.Add(newscore);
                     db.SaveChanges();
+
                 }
             }
-            return PartialView("~/Views/Home/GetScore.cshtml");
+            if (isAutoSubmitted)
+            {
+                AutoSubmittedDetail submittedDetail = new AutoSubmittedDetail();
+                submittedDetail.SubTopicId = subId;
+                submittedDetail.UserId = uid;
+                submittedDetail.Reason = "User leave the test";
+                db.AutoSubmittedDetails.Add(submittedDetail);
+                db.SaveChanges();
+            }
+            var GivenTestCount = db.ScoreDetails.Where(x => x.UserId == uid).Count();
+            SubmitTest submitTest = new SubmitTest();
+            submitTest.TotalTestSubmitted = GivenTestCount;
+            return Json(submitTest, JsonRequestBehavior.AllowGet);
+            // return JsonConvert.SerializeObject(result, Formatting.Indented);
+            // return PartialView("~/Views/Home/GetScore.cshtml");
         }
         [HttpGet]
         [CustomAdminPanelAuthorizationFilter]
@@ -549,14 +567,15 @@ namespace QuizApps.Controllers
                 }
                 else
                 {
-                    foreach (var item in subName)
-                    {
-                        SelectListItem theItem = new SelectListItem();
-                        theItem.Text = item.Name;
-                        theItem.Value = item.SubTopicId.ToString();
-                        theItem.Selected = false;
-                        newSubName.Add(theItem);
-                    }
+                    var item = subName[0];
+                    //foreach (var item in subName)
+                    //{
+                    SelectListItem theItem = new SelectListItem();
+                    theItem.Text = item.Name;
+                    theItem.Value = item.SubTopicId.ToString();
+                    theItem.Selected = false;
+                    newSubName.Add(theItem);
+                    //}
                     return newSubName;
                 }
 
