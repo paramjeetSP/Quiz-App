@@ -1307,5 +1307,9 @@ namespace QuizApps.Controllers
         {
             return View();
         }
+        public ActionResult BrowserAccess()
+        {
+            return View();
+        }
     }
 }

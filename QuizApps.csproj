@@ -216,6 +216,7 @@
     <Content Include="images\logo.png" />
     <Content Include="images\excel.ico" />
     <Content Include="images\Red X.png" />
+    <Content Include="images\refresh.png" />
     <Content Include="images\roll.png" />
     <Content Include="images\user-circle.png" />
     <Content Include="js\bootstrap.min.js" />
@@ -483,6 +484,7 @@
     <Content Include="Views\Home\EditQuestion_BeforeHTMLChange.cshtml" />
     <Content Include="Views\Home\AddQuestions_old.cshtml" />
     <Content Include="Views\Home\ShowQuestions-old.cshtml" />
+    <Content Include="Views\Home\BrowserAccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />

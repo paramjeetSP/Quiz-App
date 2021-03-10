@@ -20,7 +20,7 @@
     <script src="~/ExternalLibs/JS/less.min.js"></script>
     <script>try { Typekit.load({ async: true }); } catch (e) { }</script>
 </head>
-<body oncopy="return false" oncut="return false" onpaste="return false" oncontextmenu="return false;" >
+<body oncopy="return false" oncut="return false" onpaste="return false" oncontextmenu="return false;">
     <header class="header">
         <div id="headerArea" class="head-btm">
             <div class="container">
@@ -160,6 +160,10 @@
         });
     </script>
     <script language="javascript" type="text/javascript">
+        var isChrome = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
+        if (!isChrome) {
+            window.location.href = "/Home/BrowserAccess";
+        }
         //function handleVisibilityChange() {
         //    if (document.hidden) {
         //        console.log("Hidden");
@@ -168,12 +172,12 @@
         //    }
         //}
         //oncontextmenu="return false;"
-        $(document).keydown(function (e) {
-            if (e.which === 123) {
-                return false;
-            }
-        });
-       // document.addEventListener("visibilitychange", handleVisibilityChange, false);
+        //$(document).keydown(function (e) {
+        //    if (e.which === 123) {
+        //        return false;
+        //    }
+        //});
+           // document.addEventListener("visibilitychange", handleVisibilityChange, false);
     </script>
     <div class="loader-container" style="z-index:99999;">
         <div class="lds-roller "><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
