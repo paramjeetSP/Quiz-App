@@ -312,3 +312,15 @@ D:\princi\softprodigy-office\Quiz-App\obj\Debug\QuizApps.dll
 D:\princi\softprodigy-office\Quiz-App\obj\Debug\QuizApps.pdb
 D:\princi\softprodigy-office\Quiz-App\bin\Newtonsoft.Json.dll
 D:\princi\softprodigy-office\Quiz-App\bin\Newtonsoft.Json.xml
+C:\Users\user\Source\Repos\Quiz-App\bin\NLog.config
+C:\Users\user\Source\Repos\Quiz-App\bin\QuizApps.dll.config
+C:\Users\user\Source\Repos\Quiz-App\bin\QuizApps.dll
+C:\Users\user\Source\Repos\Quiz-App\bin\QuizApps.pdb
+C:\Users\user\Source\Repos\Quiz-App\bin\Newtonsoft.Json.dll
+C:\Users\user\Source\Repos\Quiz-App\bin\Newtonsoft.Json.xml
+C:\Users\user\Source\Repos\Quiz-App\bin\System.Web.Mvc.xml
+C:\Users\user\Source\Repos\Quiz-App\obj\Debug\QuizApps.csproj.AssemblyReference.cache
+C:\Users\user\Source\Repos\Quiz-App\obj\Debug\QuizApps.csproj.CoreCompileInputs.cache
+C:\Users\user\Source\Repos\Quiz-App\obj\Debug\QuizApps.csproj.CopyComplete
+C:\Users\user\Source\Repos\Quiz-App\obj\Debug\QuizApps.dll
+C:\Users\user\Source\Repos\Quiz-App\obj\Debug\QuizApps.pdb

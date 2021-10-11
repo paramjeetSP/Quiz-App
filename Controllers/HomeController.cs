@@ -619,7 +619,7 @@ namespace QuizApps.Controllers
                         subId = Convert.ToInt32(TempData["SubId"]);
                     }
                     var quesdetail = selectStatement.QuesDetails.Join(selectStatement.OptionDetails, a => a.QuesDetailId, b => b.QuesDetailId, (a, b) => new { a, b })
-       .Join(selectStatement.SubTopics, a => a.a.SubTopicId, b => b.SubTopicId, (a, b) => new { a, b }).Where(a => a.a.a.SubTopicId == subId & a.a.a.Active == Active).OrderBy(r => Guid.NewGuid()).Take(30).ToList();
+       .Join(selectStatement.SubTopics, a => a.a.SubTopicId, b => b.SubTopicId, (a, b) => new { a, b }).Where(a => a.a.a.SubTopicId == subId & a.a.a.Active == Active).OrderBy(r => Guid.NewGuid()).Take(20).ToList();
                     obj.QuestionGrid = quesdetail.Select(c => new ShowQuiz
                     {
                         Qid = c.a.a.QuesDetailId,
