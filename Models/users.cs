@@ -17,7 +17,7 @@ namespace QuizApps.Models
 
         [NotMapped]
         [Display(Name = "Name")]
-        [StringLength(100, ErrorMessage = "More Than 6 Characters please!", MinimumLength = 6)]
+        [StringLength(50, ErrorMessage = "Name should be between 6 and 50 character", MinimumLength = 6)]
         public string Name { get; set; }
 
         [NotMapped]
@@ -27,13 +27,13 @@ namespace QuizApps.Models
 
         [NotMapped]
         [Display(Name = "Password")]
-        [StringLength(100, ErrorMessage = "More Than 6 Characters please!", MinimumLength = 6)]
+        [StringLength(15, ErrorMessage = "Password should be between 6 and 15 character", MinimumLength = 6)]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
         [NotMapped]
         [Display(Name = "Confirm Password")]
-        [Compare("Password", ErrorMessage = "The password and confirm password donot match.")]
+        [Compare("Password", ErrorMessage = "The password and confirm password do not match.")]
         [DataType(DataType.Password)]
         public bool ConfirmPassword { get; set; }
 

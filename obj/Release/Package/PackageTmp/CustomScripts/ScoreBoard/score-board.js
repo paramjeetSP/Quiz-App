@@ -1,7 +1,5 @@
 ﻿let dataTable;
 let dataTableOptions = {
-    //initComplete: FilterDataTable,
-    //"bFilter": true,
     dom: 'Bfrtip',
     buttons: [{
         extend: 'excelHtml5',

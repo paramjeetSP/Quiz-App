@@ -14,7 +14,7 @@ namespace QuizApps.Models
 
         [Required]
         [Display(Name = "Name")]
-        [StringLength(100, ErrorMessage = "More Than 2 Characters please!", MinimumLength = 2)]
+        [StringLength(50, ErrorMessage = "Name should be between 6 and 50 character", MinimumLength = 6)]
         public string Name { get; set; }
 
         [Required]
@@ -26,7 +26,7 @@ namespace QuizApps.Models
         public string EmailId { get; set; }
 
         [Required]
-        [Display(Name = "Roll No.")]
+        [Display(Name = "Roll Number")]
         public string Rollno { get; set; }
 
         [Required]
@@ -35,12 +35,12 @@ namespace QuizApps.Models
 
         [Required]
         [Display(Name = "Password")]
-        [StringLength(100, ErrorMessage = "More Than 6 Characters please!", MinimumLength = 6)]
+        [StringLength(15, ErrorMessage = "Password should be between 6 and 15 character", MinimumLength = 6)]
         public string Password { get; set; }
 
         [Required]
         [Display(Name = "Confirm Password")]
-        [Compare("Password", ErrorMessage = "The password and confirm password donot match.")]
+        [Compare("Password", ErrorMessage = "The password and confirm password do not match.")]
         public string ConfirmPassword { get; set; }
     }
 }

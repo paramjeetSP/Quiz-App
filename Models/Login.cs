@@ -14,7 +14,7 @@ namespace QuizApps.Models
         public string EmailId { get; set; }
 
         [Display(Name = "Password")]
-        [StringLength(100, ErrorMessage = "More Than 6 Characters please!", MinimumLength = 6)]
+        [StringLength(15, ErrorMessage = "Password should be between 6 and 15 character", MinimumLength = 6)]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 

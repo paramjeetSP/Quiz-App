@@ -38,7 +38,14 @@
             <div class="row">
                 <div style="margin-top:5px;" id="instruct" class="col-sm-14 col-md-36 col-xs-12">
                     <div id="instructions" class="sidebar-block">
-                        <h4>Select Quiz</h4>
+                        @*<div class="col-md-8">*@
+                            <h4>Select Quiz
+                        
+                                <button onclick="location.href='@Url.Action("TakeQuiz","Home")'" style="float:right;margin-top:-5.5px;"><img src="~/images/refresh.png" style="height:25px;width:25px;"></button></h4>
+                        @*</div>*@
+                        @*<div class="col-md-4"><button onclick="location.href='@Url.Action("TakeQuiz","Home")'">Refresh</button></div>*@
+
+                       
                         <div class="sidebar-content create-quiz" >
                             <div id=" hover-style">
                                 
@@ -51,6 +58,7 @@
                             </div>
                         </div>
                     </div>
+                    <div> </div>
                 </div>
                 @*<div class="col-sm-4 col-md-3 col-xs-12 ">
                     <div class="sidebar-block">

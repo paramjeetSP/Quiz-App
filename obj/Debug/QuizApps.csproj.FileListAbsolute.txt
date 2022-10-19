@@ -324,3 +324,14 @@ C:\Users\user\Source\Repos\Quiz-App\obj\Debug\QuizApps.csproj.CoreCompileInputs.
 C:\Users\user\Source\Repos\Quiz-App\obj\Debug\QuizApps.csproj.CopyComplete
 C:\Users\user\Source\Repos\Quiz-App\obj\Debug\QuizApps.dll
 C:\Users\user\Source\Repos\Quiz-App\obj\Debug\QuizApps.pdb
+F:\Quiz_SP\bin\NLog.config
+F:\Quiz_SP\bin\QuizApps.dll.config
+F:\Quiz_SP\bin\QuizApps.dll
+F:\Quiz_SP\bin\QuizApps.pdb
+F:\Quiz_SP\bin\Newtonsoft.Json.dll
+F:\Quiz_SP\bin\Newtonsoft.Json.xml
+F:\Quiz_SP\obj\Debug\QuizApps.csproj.AssemblyReference.cache
+F:\Quiz_SP\obj\Debug\QuizApps.csproj.CoreCompileInputs.cache
+F:\Quiz_SP\obj\Debug\QuizApps.csproj.CopyComplete
+F:\Quiz_SP\obj\Debug\QuizApps.dll
+F:\Quiz_SP\obj\Debug\QuizApps.pdb

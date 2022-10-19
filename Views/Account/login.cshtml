@@ -13,12 +13,12 @@
                 @*<form>*@
                 @*@using (Html.BeginForm("login", "Account", FormMethod.Post))*@
                 @using (Ajax.BeginForm("login", "Account", null, new AjaxOptions
-                    {
-                        HttpMethod = "POST",
-                        OnSuccess = "EmailPassword",
-                        OnBegin = "clearFun",
-                        OnFailure = "",
-                    }, new { id = "form4" }))
+                {
+                    HttpMethod = "POST",
+                    OnSuccess = "EmailPassword",
+                    OnBegin = "clearFun",
+                    OnFailure = "",
+                }, new { id = "form4" }))
                 {
                     <div id="validation" style="color:#ff6666"></div>
                     <span id="loader" style="display:none;"> <i id="loaders" class="fa fa-spinner fa-spin fa-3x fa-fw"></i></span>
@@ -30,7 +30,7 @@
                         <div class="inputGroupContainer">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-envelope" aria-hidden="true"></i></span>
-                                @Html.EditorFor(u => u.EmailId, new { htmlAttributes = new { @id = "Username", @class = "form-control", @placeholder = "E-Mail Address" } })
+                                @Html.EditorFor(u => u.EmailId, new { htmlAttributes = new { @id = "Username", @class = "form-control", @placeholder = "Email Id" } })
                                 @*<input name="email" placeholder="E-Mail Address" class="form-control" type="text">*@
                             </div>
                         </div>
@@ -53,7 +53,7 @@
                     <div class="form-group">
                         <label class="control-label"></label>
                         <button type="submit" class="btn btn-primary">Submit <i class="fa fa-paper-plane" aria-hidden="true"></i></button>
-                            
+
                     </div>
                 }
             </div>
@@ -62,28 +62,42 @@
     </div>
 </div>
 <style>
-.login-eye {
-    position: absolute;
-    top: 8px;
-    right: 10px;
-    z-index: 9;
-}
+    .login-eye {
+        position: absolute;
+        top: 8px;
+        right: 10px;
+        z-index: 9;
+    }
 </style>
 <script>
 
     function EmailPassword(context) {
-        debugger
         if (!context) {
+            var username = $("#Username").val();
+            var Password = $("#Password").val();
             $('#loader').hide();
-            $('#validation').empty();
-            $('#validation').append("Invalid EmailId or Password!");
+            if (username == "" && Password == "") {
+                $('#validation').empty();
+                $('#validation').append("Please enter Email Id and Password");
+            }
+            else if (username == "") {
+                $('#validation').empty();
+                $('#validation').append("Please enter Email Id");
+            }
+            else if (Password == "") {
+                $('#validation').empty();
+                $('#validation').append("Please enter Password");
+            }
+            else {
+                $('#validation').empty();
+                $('#validation').append("Invalid Email Id or Password!");
+            }
         }
         else {
             location.href = "/Home";
         }
     }
     function ShowHidePassword(event) {
-        console.log();
         if ($(event).hasClass('fa-eye')) {
             $(event).removeClass('fa-eye');
             $(event).addClass('fa-eye-slash');
@@ -124,11 +138,10 @@
     //        });
     //}
     function clearFun() {
-        debugger
         $('#loader').show();
         $('#validation').append("");
-        $('#Username').val("");
-        $('#Password').val("");
+        //$('#Username').val("");
+        //$('#Password').val("");
     }
 </script>
 @*@if (null != TempData["alertMessage"])

@@ -6,3 +6,14 @@ D:\Quiz-App Backup\obj\Release\QuizApps.csproj.CoreCompileInputs.cache
 D:\Quiz-App Backup\obj\Release\QuizApps.csproj.CopyComplete
 D:\Quiz-App Backup\obj\Release\QuizApps.dll
 D:\Quiz-App Backup\obj\Release\QuizApps.pdb
+F:\Quiz_SP\bin\NLog.config
+F:\Quiz_SP\bin\QuizApps.dll.config
+F:\Quiz_SP\bin\QuizApps.dll
+F:\Quiz_SP\bin\QuizApps.pdb
+F:\Quiz_SP\bin\Newtonsoft.Json.dll
+F:\Quiz_SP\bin\Newtonsoft.Json.xml
+F:\Quiz_SP\obj\Release\QuizApps.csproj.AssemblyReference.cache
+F:\Quiz_SP\obj\Release\QuizApps.csproj.CoreCompileInputs.cache
+F:\Quiz_SP\obj\Release\QuizApps.csproj.CopyComplete
+F:\Quiz_SP\obj\Release\QuizApps.dll
+F:\Quiz_SP\obj\Release\QuizApps.pdb

@@ -5,11 +5,6 @@ let TestID;
 let ScoreBoardID;
 let lastTestOptionSelectedEvent;
 $(document).ready(() => {
-    //OnInputMarksRemoveAlert();
-    //$(".programming-test-marks").change(function () {
-    //    let questionNo = $(this).data('question');
-    //    $('.programming-test-answer-marks-' + questionNo + '-alert').fadeOut();
-    //});
 });
 
 function GetTheTestSubmissions(event) {
@@ -64,14 +59,6 @@ function QuestionForMarksChanges(userId, questionId, testId, scoreBoardId) {
 }
 
 function LogQuestionSubMarkingVars() {
-    console.log('QuestionID');
-    console.log(QuestionID);
-    console.log('UserID');
-    console.log(UserID);
-    console.log('TestID');
-    console.log(TestID);
-    console.log('ScoreBoardID');
-    console.log(ScoreBoardID);
 }
 
 function SubmitMarks() {
@@ -117,7 +104,6 @@ function SubmitMarksAjax(allQuestionMarked) {
         type: "POST",
         contentType: "application/json;",
         success: function (data) {
-            console.log(data);
             RefreshSubmissionsTable();
             $('.loader-container').hide();
             $(".modal.in").modal("hide");

@@ -4,21 +4,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <!DOCTYPE html>
-@*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">*@
 <link href="~/ExternalLibs/CSS/bootstrap.min.css" rel="stylesheet" />
-@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>*@
 <script src="~/ExternalLibs/JS/jquery.min.3.1.1.js"></script>
-@*<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>*@
 <script src="~/ExternalLibs/JS/bootstrap.min.js"></script>
-
-
 
 <link rel="stylesheet" type="text/css" href="~/css/customStyle.css">
 <html>
-<body @*onload="Listing.GetTopicList();"*@>
-
+<body oncontextmenu="return false;">
     <div class="hidden">
         <div class="url-Home-QuizSubmitted">@Url.Action("QuizSubmitted", "Home")</div>
+        <div class="url-Home-TakeQuiz">@Url.Action("TakeQuiz", "Home")</div>
     </div>
     <style>
         .col-md-1 {
@@ -204,78 +199,78 @@
                                                 <div class="bs-wizard-info text-center"></div>
                                             </div>
                                         </div>
-                                        <div class="row bs-wizard" style="border-bottom:0;">
-                                            <div id="q21" class="col-md-1 bs-wizard-step disabled">
+                                        <!--<div class="row bs-wizard" style="border-bottom:0;">
+                                            <div id="q21" class="col-md-1 bs-wizard-step disabled">-->
                                                 <!-- active -->
-                                                <div class="text-center bs-wizard-stepnum"> 21</div>
+                                                <!--<div class="text-center bs-wizard-stepnum"> 21</div>
                                                 <div class="progress"><div class="progress-bar"></div></div>
                                                 <a href="#" class="bs-wizard-dot"></a>
                                                 <div class="bs-wizard-info text-center"></div>
                                             </div>
-                                            <div id="q22" class="col-md-1 bs-wizard-step disabled">
+                                            <div id="q22" class="col-md-1 bs-wizard-step disabled">-->
                                                 <!-- active -->
-                                                <div class="text-center bs-wizard-stepnum"> 22</div>
+                                                <!--<div class="text-center bs-wizard-stepnum"> 22</div>
                                                 <div class="progress"><div class="progress-bar"></div></div>
                                                 <a href="#" class="bs-wizard-dot"></a>
                                                 <div class="bs-wizard-info text-center"></div>
                                             </div>
-                                            <div id="q23" class="col-md-1 bs-wizard-step disabled">
+                                            <div id="q23" class="col-md-1 bs-wizard-step disabled">-->
                                                 <!-- active -->
-                                                <div class="text-center bs-wizard-stepnum"> 23</div>
+                                                <!--<div class="text-center bs-wizard-stepnum"> 23</div>
                                                 <div class="progress"><div class="progress-bar"></div></div>
                                                 <a href="#" class="bs-wizard-dot"></a>
                                                 <div class="bs-wizard-info text-center"></div>
                                             </div>
-                                            <div id="q24" class="col-md-1 bs-wizard-step disabled">
+                                            <div id="q24" class="col-md-1 bs-wizard-step disabled">-->
                                                 <!-- active -->
-                                                <div class="text-center bs-wizard-stepnum"> 24</div>
+                                                <!--<div class="text-center bs-wizard-stepnum"> 24</div>
                                                 <div class="progress"><div class="progress-bar"></div></div>
                                                 <a href="#" class="bs-wizard-dot"></a>
                                                 <div class="bs-wizard-info text-center"></div>
                                             </div>
-                                            <div id="q25" class="col-md-1 bs-wizard-step disabled">
+                                            <div id="q25" class="col-md-1 bs-wizard-step disabled">-->
                                                 <!-- active -->
-                                                <div class="text-center bs-wizard-stepnum"> 25</div>
+                                                <!--<div class="text-center bs-wizard-stepnum"> 25</div>
                                                 <div class="progress"><div class="progress-bar"></div></div>
                                                 <a href="#" class="bs-wizard-dot"></a>
                                                 <div class="bs-wizard-info text-center"></div>
                                             </div>
-                                            <div id="q26" class="col-md-1 bs-wizard-step disabled">
+                                            <div id="q26" class="col-md-1 bs-wizard-step disabled">-->
                                                 <!-- active -->
-                                                <div class="text-center bs-wizard-stepnum"> 26</div>
+                                                <!--<div class="text-center bs-wizard-stepnum"> 26</div>
                                                 <div class="progress"><div class="progress-bar"></div></div>
                                                 <a href="#" class="bs-wizard-dot"></a>
                                                 <div class="bs-wizard-info text-center"></div>
                                             </div>
-                                            <div id="q27" class="col-md-1 bs-wizard-step disabled">
+                                            <div id="q27" class="col-md-1 bs-wizard-step disabled">-->
                                                 <!-- active -->
-                                                <div class="text-center bs-wizard-stepnum"> 27</div>
+                                                <!--<div class="text-center bs-wizard-stepnum"> 27</div>
                                                 <div class="progress"><div class="progress-bar"></div></div>
                                                 <a href="#" class="bs-wizard-dot"></a>
                                                 <div class="bs-wizard-info text-center"></div>
                                             </div>
-                                            <div id="q28" class="col-md-1 bs-wizard-step disabled">
+                                            <div id="q28" class="col-md-1 bs-wizard-step disabled">-->
                                                 <!-- active -->
-                                                <div class="text-center bs-wizard-stepnum"> 28</div>
+                                                <!--<div class="text-center bs-wizard-stepnum"> 28</div>
                                                 <div class="progress"><div class="progress-bar"></div></div>
                                                 <a href="#" class="bs-wizard-dot"></a>
                                                 <div class="bs-wizard-info text-center"></div>
                                             </div>
-                                            <div id="q29" class="col-md-1 bs-wizard-step disabled">
+                                            <div id="q29" class="col-md-1 bs-wizard-step disabled">-->
                                                 <!-- active -->
-                                                <div class="text-center bs-wizard-stepnum"> 29</div>
+                                                <!--<div class="text-center bs-wizard-stepnum"> 29</div>
                                                 <div class="progress"><div class="progress-bar"></div></div>
                                                 <a href="#" class="bs-wizard-dot"></a>
                                                 <div class="bs-wizard-info text-center"></div>
                                             </div>
-                                            <div id="q30" class="col-md-1 bs-wizard-step disabled">
+                                            <div id="q30" class="col-md-1 bs-wizard-step disabled">-->
                                                 <!-- active -->
-                                                <div class="text-center bs-wizard-stepnum"> 30</div>
+                                                <!--<div class="text-center bs-wizard-stepnum"> 30</div>
                                                 <div class="progress"><div class="progress-bar"></div></div>
                                                 <a href="#" class="bs-wizard-dot"></a>
                                                 <div class="bs-wizard-info text-center"></div>
                                             </div>
-                                        </div>
+                                        </div>-->
                                     </div>
                                 }
                                 <div id="QuizArea">
@@ -287,7 +282,7 @@
                                             @*<div class="QuesNo" style="background-color:#eeeeee" ></div>*@
                                             @*@Html.TextAreaFor(m => m.QuestionName, new { @class="form-control question" , rows = "4", cols = "50"})*@
 
-                                            <textarea  contentEditable="true" id="txt" class="question" readonly style="display: inline-block;user-select: none; min-height: 150px;height:auto; resize:horizontal;resize: vertical;resize:none;border:none;">
+                                            <textarea contentEditable="true" id="txt" class="question" readonly style="display: inline-block;user-select: none; min-height: 150px;height:auto; resize:horizontal;resize: vertical;resize:none;border:none;">
                                             
                                             </textarea>
                                             @*<p class="question" style="overflow: hidden;  height: auto;"></p>*@
@@ -329,6 +324,22 @@
     <section></section>
     @*@Html.Partial("~/Views/Home/GetScore.cshtml")*@
     <script src="~/CustomScripts/TakeQuiz/StartQuiz.js"></script>
+    <script language="javascript" type="text/javascript">
+        function handleVisibilityChange() {
+            if (document.hidden) {
+                displayScore(true);
+            } else {
+                console.log("Visible");
+            }
+        }
+        //oncontextmenu="return false;"
+        $(document).keydown(function (e) {
+            if (e.which === 123) {
+                return false;
+            }
+        });
+        document.addEventListener("visibilitychange", handleVisibilityChange, false);
+    </script>
 </body>
 </html>
 <script>

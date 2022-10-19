@@ -32,10 +32,10 @@ var Listing = {
             type: 'get',
             data: { 'TopicId': item },
             success: function (result) {
-               // debugger
+                debugger
                 $("#sb_" + subCount + "").append('<div id="sbBody_' + subCount + '"class="panel-body">');
                 $.each(result, function (index, value) {
-
+                    debugger;
                     $("#sbBody_" + subCount + "").append('<div class="row">');
                     if (value.Disabled) {
                         $("#sbBody_" + subCount + "").append('' + SUBcounts + '. <a style="cursor:not-allowed" >' + value.Text + '</a></div> ');
