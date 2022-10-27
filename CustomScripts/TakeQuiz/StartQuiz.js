@@ -138,7 +138,7 @@ function hideScore() {
     $(document).find(".result").hide();
 }
 
-countdown(1199);  // 20min
+countdown(3599);  // 60min
 
 function countdown(seconds) {
     var now = new Date().getTime();

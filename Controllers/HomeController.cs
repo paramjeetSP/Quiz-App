@@ -92,32 +92,32 @@ namespace QuizApps.Controllers
                     db.SaveChanges();
 
                 }
-                else
-                {
-                    ScoreDetail newscore = new ScoreDetail();
-                    newscore.QuesDetailId = quesId;
-                    newscore.UserId = uid;
-                    newscore.Corrected = correctAnswers;
-                    newscore.date = today;
-                    newscore.Duration = totalTime;
-                    newscore.Score = correctAnswers;
-                    newscore.Attempted = currentQuestion;
-                    newscore.Active = true;
-                    newscore.SubID = subId;
-                    db.ScoreDetails.Add(newscore);
-                    db.SaveChanges();
+                //else
+                //{
+                //    ScoreDetail newscore = new ScoreDetail();
+                //    newscore.QuesDetailId = quesId;
+                //    newscore.UserId = uid;
+                //    newscore.Corrected = correctAnswers;
+                //    newscore.date = today;
+                //    newscore.Duration = totalTime;
+                //    newscore.Score = correctAnswers;
+                //    newscore.Attempted = currentQuestion;
+                //    newscore.Active = true;
+                //    newscore.SubID = subId;
+                //    db.ScoreDetails.Add(newscore);
+                //    db.SaveChanges();
 
-                }
+                //}
             }
-            if (isAutoSubmitted)
-            {
-                AutoSubmittedDetail submittedDetail = new AutoSubmittedDetail();
-                submittedDetail.SubTopicId = subId;
-                submittedDetail.UserId = uid;
-                submittedDetail.Reason = "User leave the test";
-                db.AutoSubmittedDetails.Add(submittedDetail);
-                db.SaveChanges();
-            }
+            //if (isAutoSubmitted)
+            //{
+            //    AutoSubmittedDetail submittedDetail = new AutoSubmittedDetail();
+            //    submittedDetail.SubTopicId = subId;
+            //    submittedDetail.UserId = uid;
+            //    submittedDetail.Reason = "User leave the test";
+            //    db.AutoSubmittedDetails.Add(submittedDetail);
+            //    db.SaveChanges();
+            //}
             var GivenTestCount = db.ScoreDetails.Where(x => x.UserId == uid).Count();
             SubmitTest submitTest = new SubmitTest();
             submitTest.TotalTestSubmitted = GivenTestCount;
@@ -619,7 +619,7 @@ namespace QuizApps.Controllers
                         subId = Convert.ToInt32(TempData["SubId"]);
                     }
                     var quesdetail = selectStatement.QuesDetails.Join(selectStatement.OptionDetails, a => a.QuesDetailId, b => b.QuesDetailId, (a, b) => new { a, b })
-       .Join(selectStatement.SubTopics, a => a.a.SubTopicId, b => b.SubTopicId, (a, b) => new { a, b }).Where(a => a.a.a.SubTopicId == subId & a.a.a.Active == Active).OrderBy(r => Guid.NewGuid()).Take(20).ToList();
+       .Join(selectStatement.SubTopics, a => a.a.SubTopicId, b => b.SubTopicId, (a, b) => new { a, b }).Where(a => a.a.a.SubTopicId == subId & a.a.a.Active == Active).OrderBy(r => Guid.NewGuid()).Take(40).ToList();
                     obj.QuestionGrid = quesdetail.Select(c => new ShowQuiz
                     {
                         Qid = c.a.a.QuesDetailId,
