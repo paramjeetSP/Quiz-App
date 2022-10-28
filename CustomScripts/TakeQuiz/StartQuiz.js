@@ -117,15 +117,17 @@ function displayScore(isautoSubmitted) {
         },
         dataType: "html",
         success: function (result) {
-            var data = JSON.parse(result);
-            if (data.TotalTestSubmitted === 1) {
-                let url = $('.url-Home-TakeQuiz').text();
-                window.location.href = url;
-            }
-            else {
-                let url = $('.url-Home-QuizSubmitted').text();
-                window.location.href = url;
-            }
+            //var data = JSON.parse(result);
+            let url = $('.url-Home-QuizSubmitted').text();
+            window.location.href = url;
+            //if (data.TotalTestSubmitted === 1) {
+            //    let url = $('.url-Home-TakeQuiz').text();
+            //    window.location.href = url;
+            //}
+            //else {
+            //    let url = $('.url-Home-QuizSubmitted').text();
+            //    window.location.href = url;
+            //}
         },
         error: (function (erro) {
             let url = $('.url-Home-QuizSubmitted').text();
