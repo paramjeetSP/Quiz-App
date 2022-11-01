@@ -154,7 +154,9 @@ namespace QuizApps.Controllers
                     Attempted = c.c.b.a.score.Attempted,
                     correctAnswers = c.c.b.a.score.Corrected,
                     totalTime = c.c.b.a.score.Duration,
-                    TestType = 1 // This type is to filter the results on the User Score Board, it is not stored in DB
+                    TestType = 1, // This type is to filter the results on the User Score Board, it is not stored in DB
+                    MobNo = c.us.Mob,
+                    Gender = c.us.Gender
                 }).ToList();
                 obj.scoreGrid = obj.scoreGrid;
                 obj.scoreGrid = GetProgrammingTestData(obj.scoreGrid);

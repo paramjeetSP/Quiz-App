@@ -39,7 +39,7 @@ $(document).ready(function () {
                 var FullDate = da + " " + time;
 
                 count = count + 1;
-                $('#UserFieldArea').append('<tr><td style="text-align: -webkit-center;">' + count + '</td><td style="text-align: -webkit-center;">' + FullDate + '</td><td style="text-align: -webkit-center;">' + value.user + '</td><td style="text-align: -webkit-center;">' + value.RollNo + '</td><td style="text-align: -webkit-center;">' + value.Branch + '</td><td style="text-align: -webkit-center;">' + value.topicname + '</td><td style="text-align: -webkit-center;">' + value.subname + '</td><td style="text-align: -webkit-center;">' + value.score + '</td><td style="text-align: -webkit-center;">' + value.Attempted + '</td><td style="text-align: -webkit-center;">' + value.totalTime + '</td></tr>');
+                $('#UserFieldArea').append('<tr><td style="text-align: -webkit-center;">' + count + '</td><td style="text-align: -webkit-center;">' + FullDate + '</td><td style="text-align: -webkit-center;">' + value.user + '</td><td style="text-align: -webkit-center;">' + value.RollNo + '</td><td style="text-align: -webkit-center;">' + value.Branch + '</td><td style="text-align: -webkit-center;">' + value.topicname + '</td><td style="text-align: -webkit-center;">' + value.subname + '</td><td style="text-align: -webkit-center;">' + value.MobNo + '</td><td style="text-align: -webkit-center;">' + value.Gender + '</td><td style="text-align: -webkit-center;">' + value.score + '</td><td style="text-align: -webkit-center;">' + value.Attempted + '</td><td style="text-align: -webkit-center;">' + value.totalTime + '</td></tr>');
             })
             dataTable = $('#userList').DataTable(dataTableOptions);
         }

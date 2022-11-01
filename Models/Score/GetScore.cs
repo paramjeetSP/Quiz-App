@@ -22,6 +22,8 @@ namespace QuizApps.Models.Score
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime? today { get; set; }
         public int TestType { get; set; }
+        public string MobNo { get; set; }
+        public string Gender { get; set; }
     }
     public class scoreDetails
     {
