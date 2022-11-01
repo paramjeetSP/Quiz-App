@@ -109,15 +109,15 @@ namespace QuizApps.Controllers
 
                 //}
             }
-            //if (isAutoSubmitted)
-            //{
-            //    AutoSubmittedDetail submittedDetail = new AutoSubmittedDetail();
-            //    submittedDetail.SubTopicId = subId;
-            //    submittedDetail.UserId = uid;
-            //    submittedDetail.Reason = "User leave the test";
-            //    db.AutoSubmittedDetails.Add(submittedDetail);
-            //    db.SaveChanges();
-            //}
+            if (isAutoSubmitted)
+            {
+                AutoSubmittedDetail submittedDetail = new AutoSubmittedDetail();
+                submittedDetail.SubTopicId = subId;
+                submittedDetail.UserId = uid;
+                submittedDetail.Reason = "User leave the test";
+                db.AutoSubmittedDetails.Add(submittedDetail);
+                db.SaveChanges();
+            }
             var GivenTestCount = db.ScoreDetails.Where(x => x.UserId == uid).Count();
             SubmitTest submitTest = new SubmitTest();
             submitTest.TotalTestSubmitted = GivenTestCount;

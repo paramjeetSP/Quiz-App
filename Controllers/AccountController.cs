@@ -104,6 +104,8 @@ namespace QuizApps.Controllers
                     newuser.Branch = reg.Branch;
                     newuser.RollNo = reg.Rollno;
                     newuser.roleId = 2;
+                    newuser.Mob = reg.Mobno;
+                    newuser.Gender = reg.Gender;
                     db.users.Add(newuser);
                     db.SaveChanges();
                     var userDetail = db.users.Where(x => x.EmailId == reg.EmailId && x.Password == reg.Password).FirstOrDefault();

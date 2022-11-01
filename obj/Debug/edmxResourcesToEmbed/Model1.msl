@@ -233,6 +233,8 @@
     <EntitySetMapping Name="users">
       <EntityTypeMapping TypeName="mocktestModel.user">
         <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Mob" ColumnName="Mob" />
           <ScalarProperty Name="Branch" ColumnName="Branch" />
           <ScalarProperty Name="RollNo" ColumnName="RollNo" />
           <ScalarProperty Name="roleId" ColumnName="roleId" />
@@ -277,10 +279,10 @@
     </EntitySetMapping>
     <EntitySetMapping Name="AutoSubmittedDetails">
       <EntityTypeMapping TypeName="mocktestModel.AutoSubmittedDetail">
-        <MappingFragment StoreEntitySet="AutoSubmittedDetails">
-          <ScalarProperty Name="Reason" ColumnName="Reason" />
+        <MappingFragment StoreEntitySet="AutoSubmittedDetail">
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="SubTopicId" ColumnName="SubTopicId" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

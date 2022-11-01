@@ -5,14 +5,14 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="mocktestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="AutoSubmittedDetails">
+        <EntityType Name="AutoSubmittedDetail">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Reason" Type="nvarchar(max)" />
           <Property Name="SubTopicId" Type="int" />
           <Property Name="UserId" Type="int" />
-          <Property Name="Reason" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="OptionDetails">
           <Key>
@@ -269,6 +269,8 @@ warning 6002: The table/view 'Mocktest_SP.dbo.TestTable5' does not have a primar
           <Property Name="roleId" Type="int" Nullable="false" />
           <Property Name="RollNo" Type="nvarchar(max)" />
           <Property Name="Branch" Type="nvarchar(max)" />
+          <Property Name="Mob" Type="varchar" MaxLength="255" />
+          <Property Name="Gender" Type="varchar" MaxLength="255" />
         </EntityType>
         <Association Name="FK__PerTestCa__Ques___09A971A2">
           <End Role="Tbl_Prog_Ques" Type="Self.Tbl_Prog_Ques" Multiplicity="0..1" />
@@ -761,7 +763,7 @@ warning 6002: The table/view 'Mocktest_SP.dbo.TestTable5' does not have a primar
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="mocktestModelStoreContainer">
-          <EntitySet Name="AutoSubmittedDetails" EntityType="Self.AutoSubmittedDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AutoSubmittedDetail" EntityType="Self.AutoSubmittedDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OptionDetails" EntityType="Self.OptionDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PerTestCaseResult" EntityType="Self.PerTestCaseResult" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuesDetails" EntityType="Self.QuesDetails" Schema="dbo" store:Type="Tables" />
@@ -1376,6 +1378,8 @@ warning 6002: The table/view 'Mocktest_SP.dbo.TestTable5' does not have a primar
           <NavigationProperty Name="Tbl_Stud_ProgTest_Ans3" Relationship="mocktestModel.FK__Tbl_Stud___Stud___797309D9" FromRole="user" ToRole="Tbl_Stud_ProgTest_Ans" />
           <NavigationProperty Name="Tbl_Stud_ProgTest_Details" Relationship="mocktestModel.FK__Tbl_Stud___Stud___6EF57B66" FromRole="user" ToRole="Tbl_Stud_ProgTest_Details" />
           <NavigationProperty Name="Tbl_Stud_ProgTest_Result" Relationship="mocktestModel.FK__Tbl_Stud___Stud___6FE99F9F" FromRole="user" ToRole="Tbl_Stud_ProgTest_Result" />
+          <Property Name="Mob" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="TestTable2">
           <Key>
@@ -1712,9 +1716,9 @@ warning 6002: The table/view 'Mocktest_SP.dbo.TestTable5' does not have a primar
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="SubTopicId" Type="Int32" />
           <Property Name="UserId" Type="Int32" />
-          <Property Name="Reason" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1954,6 +1958,8 @@ warning 6002: The table/view 'Mocktest_SP.dbo.TestTable5' does not have a primar
           <EntitySetMapping Name="users">
             <EntityTypeMapping TypeName="mocktestModel.user">
               <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Mob" ColumnName="Mob" />
                 <ScalarProperty Name="Branch" ColumnName="Branch" />
                 <ScalarProperty Name="RollNo" ColumnName="RollNo" />
                 <ScalarProperty Name="roleId" ColumnName="roleId" />
@@ -1998,10 +2004,10 @@ warning 6002: The table/view 'Mocktest_SP.dbo.TestTable5' does not have a primar
           </EntitySetMapping>
           <EntitySetMapping Name="AutoSubmittedDetails">
             <EntityTypeMapping TypeName="mocktestModel.AutoSubmittedDetail">
-              <MappingFragment StoreEntitySet="AutoSubmittedDetails">
-                <ScalarProperty Name="Reason" ColumnName="Reason" />
+              <MappingFragment StoreEntitySet="AutoSubmittedDetail">
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="SubTopicId" ColumnName="SubTopicId" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

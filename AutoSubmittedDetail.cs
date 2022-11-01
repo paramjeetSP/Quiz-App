@@ -15,8 +15,8 @@ namespace QuizApps
     public partial class AutoSubmittedDetail
     {
         public int Id { get; set; }
+        public string Reason { get; set; }
         public Nullable<int> SubTopicId { get; set; }
         public Nullable<int> UserId { get; set; }
-        public string Reason { get; set; }
     }
 }

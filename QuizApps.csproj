@@ -208,10 +208,12 @@
     <Content Include="images\bg.jpg" />
     <Content Include="images\branch.png" />
     <Content Include="images\Edit.ico" />
+    <Content Include="images\gender.png" />
     <Content Include="images\images %281%29.png" />
     <Content Include="images\loading.gif" />
     <Content Include="images\logo-altruist.png" />
     <Content Include="images\logo-SP.png" />
+    <Content Include="images\mobile.png" />
     <Content Include="images\profile.png" />
     <Content Include="images\logo.png" />
     <Content Include="images\excel.ico" />

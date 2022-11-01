@@ -419,6 +419,8 @@
     <NavigationProperty Name="Tbl_Stud_ProgTest_Ans3" Relationship="mocktestModel.FK__Tbl_Stud___Stud___797309D9" FromRole="user" ToRole="Tbl_Stud_ProgTest_Ans" />
     <NavigationProperty Name="Tbl_Stud_ProgTest_Details" Relationship="mocktestModel.FK__Tbl_Stud___Stud___6EF57B66" FromRole="user" ToRole="Tbl_Stud_ProgTest_Details" />
     <NavigationProperty Name="Tbl_Stud_ProgTest_Result" Relationship="mocktestModel.FK__Tbl_Stud___Stud___6FE99F9F" FromRole="user" ToRole="Tbl_Stud_ProgTest_Result" />
+    <Property Name="Mob" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Gender" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="TestTable2">
     <Key>
@@ -755,8 +757,8 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="SubTopicId" Type="Int32" />
     <Property Name="UserId" Type="Int32" />
-    <Property Name="Reason" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

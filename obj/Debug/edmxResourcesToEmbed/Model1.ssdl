@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="mocktestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="AutoSubmittedDetails">
+  <EntityType Name="AutoSubmittedDetail">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Reason" Type="nvarchar(max)" />
     <Property Name="SubTopicId" Type="int" />
     <Property Name="UserId" Type="int" />
-    <Property Name="Reason" Type="nvarchar" MaxLength="500" />
   </EntityType>
   <EntityType Name="OptionDetails">
     <Key>
@@ -264,6 +264,8 @@ warning 6002: The table/view 'Mocktest_SP.dbo.TestTable5' does not have a primar
     <Property Name="roleId" Type="int" Nullable="false" />
     <Property Name="RollNo" Type="nvarchar(max)" />
     <Property Name="Branch" Type="nvarchar(max)" />
+    <Property Name="Mob" Type="varchar" MaxLength="255" />
+    <Property Name="Gender" Type="varchar" MaxLength="255" />
   </EntityType>
   <Association Name="FK__PerTestCa__Ques___09A971A2">
     <End Role="Tbl_Prog_Ques" Type="Self.Tbl_Prog_Ques" Multiplicity="0..1" />
@@ -756,7 +758,7 @@ warning 6002: The table/view 'Mocktest_SP.dbo.TestTable5' does not have a primar
   </Function>
   <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="mocktestModelStoreContainer">
-    <EntitySet Name="AutoSubmittedDetails" EntityType="Self.AutoSubmittedDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AutoSubmittedDetail" EntityType="Self.AutoSubmittedDetail" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="OptionDetails" EntityType="Self.OptionDetails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PerTestCaseResult" EntityType="Self.PerTestCaseResult" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="QuesDetails" EntityType="Self.QuesDetails" Schema="dbo" store:Type="Tables" />

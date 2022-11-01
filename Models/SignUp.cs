@@ -7,7 +7,6 @@ using System.Web;
 
 namespace QuizApps.Models
 {
-
     public class SignUp
     {
         public int userId { get; set; }
@@ -32,6 +31,14 @@ namespace QuizApps.Models
         [Required]
         [Display(Name = "Branch")]
         public string Branch { get; set; }
+
+        [Required]
+        [Display(Name = "Mobile Number")]
+        [StringLength(10, ErrorMessage = "Enter valid mobile number", MinimumLength = 10)]
+        public string Mobno { get; set; }
+
+        [Display(Name = "Gender")]
+        public string Gender { get; set; }
 
         [Required]
         [Display(Name = "Password")]
