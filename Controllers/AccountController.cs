@@ -98,7 +98,7 @@ namespace QuizApps.Controllers
                     user newuser = new user();
                     List<user> userList = new List<user>();
                     userList = db.users.ToList();
-                    newuser.Name = reg.Name;
+                    newuser.Name = reg.FName + " " + reg.LName;
                     newuser.EmailId = reg.EmailId;
                     newuser.Password = reg.Password;
                     newuser.Branch = reg.Branch;
@@ -106,6 +106,9 @@ namespace QuizApps.Controllers
                     newuser.roleId = 2;
                     newuser.Mob = reg.Mobno;
                     newuser.Gender = reg.Gender;
+                    newuser.CllgeName = reg.CllgeName;
+                    newuser.FName = reg.FName;
+                    newuser.LName = reg.LName;
                     db.users.Add(newuser);
                     db.SaveChanges();
                     var userDetail = db.users.Where(x => x.EmailId == reg.EmailId && x.Password == reg.Password).FirstOrDefault();

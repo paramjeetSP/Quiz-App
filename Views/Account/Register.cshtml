@@ -14,14 +14,24 @@
                     @Html.ValidationSummary(true, "", new { @class = "contol-label" })
                     <!-- Text input-->
                     <div class="form-group">
-                        @Html.LabelFor(u => u.Name, new { @class = "control-label" })<span style="color:red;">*</span>
+                        @Html.LabelFor(u => u.FName, new { @class = "control-label" })<span style="color:red;">*</span>
                         <div class="inputGroupContainer">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
-                                @Html.EditorFor(u => u.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Name" } })
+                                @Html.EditorFor(u => u.FName, new { htmlAttributes = new { @class = "form-control", @placeholder = "First Name" } })
                             </div>
                         </div>
-                        @Html.ValidationMessageFor(u => u.Name, "", new { @style = "font-family: inherit;color:#ff6666;" })
+                        @Html.ValidationMessageFor(u => u.FName, "", new { @style = "font-family: inherit;color:#ff6666;" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(u => u.LName, new { @class = "control-label" })<span style="color:red;">*</span>
+                        <div class="inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                                @Html.EditorFor(u => u.LName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Last Name" } })
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(u => u.LName, "", new { @style = "font-family: inherit;color:#ff6666;" })
                     </div>
                     <!-- Text input-->
                     <div class="form-group">
@@ -61,6 +71,18 @@
                             </div>
                         </div>
                         @Html.ValidationMessageFor(u => u.Branch, "", new { @style = "font-family: inherit;color:#ff6666;" })
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">College Name</label><span style="color:red;">*</span>
+                        <div class="inputGroupContainer">
+                            <div class="input-group" style="width: 100%;">
+                                <span class="input-group-addon" style="width: 36px; padding: 3px 8px; ">
+                                    <img src="~/images/college.png" />
+                                </span>
+                                @Html.EditorFor(u => u.CllgeName, "", new { htmlAttributes = new { @class = "form-control", @placeholder = "College Name" } })
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(u => u.CllgeName, "", new { @style = "font-family: inherit;color:#ff6666;" })
                     </div>
                     <div class="form-group">
                         <label class="control-label">Mobile Number</label><span style="color:red;">*</span>

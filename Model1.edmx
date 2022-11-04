@@ -271,6 +271,9 @@ warning 6002: The table/view 'Mocktest_SP.dbo.TestTable5' does not have a primar
           <Property Name="Branch" Type="nvarchar(max)" />
           <Property Name="Mob" Type="varchar" MaxLength="255" />
           <Property Name="Gender" Type="varchar" MaxLength="255" />
+          <Property Name="FName" Type="varchar" MaxLength="255" />
+          <Property Name="LName" Type="varchar" MaxLength="255" />
+          <Property Name="CllgeName" Type="varchar" MaxLength="255" />
         </EntityType>
         <Association Name="FK__PerTestCa__Ques___09A971A2">
           <End Role="Tbl_Prog_Ques" Type="Self.Tbl_Prog_Ques" Multiplicity="0..1" />
@@ -1380,6 +1383,9 @@ warning 6002: The table/view 'Mocktest_SP.dbo.TestTable5' does not have a primar
           <NavigationProperty Name="Tbl_Stud_ProgTest_Result" Relationship="mocktestModel.FK__Tbl_Stud___Stud___6FE99F9F" FromRole="user" ToRole="Tbl_Stud_ProgTest_Result" />
           <Property Name="Mob" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Gender" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="FName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="LName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CllgeName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="TestTable2">
           <Key>
@@ -1958,6 +1964,9 @@ warning 6002: The table/view 'Mocktest_SP.dbo.TestTable5' does not have a primar
           <EntitySetMapping Name="users">
             <EntityTypeMapping TypeName="mocktestModel.user">
               <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="CllgeName" ColumnName="CllgeName" />
+                <ScalarProperty Name="LName" ColumnName="LName" />
+                <ScalarProperty Name="FName" ColumnName="FName" />
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="Mob" ColumnName="Mob" />
                 <ScalarProperty Name="Branch" ColumnName="Branch" />

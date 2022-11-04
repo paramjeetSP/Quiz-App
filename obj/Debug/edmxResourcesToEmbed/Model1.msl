@@ -233,6 +233,9 @@
     <EntitySetMapping Name="users">
       <EntityTypeMapping TypeName="mocktestModel.user">
         <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="CllgeName" ColumnName="CllgeName" />
+          <ScalarProperty Name="LName" ColumnName="LName" />
+          <ScalarProperty Name="FName" ColumnName="FName" />
           <ScalarProperty Name="Gender" ColumnName="Gender" />
           <ScalarProperty Name="Mob" ColumnName="Mob" />
           <ScalarProperty Name="Branch" ColumnName="Branch" />

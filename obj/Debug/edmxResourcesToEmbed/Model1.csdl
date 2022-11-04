@@ -421,6 +421,9 @@
     <NavigationProperty Name="Tbl_Stud_ProgTest_Result" Relationship="mocktestModel.FK__Tbl_Stud___Stud___6FE99F9F" FromRole="user" ToRole="Tbl_Stud_ProgTest_Result" />
     <Property Name="Mob" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="Gender" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="FName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="LName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="CllgeName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="TestTable2">
     <Key>

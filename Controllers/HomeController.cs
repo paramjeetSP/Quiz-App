@@ -156,8 +156,12 @@ namespace QuizApps.Controllers
                     totalTime = c.c.b.a.score.Duration,
                     TestType = 1, // This type is to filter the results on the User Score Board, it is not stored in DB
                     MobNo = c.us.Mob,
-                    Gender = c.us.Gender
-                }).ToList();
+                    Gender = c.us.Gender,
+                    Email = c.us.EmailId,
+                    CllgeName = c.us.CllgeName,
+                    FName=c.us.FName,
+                    LName = c.us.LName
+                }).OrderByDescending(x=>x.score).ToList();
                 obj.scoreGrid = obj.scoreGrid;
                 obj.scoreGrid = GetProgrammingTestData(obj.scoreGrid);
                 return Json(obj.scoreGrid, JsonRequestBehavior.AllowGet);

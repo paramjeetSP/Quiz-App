@@ -11,7 +11,7 @@ namespace QuizApps.Models
     {
         public int userId { get; set; }
 
-        [Required]
+        //[Required]
         [Display(Name = "Name")]
         [StringLength(50, ErrorMessage = "Name should be between 6 and 50 character", MinimumLength = 6)]
         public string Name { get; set; }
@@ -37,8 +37,21 @@ namespace QuizApps.Models
         [StringLength(10, ErrorMessage = "Enter valid mobile number", MinimumLength = 10)]
         public string Mobno { get; set; }
 
+        [Required]
         [Display(Name = "Gender")]
         public string Gender { get; set; }
+
+        [Required]
+        [Display(Name = "College Name")]
+        public string CllgeName { get; set; }
+
+        [Required]
+        [Display(Name = "First Name")]
+        public string FName { get; set; }
+
+        [Required]
+        [Display(Name = "Last Name")]
+        public string LName { get; set; }
 
         [Required]
         [Display(Name = "Password")]

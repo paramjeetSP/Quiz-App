@@ -34,6 +34,9 @@ namespace QuizApps
         public string Branch { get; set; }
         public string Mob { get; set; }
         public string Gender { get; set; }
+        public string FName { get; set; }
+        public string LName { get; set; }
+        public string CllgeName { get; set; }
     
         public virtual Role Role { get; set; }
         public virtual ICollection<ScoreDetail> ScoreDetails { get; set; }

@@ -24,6 +24,10 @@ namespace QuizApps.Models.Score
         public int TestType { get; set; }
         public string MobNo { get; set; }
         public string Gender { get; set; }
+        public string Email { get; set; }
+        public string CllgeName { get; set; }
+        public string FName { get; set; }
+        public string LName { get; set; }
     }
     public class scoreDetails
     {

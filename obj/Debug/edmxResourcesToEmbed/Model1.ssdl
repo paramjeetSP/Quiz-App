@@ -266,6 +266,9 @@ warning 6002: The table/view 'Mocktest_SP.dbo.TestTable5' does not have a primar
     <Property Name="Branch" Type="nvarchar(max)" />
     <Property Name="Mob" Type="varchar" MaxLength="255" />
     <Property Name="Gender" Type="varchar" MaxLength="255" />
+    <Property Name="FName" Type="varchar" MaxLength="255" />
+    <Property Name="LName" Type="varchar" MaxLength="255" />
+    <Property Name="CllgeName" Type="varchar" MaxLength="255" />
   </EntityType>
   <Association Name="FK__PerTestCa__Ques___09A971A2">
     <End Role="Tbl_Prog_Ques" Type="Self.Tbl_Prog_Ques" Multiplicity="0..1" />
